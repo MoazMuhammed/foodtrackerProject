@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+      // ذخووهف
+      //
       create: (context) => LanguageCubit(),
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
                 localizationsDelegates: const [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,
+                  // comment
                   GlobalCupertinoLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
                 ],
