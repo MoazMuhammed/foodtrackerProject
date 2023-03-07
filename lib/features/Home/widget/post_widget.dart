@@ -70,48 +70,40 @@ class PostWidget extends StatelessWidget {
                 image: AssetImage('assets/images/post.png'),
                 fit: BoxFit.fill),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.sp),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 10.sp, vertical: 10.sp),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(9.sp),
-                  border: Border.all(
-                      width: 0.2.w, color: Colors.grey.shade400),
-                ),
-                child: Row(
-                  children: [
-                    ReactWidget(
-                      image: 'love',
-                      number: '35',
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    ReactWidget(
-                      image: 'happy',
-                      number: '7',
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    ReactWidget(
-                      image: 'sad',
-                      number: '2',
-                      onPressed: () {},
-                    ),
-                    const Spacer(),
-                    const AppSVG(assetName: 'comment'),
-                    SizedBox(
-                      width: 3.w,
-                    ),
-                    const AppSVG(assetName: 'save')
-                  ],
-                ),
+              padding: EdgeInsets.symmetric(vertical: 15.sp,horizontal: 10.sp),
+              child: Row(
+                children: [
+                  ReactWidget(
+                    image: 'love',
+                    number: '35',
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    width: 2.w,
+                  ),
+                  ReactWidget(
+                    image: 'happy',
+                    number: '7',
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    width: 2.w,
+                  ),
+                  ReactWidget(
+                    image: 'sad',
+                    number: '2',
+                    onPressed: () {},
+                  ),
+                  const Spacer(),
+                  const AppSVG(assetName: 'comment'),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  const AppSVG(assetName: 'save')
+                ],
               ),
-            )
+            ),
+
           ],
         ),
       ),

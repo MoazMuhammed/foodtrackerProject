@@ -6,6 +6,7 @@ import 'package:foodtracker/core/shared_prefrences/my_shared.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/features/splash/splash_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
+import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() async {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodtracker/core/shared_prefrences/my_shared.dart';
+import 'package:foodtracker/core/shared_prefrences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
@@ -16,6 +18,7 @@ class SignUpChooseService extends StatefulWidget {
 }
 
 class _SignUpChooseServiceState extends State<SignUpChooseService> {
+  bool doctor = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,7 +56,7 @@ class _SignUpChooseServiceState extends State<SignUpChooseService> {
                   child: Container(
                     height: 1.h,
                     width: 2.w,
-                    decoration: BoxDecoration(color: AppColors.primary,borderRadius: BorderRadius.circular(10.sp)),
+                    decoration: BoxDecoration(color: doctor == true ?AppColors.primary: Colors.grey,borderRadius: BorderRadius.circular(10.sp)),
                   ),
                 ),
                 SizedBox(width: 3.w,),
@@ -61,7 +64,7 @@ class _SignUpChooseServiceState extends State<SignUpChooseService> {
                   child: Container(
                     height: 1.h,
                     width: 2.w,
-                    decoration: BoxDecoration(color: AppColors.primary,borderRadius: BorderRadius.circular(10.sp)),
+                    decoration: BoxDecoration(color:doctor == false ? AppColors.primary: Colors.grey,borderRadius: BorderRadius.circular(10.sp)),
                   ),
                 ),
               ],
@@ -86,9 +89,18 @@ class _SignUpChooseServiceState extends State<SignUpChooseService> {
             padding:  EdgeInsets.symmetric(horizontal: 25.sp),
             child: Row(
               children: [
-                const Expanded(child: SignUpContainer(image: 'login', title: 'Doctor',)),
+                 Expanded(child: SignUpContainer(image: 'doctor', title: 'Doctor', onPressed: () { doctor = true;
+                   MyShared.putBoolean(key: MySharedKeys.isDoctor, value: true);
+                   setState(() {
+
+                   });
+                   },)),
                 SizedBox(width: 10.w,),
-                const Expanded(child: SignUpContainer(image: 'login', title: 'Patient',)),
+                 Expanded(child: SignUpContainer(image: 'patient', title: 'Patient', onPressed: () { doctor = false;
+                 MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
+                 setState(() {
+
+                 }); },)),
               ],
             ),
           ),

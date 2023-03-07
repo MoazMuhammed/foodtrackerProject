@@ -12,5 +12,6 @@ enum MySharedKeys {
   currentLanguage,
   languageKeys,
   studentStatus,
+  isDoctor,
 
 }

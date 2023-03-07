@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="153" height="153" viewBox="0 0 153 153">
+  <defs>
+    <filter id="c_f2" x="0" y="0" width="153" height="153" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#c_f2)">
+    <g id="c_f2-2" data-name="c f2" transform="translate(7 6)" fill="none" stroke-linecap="round">
+      <path d="M67.5,0A67.5,67.5,0,1,1,0,67.5,67.5,67.5,0,0,1,67.5,0Z" stroke="none"/>
+      <path d="M 67.5 6 C 33.58879852294922 6 6 33.58879852294922 6 67.5 C 6 101.4112091064453 33.58879852294922 129 67.5 129 C 101.4112091064453 129 129 101.4112091064453 129 67.5 C 129 33.58879852294922 101.4112091064453 6 67.5 6 M 67.5 0 C 104.7792282104492 0 135 30.22077178955078 135 67.5 C 135 104.7792282104492 104.7792282104492 135 67.5 135 C 30.22077178955078 135 0 104.7792282104492 0 67.5 C 0 30.22077178955078 30.22077178955078 0 67.5 0 Z" stroke="none" fill="#a8a8a8"/>
+    </g>
+  </g>
+</svg>

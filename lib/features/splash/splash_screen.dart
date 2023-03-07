@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds:  10000)).then((value) {
+    Future.delayed(const Duration(milliseconds: 1000)).then((value) {
       if (MyShared.isFirstOpen()) {
         pushReplacement(context,  OnBoardingScreen());
         return;

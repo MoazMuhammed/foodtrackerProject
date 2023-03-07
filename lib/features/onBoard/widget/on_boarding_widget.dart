@@ -26,9 +26,7 @@ class OnBoardingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
+        body: ListView(
           children: [
             SizedBox(
               height: 5.h,
@@ -42,35 +40,39 @@ class OnBoardingWidget extends StatelessWidget {
             SizedBox(height: 5.h,),
             Container(margin: EdgeInsets.symmetric(horizontal: 13.sp),child: AppSVG(assetName: image,height: 39.h, width: double.infinity)),
             SizedBox(height: 4.h,),
-            Column(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp, ),
-                ),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Text(
-                  subTitle,
-                  style:
-                      TextStyle(fontWeight: FontWeight.w300, fontSize: 15.sp),
-                ),
-              ],
+            Center(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp, ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Text(
+                    subTitle,
+                    style:
+                        TextStyle(fontWeight: FontWeight.w300, fontSize: 15.sp),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 5.h,),
-            SmoothPageIndicator(
-              controller: indicatorController,
-              count: 3,
-              effect: SwapEffect(
-                  spacing: 11.0.sp,
-                  dotWidth: 15.0.sp,
-                  dotHeight: 15.0.sp,
-                  strokeWidth: 1,
-                  paintStyle: PaintingStyle.stroke,
-                  dotColor: AppColors.primary,
-                  activeDotColor: AppColors.primary),
+            Center(
+              child: SmoothPageIndicator(
+                controller: indicatorController,
+                count: 3,
+                effect: SwapEffect(
+                    spacing: 11.0.sp,
+                    dotWidth: 15.0.sp,
+                    dotHeight: 15.0.sp,
+                    strokeWidth: 1,
+                    paintStyle: PaintingStyle.stroke,
+                    dotColor: AppColors.primary,
+                    activeDotColor: AppColors.primary),
+              ),
             ),
             SizedBox(height: 4.h,),
             Visibility(

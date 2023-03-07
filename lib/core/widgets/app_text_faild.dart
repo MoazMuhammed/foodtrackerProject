@@ -18,19 +18,20 @@ class AppTextField extends StatefulWidget {
     this.validators,
     required this.textInputAction,
     required this.textInputType,
-    required this.title,
+     this.title = "",
   }) : super(key: key);
   final Color textColor;
   final String hint;
   final TextInputType keyboardType;
 
-  final String title;
+  final String title ;
   final bool isPassword;
   final FormFieldValidator<dynamic>? validators;
   final TextEditingController controller;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final IconData? icon;
+  final
   BorderRadius? borderRadius;
   EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry? padding;
@@ -56,39 +57,33 @@ class _AppTextFieldState extends State<AppTextField> {
               ),
             ],
           ),
-          SizedBox(
-            height: 1.3.h,
-          ),
-          Container(
-            height: 5.h,
-            child: TextFormField(
-              validator: widget.validators,
-              obscureText: obscureText,
-              controller: widget.controller,
-              keyboardType: widget.textInputType,
-              textInputAction: widget.textInputAction,
-              decoration: InputDecoration(
-                focusColor: AppColors.black,
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.black)),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.sp))),
-                suffixIcon: Visibility(
-                  visible: widget.isPassword,
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        obscureText = !obscureText;
-                      });
-                    },
-                    child: Icon(
-                      obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: AppColors.black,
-                    ),
+          TextFormField(
+            validator: widget.validators,
+            obscureText: obscureText,
+            controller: widget.controller,
+            keyboardType: widget.textInputType,
+            textInputAction: widget.textInputAction,
+            decoration: InputDecoration(
+              focusColor: AppColors.black,
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.black)),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.sp))),
+              suffixIcon: Visibility(
+                visible: widget.isPassword,
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      obscureText = !obscureText;
+                    });
+                  },
+                  child: Icon(
+                    obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: AppColors.black,
                   ),
                 ),
-                hintText: widget.hint,
               ),
+              hintText: widget.hint,
             ),
           ),
           SizedBox(height: 1.h,)

@@ -9,7 +9,7 @@ class AppColors{
   static const Color semiGrey = Color(0xffB8B6B6);
   static const Color black = Color(0xff000000);
   static const Color offWhite = Color(0xffFBF9F9);
-  static const Color malibu = Color(0xff59BCFD);
+  static const Color malibu = Color(0xff5C85B5);
 
 
 
