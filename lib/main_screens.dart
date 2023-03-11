@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/AI/view/ai_screen.dart';
-import 'package:foodtracker/features/Home/viwe/home_screen.dart';
+import 'package:foodtracker/features/Home/view/home_screen.dart';
+import 'package:foodtracker/features/category/view/category_screen.dart';
+import 'package:foodtracker/features/drawer/widget/drawer.dart';
 
 class MainScreens extends StatefulWidget {
   const MainScreens({Key? key}) : super(key: key);
@@ -16,14 +18,16 @@ class _MainScreensState extends State<MainScreens> {
   int index = 0;
   List<Widget> listScreens= [
     HomeScreen(),
+    CategoryScreen(),
     AIScreen(),
-    HomeScreen(),
     AIScreen()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: listScreens[index],
+
       bottomNavigationBar: bottomNavBar(),
+      endDrawer: DrawerWidget(name: "name"),
 
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
-import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_bar.dart';
 import 'package:foodtracker/features/AI/ai/check%20data/view/check_data_enter.dart';
 import 'package:foodtracker/features/AI/widget/choose_process_widget.dart';
@@ -25,7 +24,7 @@ class _AIScreenState extends State<AIScreen> {
         ),
         child: Column(
           children: [
-            AppBarWidget(),
+            const AppBarWidget(),
             SizedBox(height: 15.h,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +39,7 @@ class _AIScreenState extends State<AIScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ChooseProcessWidget(image: 'checkData', title: 'Check Data', onPressed: () { push(context, CheckDataEnter()); },),
+                    ChooseProcessWidget(image: 'checkData', title: 'Check Data', onPressed: () { push(context, const CheckDataEnter()); },),
                     SizedBox(
                       width: 7.w,
                     ),

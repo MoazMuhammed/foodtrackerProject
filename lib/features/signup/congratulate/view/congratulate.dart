@@ -3,7 +3,6 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
-import 'package:foodtracker/features/Home/viwe/home_screen.dart';
 import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -44,7 +43,7 @@ class CongratulateScreen extends StatelessWidget {
             ),
             AppButton(
               onPressed: () {
-                push(context, MainScreens());
+                push(context, const MainScreens());
               },
               label: 'Go to Home',
               sizeFont: 16.sp,

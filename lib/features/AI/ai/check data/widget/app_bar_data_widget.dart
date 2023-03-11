@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AppBarDataCheckWidget extends StatelessWidget {
-  const AppBarDataCheckWidget({Key? key}) : super(key: key);
+  const AppBarDataCheckWidget({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,9 @@ class AppBarDataCheckWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            AppSVG(assetName: 'arrow'),
+            GestureDetector(
+                onTap: () => pop(context),
+                child: AppSVG(assetName: 'arrow')),
             SizedBox(
               width: 2.w,
             ),

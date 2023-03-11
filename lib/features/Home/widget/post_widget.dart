@@ -33,8 +33,8 @@ class PostWidget extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15.sp)),
-                    const Text(
-                      '3 min',
+                     Text(
+                      '3 min',style: TextStyle(fontSize: 13.sp),
                     ),
                   ],
                 ),

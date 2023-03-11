@@ -30,6 +30,19 @@ class MyShared {
     return _preferences?.getString(key.name) ?? "";
   }
 
+  static int getInt({required MySharedKeys key}) {
+    return _preferences?.getInt(key.name) ?? 0;
+  }
+
+  static Future<bool> putInt({
+    required MySharedKeys key,
+    required int? value,
+  }) async {
+    return await _preferences?.setInt(key.name, value ?? 0) ?? false;
+  }
+
+
+
   static String getCurrentLanguage() {
     return _preferences?.getString(MySharedKeys.currentLanguage.name) ?? "en";
   }

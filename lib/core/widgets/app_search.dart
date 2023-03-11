@@ -17,7 +17,7 @@ class AppSearch extends StatefulWidget {
     required this.controller,
     this.validators,
     required this.textInputAction,
-    required this.textInputType,
+    required this.textInputType, this.onChanged,
   }) : super(key: key);
   final Color textColor;
   final String hint;
@@ -28,7 +28,8 @@ class AppSearch extends StatefulWidget {
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final IconData? icon;
-  BorderRadius? borderRadius;
+  final VoidCallback? onChanged;
+      BorderRadius? borderRadius;
   EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry? padding;
 
@@ -50,6 +51,7 @@ class _AppSearchState extends State<AppSearch> {
           Container(
             height: 4.h,
             child: TextFormField(
+              onChanged: (value) => widget.onChanged,
               textAlign: TextAlign.start,
               validator: widget.validators,
               controller: widget.controller,
