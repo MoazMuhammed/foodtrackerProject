@@ -77,33 +77,35 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     ]),
                     child: Consumer<ThemeProvider>(
                       builder: (context, provider, child) {
-                        return Center(
-                          child: ToggleSwitch(
-                            initialLabelIndex: provider.currentTheme,
-                            totalSwitches: 2,
-                            activeBgColor: const [AppColors.primary],
-                            inactiveBgColor:Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white ,
-                            customWidths: [25.w, 25.w],
-                            labels: const ['Light', 'Dark'],
-                            borderColor: [Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white],
-                            inactiveFgColor: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.black,
-                            customIcons: const [
-                              Icon(
-                                Icons.light_mode,
-                                color: Colors.yellow,
-                              ),
-                              Icon(
-                                Icons.dark_mode,
-                                color: Colors.black54,
-                              )
-                            ],
-                            onToggle: (int? index) {
-                              setState(() {
+                        return Expanded(
+                          child: Center(
+                            child: ToggleSwitch(
+                              initialLabelIndex: provider.currentTheme,
+                              totalSwitches: 2,
+                              activeBgColor: const [AppColors.primary],
+                              inactiveBgColor:Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white ,
+                              customWidths: [25.w, 25.w],
+                              labels: const ['Light', 'Dark'],
+                              borderColor: [Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white],
+                              inactiveFgColor: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.black,
+                              customIcons: const [
+                                Icon(
+                                  Icons.light_mode,
+                                  color: Colors.yellow,
+                                ),
+                                Icon(
+                                  Icons.dark_mode,
+                                  color: Colors.black54,
+                                )
+                              ],
+                              onToggle: (int? index) {
+                                setState(() {
 
-                                provider.changeTheme(index??0);
+                                  provider.changeTheme(index??0);
 
-                              });
-                            },
+                                });
+                              },
+                            ),
                           ),
                         );
                       },

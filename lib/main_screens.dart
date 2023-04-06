@@ -67,7 +67,7 @@ class _MainScreensState extends State<MainScreens> {
             icon: AppSVG(assetName: 'category', color: cubit.index ==1 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
-            label:'category',
+            label:'FA Scanner',
             icon: AppSVG(assetName: 'faScanner', color: cubit.index ==2 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
