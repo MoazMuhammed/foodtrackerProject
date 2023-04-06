@@ -28,27 +28,31 @@ class AppButton extends StatelessWidget {
     margin ??= EdgeInsets.symmetric(horizontal: 20.sp);
     padding ??= EdgeInsets.symmetric(vertical: 10.sp);
 
-    return Container(
-      margin: margin,
+    return SizedBox(
       width: double.infinity,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(bgColor),
-          shape: MaterialStateProperty.all<OutlinedBorder>(
-            RoundedRectangleBorder(
-              borderRadius: borderRadius!,
+      height: 4.3.h,
+      child: Container(
+        margin: margin,
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(bgColor),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+              RoundedRectangleBorder(
+                borderRadius: borderRadius!,
+              ),
             ),
           ),
-        ),
-        onPressed: onPressed,
-        child: Padding(
-          padding: padding!,
-          child: Text(
-            label,
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold,
-              fontSize: sizeFont,
+          onPressed: onPressed,
+          child: Padding(
+            padding: padding!,
+            child: Text(
+              label,
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.bold,
+                fontSize: sizeFont,
+              ),
             ),
           ),
         ),

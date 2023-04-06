@@ -1,5 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtracker/core/cubits/main/main_cubit.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/AI/view/ai_screen.dart';
@@ -15,52 +16,64 @@ class MainScreens extends StatefulWidget {
 }
 
 class _MainScreensState extends State<MainScreens> {
+
+  MainCubit cubit = MainCubit();
+
   int index = 0;
-  List<Widget> listScreens= [
+  List<Widget> listScreens = [
     HomeScreen(),
     CategoryScreen(),
     AIScreen(),
     AIScreen()
   ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: listScreens[index],
-
-      bottomNavigationBar: bottomNavBar(),
-      endDrawer: DrawerWidget(name: "name"),
-
+    return BlocProvider(
+  create: (context) => cubit,
+  child: BlocBuilder<MainCubit, MainState>(
+  builder: (context, state) {
+    return SafeArea(
+      child: Scaffold(
+        body: cubit.screens[cubit.index],
+        bottomNavigationBar: bottomNavBar(),
+        endDrawer: DrawerWidget(name: "name"),
+      ),
     );
+  },
+),
+);
   }
+
   Widget bottomNavBar() {
 
     return BottomNavigationBar(
-      showUnselectedLabels: true,
-      selectedItemColor: AppColors.malibu,
-      unselectedItemColor: Colors.black,
-showSelectedLabels: true,
-
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Theme.of(context).brightness == Brightness.light ?Colors.grey.shade200:Colors.grey.shade800,
+      selectedItemColor: AppColors.primary,
+      unselectedItemColor: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
       onTap: (value) {
-        index = value;
+        cubit.index = value;
         setState(() {});
       },
-      currentIndex: index,
+      currentIndex: cubit.index,
       items:  [
         BottomNavigationBarItem(
-            label:"Home",
-            icon: AppSVG(assetName: 'home',color: index==0? AppColors.malibu:AppColors.black,)
+            label:'home',
+            icon: AppSVG(assetName:'home',color: cubit.index ==0 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
-            label:"Category",
-            icon: AppSVG(assetName: 'category',color: index==1? AppColors.malibu:AppColors.black,)
+            label:'category',
+            icon: AppSVG(assetName: 'category', color: cubit.index ==1 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
-            label:"Ai",
-            icon: AppSVG(assetName: 'aib',color: index==2? AppColors.malibu:AppColors.black,)
+            label:'category',
+            icon: AppSVG(assetName: 'faScanner', color: cubit.index ==2 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
-            label:"cart",
-
-            icon: AppSVG(assetName: 'cart',color: index==3? AppColors.malibu:AppColors.black,)
+            label:'cart',
+            icon: AppSVG(assetName:'cart',
+              color: cubit.index ==3 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
 
 
@@ -68,7 +81,4 @@ showSelectedLabels: true,
 
 
     );
-  }
-
-}
-
+  }}

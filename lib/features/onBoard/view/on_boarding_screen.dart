@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/features/onBoard/widget/on_boarding_widget.dart';
-import 'package:foodtracker/features/splash/splash_screen.dart';
 
 PageController indicatorController = PageController();
 bool lastPage = false;
@@ -14,17 +13,17 @@ class OnBoardingScreen extends StatefulWidget {
     Screens(
       "onboardOne",
       "always beside you",
-      "It is a long established fact that a reader will \nbe distracted by the readable content of a \npage when looking at its layout. The point of \nusing Lorem Ipsum is that it has a more-or- \nless",
+      "In food tracker, We present a new vision for\ngood programs by proving moral support to the\nfamily in caring for the allergies facing our\nchildren because they have become very\nwidespread ",
     ),
     Screens(
       "onboardTwo",
       "We are here for you",
-      "It is a long established fact that a reader will \nbe distracted by the readable content of a \npage when looking at its layout. The point of \nusing Lorem Ipsum is that it has a more-or- \nless",
+      "Program also provide ways to discover if your\nchild suffers from allergies and also discover\nwhat type and methods of caring for them in\naddition to using artificial intelligence so\n that results are 98% correct",
     ),
     Screens(
       "onboardThree",
       "Provide medical support",
-      "It is a long established fact that a reader will \nbe distracted by the readable content of a \npage when looking at its layout. The point of \nusing Lorem Ipsum is that it has a more-or- \nless",
+      "One of the best and most important features of\nfood tracker is that here we always provide support\nin all cases so that parents feel safe because we are\nnot only a medical program but we are family\nthat always care for your safety",
     ),
   ];
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/styles/colors.dart';
-import 'package:foodtracker/core/utills/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 // ignore: must_be_immutable
@@ -59,7 +58,7 @@ class _AppSearchState extends State<AppSearch> {
               textInputAction: widget.textInputAction,
                 decoration: InputDecoration(
                 focusColor: AppColors.black,
-                prefixIcon: Icon(Icons.search,color: Colors.black54,size: 17.sp,),
+                prefixIcon: Icon(Icons.search,size: 17.sp,),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.black.withOpacity(0.5))),
                 border: OutlineInputBorder(

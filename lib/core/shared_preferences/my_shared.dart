@@ -1,4 +1,4 @@
-import 'package:foodtracker/core/shared_prefrences/my_shared_keys.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyShared {
@@ -55,6 +55,6 @@ class MyShared {
   static bool isEnglish() => getCurrentLanguage() == "en";
 
   static bool isFirstOpen() {
-    return _preferences?.getBool(MySharedKeys.firstOpen.name) ?? true;
-  }
+    return (_preferences?.getString(MySharedKeys.apiToken.name) ?? "")
+        .isEmpty;  }
 }

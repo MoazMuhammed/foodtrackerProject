@@ -1,5 +1,24 @@
 {
-  "email" : "Email"
+  "email" : "Email",
+  "password" : "Password",
+  "signIn" : "Sign In",
+  "welcome" : "Welcome",
+  "enjoy" : "Enjoy Your Journey",
+  "enterEmail": "Enter Your Email",
+  "enterPassword" : "Enter Your password",
+  "forgetPasswordLogin" : "Forget password?",
+  "haveAcc" : "Do not have an Account?",
+  "signUp" : "Sign up",
+  "forgetPassword" : "Forget password",
+  "passwordSaved" : "Your New password Have Successful\nSaved",
+  "congratulation" : "Congratulation",
+  "goToHome" : "Go to Home",
+  "enterNewPassword" : "Please Enter Your New Password",
+  "confirm" : "Confirm",
+  "otp" : "Please enter the 4 digit code that\nhave been send to email",
+  "enterEmailToReceiveCode" : "Please Enter Your Email To Receive The code",
+  "sendCode" : "Send code"
+
 
 
 }

@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:foodtracker/core/api/my_dio.dart';
 import 'package:foodtracker/core/cubits/language/language_cubit.dart';
-import 'package:foodtracker/core/shared_prefrences/my_shared.dart';
-import 'package:foodtracker/core/styles/colors.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
+import 'package:foodtracker/core/styles/theme_provider.dart';
 import 'package:foodtracker/features/splash/splash_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
-import 'package:foodtracker/main_screens.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MyShared.init();
-  runApp(const MyApp());
+  MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
+  await MyDio.init();
+  runApp( ChangeNotifierProvider<ThemeProvider>(
+      create:(_) => ThemeProvider()..initialize(),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,19 +34,26 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return ResponsiveSizer(
             builder: (context, orientation, screenType) {
-              return MaterialApp(
-                key: ValueKey(MyShared.getCurrentLanguage()),
-                debugShowCheckedModeBanner: false,
-                locale: Locale(MyShared.getCurrentLanguage()),
-                supportedLocales: S.delegate.supportedLocales,
-                localizationsDelegates: const [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                ],
-                theme: ThemeData(fontFamily: 'SegoeUI'),
-                home: const SplashScreen(),
+              return Consumer<ThemeProvider>(
+                builder: (context, provider, child) {
+                  return MaterialApp(
+                    key: ValueKey(MyShared.getCurrentLanguage()),
+                    debugShowCheckedModeBanner: false,
+                    locale: Locale(MyShared.getCurrentLanguage()),
+                    supportedLocales: S.delegate.supportedLocales,
+                    localizationsDelegates: const [
+                      S.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                    ],
+                    theme: ThemeData(fontFamily: 'SegoeUI',),
+                    darkTheme: ThemeData.dark(),
+                    themeMode: provider.themeMode,
+                    home: const SplashScreen(),
+                    builder: EasyLoading.init(),
+                  );
+                },
               );
             },
           );

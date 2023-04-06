@@ -20,15 +20,13 @@ class AppBarDataCheckWidget extends StatelessWidget {
             ),
             Text('Check Data', style: TextStyle(fontSize: 17.sp)),
             Spacer(),
-            AppSVG(assetName: 'notify', height: 2.5.h),
+            AppSVG(assetName: 'notify', height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
             SizedBox(
               width: 3.w,
             ),
-            AppSVG(assetName: 'addPost', height: 2.5.h),
-            SizedBox(
-              width: 3.w,
-            ),
-            AppSVG(assetName: 'drawer', height: 2.h),
+            GestureDetector(onTap: () {
+              Scaffold.of(context).openEndDrawer();
+            },child: AppSVG(assetName: 'drawer', height: 2.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
             SizedBox(
               height: 6.h,
             ),

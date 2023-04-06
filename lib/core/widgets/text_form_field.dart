@@ -49,13 +49,16 @@ class _AppTextFieldState extends State<AppTextField> {
       margin: EdgeInsets.symmetric(horizontal: 20.sp),
       child: Column(
         children: [
-          Row(
-            children: [
-              Text(
-                widget.title,
-                style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.sp,vertical: 6.sp),
+            child: Row(
+              children: [
+                Text(
+                  widget.title,
+                  style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
           TextFormField(
             validator: widget.validators,
@@ -66,7 +69,7 @@ class _AppTextFieldState extends State<AppTextField> {
             decoration: InputDecoration(
               focusColor: AppColors.black,
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.black)),
+                  borderSide: BorderSide(color: AppColors.container,width: 0.2.w)),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.sp))),
               suffixIcon: Visibility(

@@ -29,7 +29,7 @@ class OnBoardingWidget extends StatelessWidget {
         body: ListView(
           children: [
             SizedBox(
-              height: 5.h,
+              height: 7.h,
             ),
             Center(
               child: Text(

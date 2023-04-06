@@ -1,12 +1,9 @@
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtracker/core/api/api_result_handler.dart';
 import 'package:foodtracker/core/api/endpoints.dart';
 import 'package:foodtracker/core/api/my_dio.dart';
-import 'package:foodtracker/core/shared_prefrences/my_shared.dart';
-import 'package:foodtracker/core/shared_prefrences/my_shared_keys.dart';
-import 'package:foodtracker/core/utills/easy_loading.dart';
-import 'package:foodtracker/core/utills/safe_print.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 
 part 'language_state.dart';
 
@@ -15,18 +12,10 @@ class LanguageCubit extends Cubit<LanguageState> {
   static dynamic language;
 
   Future<void> getLanguageFromServer() async {
-    var value = await MyDio.getData(endPoint: EndPoints.language);
+    var value = await MyDio.get(endPoint: EndPoints.language);
 
     dynamic language;
 
-    if (value is ApiSuccess) {
-      safePrint(value.data);
-      language = value.data['data'];
-    }
-    if (value is ApiFailure) {
-      safePrint(value.errorMessage);
-      showError(value.errorMessage);
-    }
 
     var keys = jsonEncode(language);
 

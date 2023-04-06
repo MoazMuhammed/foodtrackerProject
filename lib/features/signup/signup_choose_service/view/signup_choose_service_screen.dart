@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodtracker/core/shared_prefrences/my_shared.dart';
-import 'package:foodtracker/core/shared_prefrences/my_shared_keys.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
@@ -18,7 +18,7 @@ class SignUpChooseService extends StatefulWidget {
 }
 
 class _SignUpChooseServiceState extends State<SignUpChooseService> {
-  bool doctor = true;
+  bool doctor = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

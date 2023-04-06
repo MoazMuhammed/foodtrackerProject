@@ -22,6 +22,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "email": MessageLookupByLibrary.simpleMessage("Email")
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "congratulation":
+            MessageLookupByLibrary.simpleMessage("Congratulation"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "enjoy": MessageLookupByLibrary.simpleMessage("Enjoy Your Journey"),
+        "enterEmail": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
+        "enterEmailToReceiveCode": MessageLookupByLibrary.simpleMessage(
+            "Please Enter Your Email To Receive The code"),
+        "enterNewPassword": MessageLookupByLibrary.simpleMessage(
+            "Please Enter Your New Password"),
+        "enterPassword":
+            MessageLookupByLibrary.simpleMessage("Enter Your password"),
+        "forgetPassword":
+            MessageLookupByLibrary.simpleMessage("Forget password"),
+        "forgetPasswordLogin":
+            MessageLookupByLibrary.simpleMessage("Forget password?"),
+        "goToHome": MessageLookupByLibrary.simpleMessage("Go to Home"),
+        "haveAcc":
+            MessageLookupByLibrary.simpleMessage("Do not have an Account?"),
+        "otp": MessageLookupByLibrary.simpleMessage(
+            "Please enter the 4 digit code that\nhave been send to email"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordSaved": MessageLookupByLibrary.simpleMessage(
+            "Your New password Have Successful\nSaved"),
+        "sendCode": MessageLookupByLibrary.simpleMessage("Send code"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome")
       };
 }

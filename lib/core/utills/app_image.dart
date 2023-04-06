@@ -27,7 +27,7 @@ class AppImage extends StatelessWidget {
         imageUrl: imageUrl,
         progressIndicatorBuilder: (context, url, downloadProgress) {
           return Image.asset(
-            "images/loading.gif",
+            "assets/images/loading.gif",
             fit: BoxFit.fill,
           );
         },

@@ -22,6 +22,32 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني")
+        "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
+        "congratulation": MessageLookupByLibrary.simpleMessage("تهانياَ"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "enjoy": MessageLookupByLibrary.simpleMessage("أستمتع برحلتك"),
+        "enterEmail":
+            MessageLookupByLibrary.simpleMessage("أدخل البريد الإلكتروني"),
+        "enterEmailToReceiveCode": MessageLookupByLibrary.simpleMessage(
+            "الرجاء إدخال البريد الإلكتروني \nلإستلام الرمز الخاص بك"),
+        "enterNewPassword": MessageLookupByLibrary.simpleMessage(
+            "برجاءإدخال كلمه السر الجديدة"),
+        "enterPassword": MessageLookupByLibrary.simpleMessage("أدخل كلمه السر"),
+        "forgetPassword":
+            MessageLookupByLibrary.simpleMessage("تغير كلمه السر"),
+        "forgetPasswordLogin":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمه السر؟"),
+        "goToHome":
+            MessageLookupByLibrary.simpleMessage("الذهاب للصفحه الرئيسية"),
+        "haveAcc": MessageLookupByLibrary.simpleMessage("هل لديك حساب مسبقاً؟"),
+        "otp": MessageLookupByLibrary.simpleMessage(
+            "برجاء إدخال 4 ارقام الذي\nتم إرسالها عبر البريد الإلكتروني"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمه السر"),
+        "passwordSaved": MessageLookupByLibrary.simpleMessage(
+            "كلمه السر الجديده الخاصه بك\nتم حفظها"),
+        "sendCode": MessageLookupByLibrary.simpleMessage("إرسال الرمز"),
+        "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signUp": MessageLookupByLibrary.simpleMessage("قم بالتسجيل"),
+        "welcome": MessageLookupByLibrary.simpleMessage("مرحباً بك")
       };
 }

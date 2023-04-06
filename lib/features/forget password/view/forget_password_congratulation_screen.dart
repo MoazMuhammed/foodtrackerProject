@@ -3,7 +3,7 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
-import 'package:foodtracker/features/login/widget/forget_password_bar_widget.dart';
+import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -24,10 +24,10 @@ class _ForgetPasswordCongratulationScreenState
       body: Column(
         children: [
           ForgetPasswordBarWidget(
-            onPressed: () {},
+            onPressed: () {}, title: 'Forget password',
           ),
           SizedBox(
-            height: 6.h,
+            height: 7.h,
           ),
           const AppSVG(assetName: 'congratulation'),
           SizedBox(

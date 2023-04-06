@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:foodtracker/core/shared_prefrences/my_shared.dart';
-import 'package:foodtracker/core/shared_prefrences/my_shared_keys.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
+import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/features/onBoard/view/on_boarding_screen.dart';
+import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,16 +19,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1000)).then((value) {
+    Future.delayed(const Duration(milliseconds: 2000)).then((value) {
       if (MyShared.isFirstOpen()) {
         pushReplacement(context,  OnBoardingScreen());
         return;
       }
 
       if (MyShared.isLoggedIn()) {
-        pushReplacement(context, const SplashScreen());
+        pushReplacement(context, const MainScreens());
       } else {
-        pushReplacement(context,  const SplashScreen());
+        pushReplacement(context,  const LoginScreen());
       }
     });
   }

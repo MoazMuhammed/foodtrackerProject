@@ -3,10 +3,11 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
-import 'package:foodtracker/core/widgets/app_text_faild.dart';
-import 'package:foodtracker/features/login/view/forget_password_otp_screen.dart';
+import 'package:foodtracker/core/widgets/text_form_field.dart';
+import 'package:foodtracker/features/forget%20password/view/forget_password_otp_screen.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
-import 'package:foodtracker/features/login/widget/forget_password_bar_widget.dart';
+import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -27,25 +28,26 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           children: [
             ForgetPasswordBarWidget(
               onPressed: () {
-                push(context, LoginScreen());
+                push(context, const LoginScreen());
               },
+              title: S().forgetPassword,
             ),
             SizedBox(
-              height: 8.h,
+              height: 12.h,
             ),
-            AppSVG(assetName: 'forgetPassword'),
+            const AppSVG(assetName: 'forgetPassword'),
             SizedBox(
-              height: 5.h,
+              height: 2.h,
             ),
-            Text("Please Enter Your Email\nTo Receive The code",
+            Text(S().enterEmailToReceiveCode,
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, fontSize: 16.8.sp),
+                    TextStyle(fontWeight: FontWeight.bold, fontSize: 16.7.sp),
                 textAlign: TextAlign.center),
             SizedBox(
               height: 2.h,
             ),
             AppTextField(
-              hint: "Enter Your Email ",
+              hint: S().enterEmailToReceiveCode,
               keyboardType: TextInputType.emailAddress,
               controller: TextEditingController(),
               isPassword: false,
@@ -53,14 +55,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               textInputType: TextInputType.emailAddress,
             ),
             SizedBox(
-              height: 7.h,
+              height: 6.h,
             ),
             AppButton(
               onPressed: () {
-                push(context, ForgetPasswordOTPScreen());
+                push(context, const ForgetPasswordOTPScreen());
               },
-              label: "Send code",
-              sizeFont: 18.sp,
+              label: S().sendCode,
+              sizeFont: 17.sp,
               bgColor: AppColors.primary,
               borderRadius: BorderRadius.circular(12.sp),
             )

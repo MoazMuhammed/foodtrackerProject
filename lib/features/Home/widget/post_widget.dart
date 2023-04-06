@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
+import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
+import 'package:foodtracker/features/Home/view/comment_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'reacts_widget.dart';
 
-class PostWidget extends StatelessWidget {
+class PostWidget extends StatefulWidget {
   const PostWidget({Key? key}) : super(key: key);
 
+  @override
+  State<PostWidget> createState() => _PostWidgetState();
+}
+
+class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,7 +58,7 @@ class PostWidget extends StatelessWidget {
                 SizedBox(
                   width: 2.w,
                 ),
-                const AppSVG(assetName: 'points')
+                 AppSVG(assetName: 'points',color: MyShared.getInt(key: MySharedKeys.theme) == 1 ? Colors.white : Colors.black,height: 0.5.h,)
               ],
             ),
             SizedBox(
@@ -95,11 +104,11 @@ class PostWidget extends StatelessWidget {
                     onPressed: () {},
                   ),
                   const Spacer(),
-                  const AppSVG(assetName: 'comment'),
+                  GestureDetector(onTap: () => push(context, CommentScreen()),child:  AppSVG(assetName: 'comment',height: 1.6.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
                   SizedBox(
                     width: 3.w,
                   ),
-                  const AppSVG(assetName: 'save')
+                   AppSVG(assetName: 'save',height: 1.6.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
                 ],
               ),
             ),

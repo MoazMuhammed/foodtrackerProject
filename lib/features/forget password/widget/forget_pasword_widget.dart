@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -13,11 +14,11 @@ class ForgetPassword extends StatelessWidget {
           onTap: onPressed,
           child: Container(
               margin: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 20.sp),
-              child: const Align(
+              child:  Align(
                   alignment: AlignmentDirectional.centerEnd,
                   child: Text(
-                    "Forget password?",
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                    S().forgetPasswordLogin,
+                    style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15.sp),
                   ))),
         ),
         SizedBox(
