@@ -89,6 +89,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Column(
                   children: [
                     AppTextField(
+                        hint: 'First Name',
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: firstNameController,
+                        isPassword: false,
+                        textInputAction: TextInputAction.done,
+                        textInputType: TextInputType.visiblePassword,
+                        title: 'First Name'),
+                    AppTextField(
+                        hint: 'Last Name',
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: lastNameController,
+                        isPassword: false,
+                        textInputAction: TextInputAction.done,
+                        textInputType: TextInputType.visiblePassword,
+                        title: 'Last Name'),
+                    AppTextField(
                         hint: 'Enter Your Name',
                         keyboardType: TextInputType.name,
                         controller: userNameController,
@@ -105,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textInputType: TextInputType.name,
                         title: 'Email'),
                     AppTextField(
-                        hint: 'Enter Your Name',
+                        hint: 'Enter Your Phone',
                         keyboardType: TextInputType.phone,
                         controller: phoneController,
                         isPassword: false,
@@ -147,22 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           return null;
                         },
                         title: 'Confirm Password'),
-                    AppTextField(
-                        hint: 'ReEnter Your Password',
-                        keyboardType: TextInputType.visiblePassword,
-                        controller: firstNameController,
-                        isPassword: false,
-                        textInputAction: TextInputAction.done,
-                        textInputType: TextInputType.visiblePassword,
-                        title: 'Confirm Password'),
-                    AppTextField(
-                        hint: 'ReEnter Your Password',
-                        keyboardType: TextInputType.visiblePassword,
-                        controller: lastNameController,
-                        isPassword: false,
-                        textInputAction: TextInputAction.done,
-                        textInputType: TextInputType.visiblePassword,
-                        title: 'Confirm Password'),
+
                     Visibility(
                       visible:
                           MyShared.getBoolean(key: MySharedKeys.isDoctor) ==

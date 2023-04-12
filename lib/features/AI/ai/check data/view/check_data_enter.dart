@@ -34,6 +34,7 @@ class _CheckDataEnterState extends State<CheckDataEnter> {
               SizedBox(height: 1.h,),
               Text("Medical Analyzes Are A Feature Provided By The Program So That The User Or Any Person Can View And Interpret The Results Of The Analyzes Without The Need For A Doctor",style: TextStyle(fontSize: 14.sp),textAlign: TextAlign.center),
               SizedBox(height: 5.h,),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -41,6 +42,8 @@ class _CheckDataEnterState extends State<CheckDataEnter> {
                   Text("Warning",style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),),
                 ],
               ),
+
+
               SizedBox(height: 1.h,),
               Text("This result is not 100% correct. In the event that the symptoms were very serious, you should go to the nearest doctor or hospital.",style: TextStyle(fontSize: 14.sp),textAlign: TextAlign.center),
              SizedBox(height: 5.h,),

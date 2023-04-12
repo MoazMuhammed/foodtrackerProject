@@ -21,9 +21,10 @@ class LoginCubit extends Cubit<LoginState> {
       loginModel = LoginModel.fromJson(response!.data);
       if (response.statusCode == 200) {
         emit(LoginSuccess(loginModel.token));
+        safePrint(response.data);
         await saveUserData();
         safePrint(MyShared.getString(key: MySharedKeys.apiToken));
-      } if(response.statusCode == "401 Unauthorized") {
+      } if(response.statusCode ==  401 ) {
         emit(LoginFailure(response.data));
         safePrint(response.data);
       }

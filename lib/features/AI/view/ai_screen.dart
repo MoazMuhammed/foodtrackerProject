@@ -1,16 +1,16 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
-import 'package:foodtracker/core/utills/safe_print.dart';
-import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_bar.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/features/AI/ai/check%20data/view/check_data_enter.dart';
+import 'package:foodtracker/features/AI/view/ai_analysis_screen.dart';
 import 'package:foodtracker/features/AI/widget/choose_process_widget.dart';
-import 'package:foodtracker/features/AI/widget/hint_chppse_service_widget.dart';
+import 'package:foodtracker/features/Home/view/home_screen.dart';
+import 'package:foodtracker/features/drawer/widget/terms.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AIScreen extends StatefulWidget {
@@ -23,14 +23,13 @@ class AIScreen extends StatefulWidget {
 class _AIScreenState extends State<AIScreen> {
   File? _image;
   final pickedFile = ImagePicker();
-
-  uploadImageWithCamera() async {
+   uploadImageWithCamera() async {
     var pickedImage = await pickedFile.getImage(source: ImageSource.camera);
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
       });
-    }
+      push(context, AiAnalysisScreen(file:_image! ,));}
   }
 
   uploadImageWithGallery() async {
@@ -41,6 +40,48 @@ class _AIScreenState extends State<AIScreen> {
       });
     }
   }
+  // Future<void> _requestImagePermission(BuildContext context) async {
+  //   final PermissionStatus status = await Permission.photos.request();
+  //   if (status == PermissionStatus.granted) {
+  //     return   uploadImageWithCamera();
+  //     ;
+  //   } else if (status == PermissionStatus.denied) {
+  //     // Permission denied
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text('Please grant access to photos to continue.'),
+  //       action: SnackBarAction(
+  //         label: 'Grant',
+  //         onPressed: () => _requestImagePermission(context),
+  //       ),
+  //     ));
+  //   } else if (status == PermissionStatus.permanentlyDenied) {
+  //     // Permission permanently denied
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text('You have permanently denied access to photos.'),
+  //       action: SnackBarAction(
+  //         label: 'Settings',
+  //         onPressed: () => openAppSettings(),
+  //       ),
+  //     ));
+  //   }
+  // }
+
+  Future<bool> requestCameraPermission() async {
+    var status = await Permission.camera.status;
+    if (status.isGranted) {
+      return uploadImageWithCamera();
+    } else if (status.isDenied) {
+      var result = await Permission.camera.request();
+      if (result.isGranted) {
+        return uploadImageWithCamera();
+      } else if (result.isPermanentlyDenied) {
+        openAppSettings();
+      }
+    } else if (status.isPermanentlyDenied) {
+      openAppSettings();
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +90,9 @@ class _AIScreenState extends State<AIScreen> {
         horizontal: 18.sp,
         vertical: 18.sp,
       ),
-      child: Column(
+      child:
+
+      Column(
         children: [
           const AppBarWidget(),
           SizedBox(
@@ -94,7 +137,7 @@ class _AIScreenState extends State<AIScreen> {
                                     SizedBox(height: 2.h,),
                                     AppButton(
                                         onPressed: () {
-                                          uploadImageWithCamera();
+                                          requestCameraPermission();
                                         },
                                         label: "Camera",
                                         sizeFont: 16.sp,
@@ -150,6 +193,9 @@ class _AIScreenState extends State<AIScreen> {
           ),
         ],
       ),
+
+
     );
   }
 }
+

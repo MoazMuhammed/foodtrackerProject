@@ -40,17 +40,21 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
            mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AppSVG(
-              assetName: 'logo',
-              height: 12.h,
-              width: 12.w,
+            AnimatedContainer(
+              duration: Duration(seconds: 1),
+    curve: Curves.easeInOut,
+    margin: EdgeInsets.only(left: 200),
+              child: AppSVG(
+                assetName: 'logo',
+                height: 12.h,
+                width: 12.w,
+              ),
             ),
             SizedBox(height: 3.h,),
             Text("Food Tracker",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),)
           ],
         ),
-      ),
-    );
+      ));
   }
 
   void navigate() {

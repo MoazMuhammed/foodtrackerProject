@@ -10,8 +10,8 @@ class MyDio {
     BaseOptions baseOptions = BaseOptions(
       baseUrl: EndPoints.baseUrl,
       receiveDataWhenStatusError: true,
-      connectTimeout: 30 * 1000,
-      receiveTimeout: 30 * 1000,
+      connectTimeout: 90 * 1000,
+      receiveTimeout: 90 * 1000,
     );
 
     dio = Dio(baseOptions);

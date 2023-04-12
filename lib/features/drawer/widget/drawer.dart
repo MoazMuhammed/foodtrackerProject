@@ -9,6 +9,7 @@ import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/features/chat/creditCard/view/credit_card.dart';
 import 'package:foodtracker/features/contactUS/view/contact_us_screen.dart';
 import 'package:foodtracker/features/drawer/widget/list_view.dart';
+import 'package:foodtracker/features/drawer/widget/terms.dart';
 import 'package:foodtracker/features/googleMap/view/google_map.dart';
 import 'package:foodtracker/features/help%20center/view/help_center.dart';
 import 'package:provider/provider.dart';
@@ -77,35 +78,33 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     ]),
                     child: Consumer<ThemeProvider>(
                       builder: (context, provider, child) {
-                        return Expanded(
-                          child: Center(
-                            child: ToggleSwitch(
-                              initialLabelIndex: provider.currentTheme,
-                              totalSwitches: 2,
-                              activeBgColor: const [AppColors.primary],
-                              inactiveBgColor:Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white ,
-                              customWidths: [25.w, 25.w],
-                              labels: const ['Light', 'Dark'],
-                              borderColor: [Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white],
-                              inactiveFgColor: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.black,
-                              customIcons: const [
-                                Icon(
-                                  Icons.light_mode,
-                                  color: Colors.yellow,
-                                ),
-                                Icon(
-                                  Icons.dark_mode,
-                                  color: Colors.black54,
-                                )
-                              ],
-                              onToggle: (int? index) {
-                                setState(() {
+                        return Center(
+                          child: ToggleSwitch(
+                            initialLabelIndex: provider.currentTheme,
+                            totalSwitches: 2,
+                            activeBgColor: const [AppColors.primary],
+                            inactiveBgColor:Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white ,
+                            customWidths: [25.w, 25.w],
+                            labels: const ['Light', 'Dark'],
+                            borderColor: [Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white],
+                            inactiveFgColor: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.black,
+                            customIcons: const [
+                              Icon(
+                                Icons.light_mode,
+                                color: Colors.yellow,
+                              ),
+                              Icon(
+                                Icons.dark_mode,
+                                color: Colors.black54,
+                              )
+                            ],
+                            onToggle: (int? index) {
+                              setState(() {
 
-                                  provider.changeTheme(index??0);
+                                provider.changeTheme(index??0);
 
-                                });
-                              },
-                            ),
+                              });
+                            },
                           ),
                         );
                       },
@@ -168,7 +167,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       ),
                       ListViewDrawer(
                         title: "Terms & Conditions",
-                        onTap: () {},
+                        onTap: () {
+                         push(context, TermsScreen());
+                        },
                         icon: 'terms',
                       ),
                     ],

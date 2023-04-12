@@ -60,6 +60,7 @@ class _AppTextFieldState extends State<AppTextField> {
               ],
             ),
           ),
+
           TextFormField(
             validator: widget.validators,
             obscureText: obscureText,
@@ -89,6 +90,7 @@ class _AppTextFieldState extends State<AppTextField> {
               hintText: widget.hint,
             ),
           ),
+
           SizedBox(height: 1.h,)
         ],
       ),

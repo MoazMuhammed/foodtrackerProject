@@ -39,9 +39,12 @@ class _ForgetPasswordCongratulationScreenState
           SizedBox(
             height: 1.5.h,
           ),
+
           Text("Your New password Have Successful\nSaved",
               style: TextStyle(fontWeight: FontWeight.w200, fontSize: 16.sp),
               textAlign: TextAlign.center),
+
+
           SizedBox(
             height: 7.h,
           ),
