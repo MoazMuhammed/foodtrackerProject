@@ -11,7 +11,7 @@ class OTPItem extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 10.sp),
       height: 10.5.h,
       child: AspectRatio(
-        aspectRatio: 4.sp,
+        aspectRatio: 3.7.sp,
         child: TextField(
           autofocus: true,
           onChanged: (value) {

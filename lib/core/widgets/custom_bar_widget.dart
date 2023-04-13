@@ -12,7 +12,7 @@ class ForgetPasswordBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 20.sp),
+      padding: EdgeInsets.symmetric(horizontal: 18.sp, vertical: 18.sp),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

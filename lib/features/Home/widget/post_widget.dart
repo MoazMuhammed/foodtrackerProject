@@ -5,6 +5,7 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/Home/view/comment_screen.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'reacts_widget.dart';
 
@@ -49,7 +50,7 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
                 const Spacer(),
                 Text(
-                  'Follow',
+                  '${S().follow}',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColors.primary,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/utills/svg.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CardAllergyTypeWidget extends StatefulWidget {
   const CardAllergyTypeWidget({Key? key}) : super(key: key);
@@ -33,12 +32,14 @@ class _CardAllergyTypeWidgetState extends State<CardAllergyTypeWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppSVG(assetName: "eggAllergy"),
-                      const Text(
-                        'Eggs Allergy',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                        textAlign: TextAlign.start,
+                      Expanded(
+                        child: const Text(
+                          'Eggs Allergy',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                          textAlign: TextAlign.start,
+                        ),
                       )
                     ],
                   ),

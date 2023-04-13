@@ -12,6 +12,7 @@ import 'package:foodtracker/features/drawer/widget/list_view.dart';
 import 'package:foodtracker/features/drawer/widget/terms.dart';
 import 'package:foodtracker/features/googleMap/view/google_map.dart';
 import 'package:foodtracker/features/help%20center/view/help_center.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -85,7 +86,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                             activeBgColor: const [AppColors.primary],
                             inactiveBgColor:Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white ,
                             customWidths: [25.w, 25.w],
-                            labels: const ['Light', 'Dark'],
+                            labels:  ['${S().light}', '${S().dark}'],
                             borderColor: [Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.white],
                             inactiveFgColor: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.black,
                             customIcons: const [
@@ -118,7 +119,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   child: Column(
                     children: [
                       ListViewDrawer(
-                        title: "Settings",
+                        title: "${S().settings}",
                         onTap: () {},
                         icon: 'settings',
                       ),
@@ -126,7 +127,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         height: 1.5.h,
                       ),
                       ListViewDrawer(
-                        title: "Location",
+                        title: "${S().location}",
                         onTap: () {
                           push(context, GoogleMapScreen());
                         },
@@ -136,7 +137,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         height: 1.5.h,
                       ),
                       ListViewDrawer(
-                        title: "Contact Us",
+                        title: "${S().contactUs}",
                         onTap: () {
                           push(context, const ContactUsScreen());
                         },
@@ -146,7 +147,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         height: 1.5.h,
                       ),
                       ListViewDrawer(
-                        title: "Chat",
+                        title: "${S().chat}",
                         onTap: () {
                           push(context, CreditCard());
                         },
@@ -156,7 +157,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         height: 1.5.h,
                       ),
                       ListViewDrawer(
-                        title: "Help Center",
+                        title: "${S().helpCenter}",
                         onTap: () {
                           push(context, HelpCenter());
                         },
@@ -166,7 +167,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         height: 1.5.h,
                       ),
                       ListViewDrawer(
-                        title: "Terms & Conditions",
+                        title: "${S().termsAndCondition}",
                         onTap: () {
                          push(context, TermsScreen());
                         },
@@ -182,7 +183,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   children: [
                     AppButton(
                       onPressed: () {},
-                      label: 'LogOut',
+                      label: '${S().logOut}',
                       sizeFont: 16.sp,
                       bgColor: AppColors.primary,
                       borderRadius: BorderRadius.circular(12.sp),

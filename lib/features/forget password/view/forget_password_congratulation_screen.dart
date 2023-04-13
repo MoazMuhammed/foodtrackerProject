@@ -4,6 +4,7 @@ import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -24,7 +25,7 @@ class _ForgetPasswordCongratulationScreenState
       body: Column(
         children: [
           ForgetPasswordBarWidget(
-            onPressed: () {}, title: 'Forget password',
+            onPressed: () {}, title: '${S().forgetPassword}',
           ),
           SizedBox(
             height: 7.h,
@@ -33,14 +34,14 @@ class _ForgetPasswordCongratulationScreenState
           SizedBox(
             height: 5.h,
           ),
-          Text("Congratulation",
+          Text("${S().congratulation}",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
               textAlign: TextAlign.center),
           SizedBox(
             height: 1.5.h,
           ),
 
-          Text("Your New password Have Successful\nSaved",
+          Text("${S().passwordSaved}",
               style: TextStyle(fontWeight: FontWeight.w200, fontSize: 16.sp),
               textAlign: TextAlign.center),
 
@@ -52,7 +53,7 @@ class _ForgetPasswordCongratulationScreenState
             onPressed: () {
               push(context, const MainScreens());
             },
-            label: 'Go To Home',
+            label: '${S().goToHome}',
             sizeFont: 16.sp,
             borderRadius: BorderRadius.circular(12.sp),
             bgColor: AppColors.primary,

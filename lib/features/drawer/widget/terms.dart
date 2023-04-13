@@ -3,6 +3,7 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class TermsScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class TermsScreen extends StatelessWidget {
           child: Column(
             children: [
               ForgetPasswordBarWidget(
-                  onPressed: () => pop(context), title: "Terms Of Service"),
+                  onPressed: () => pop(context), title: "${S().termsAndCondition}"),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 18.sp),
                 child: Column(
@@ -111,35 +112,35 @@ class TermsScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Introduction',
+                                '${S().introduction}',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 16),
                               Text(
-                                'Welcome to our terms and conditions ("Terms"). These Terms are important and affect your legal rights, so please read them carefully.',
+                                '${S().introductionDescription}',
                                 style: TextStyle(fontSize: 16),
                               ),
                               SizedBox(height: 16),
                               Text(
-                                'Agreement to Terms',
+                                '${S().agreementToTerms}',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 16),
                               Text(
-                                'By accessing or using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use the Services.',
+                                '${S().agreementToTermsDescription}',
                                 style: TextStyle(fontSize: 16),
                               ),
                               SizedBox(height: 16),
                               Text(
-                                'Updates to Terms',
+                                '${S().updateToTerms}',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 16),
                               Text(
-                                'We reserve the right to update or modify these Terms at any time without prior notice. Your use of the Services following any such modification constitutes your agreement to be bound by the modified Terms.',
+                                '${S().updateToTermsDescription}',
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],

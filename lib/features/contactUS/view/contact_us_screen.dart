@@ -7,6 +7,7 @@ import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/core/widgets/text_form_field.dart';
 import 'package:foodtracker/features/contactUS/widget/message_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ContactUsScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
           children: [
             Center(
                 child: ForgetPasswordBarWidget(
-                    onPressed: () => pop(context), title: "Contact Us")),
+                    onPressed: () => pop(context), title: "${S().contactUs}")),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 25.sp,
@@ -37,7 +38,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Talk To Our Team",
+                    "${S().contactUsTitle}",
                     style:
                         TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                   ),
@@ -45,7 +46,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                     height: 2.h,
                   ),
                   Text(
-                    "It Has Survived Not Only Five Centuries, But Also The Leap Into Electronic Typesetting, Remaining Essentially Unchanged. It Was Popularised In The 1960S With The Release",
+                    "${S().contactUsDescription}",
                     style:
                         TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
                   ),
@@ -69,7 +70,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
-                      title: "First Name",
+                      title: "${S().firstName}",
                     ),
                     AppTextField(
                       hint: MyShared.getString(key: MySharedKeys.email),
@@ -78,7 +79,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
-                      title: "Last Name",
+                      title: "${S().lastName}",
                     ),
                     AppTextField(
                       hint: MyShared.getString(key: MySharedKeys.email),
@@ -87,7 +88,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
-                      title: "Email Address",
+                      title: "${S().email}",
                     ),
                     AppTextField(
                       hint: MyShared.getString(key: MySharedKeys.email),
@@ -96,16 +97,16 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
-                      title: "Phone number",
+                      title: "${S().phoneNumber}",
                     ),
                     MessageWidget(
-                      hint: "Write Here Your Message",
+                      hint: "${S().yourMessageNote}",
                       keyboardType: TextInputType.text,
                       controller: TextEditingController(),
                       isPassword: false,
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.text,
-                      title: "Your message", minLine: 2, maxLine: 7,
+                      title: "${S().yourMessage}", minLine: 2, maxLine: 7,
                     ),
                   ],
                 ),
@@ -117,7 +118,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             ),
             AppButton(
               onPressed: () {},
-              label: "Send",
+              label: "${S().send}",
               sizeFont: 16.sp,
               borderRadius: BorderRadius.circular(12.sp),
               bgColor: AppColors.primary,

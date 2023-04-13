@@ -7,6 +7,7 @@ import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/core/widgets/text_form_field.dart';
 import 'package:foodtracker/features/Home/widget/comment_widget.dart';
 import 'package:foodtracker/features/Home/widget/text_form_field_comment.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CommentScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _CommentScreenState extends State<CommentScreen> {
       body: Column(
         children: [
           ForgetPasswordBarWidget(
-              onPressed: () => pop(context), title: "Comments"),
+              onPressed: () => pop(context), title: "${S().comment}"),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 20.sp),
@@ -45,7 +46,7 @@ class _CommentScreenState extends State<CommentScreen> {
                     borderRadius: BorderRadius.circular(30.sp)),
                 Expanded(
                   child: AppComment(
-                      hint: "Add Comment for people",
+                      hint: "${S().addComment}",
                       keyboardType: TextInputType.text,
                       controller: TextEditingController(),
                       textInputAction: TextInputAction.send,

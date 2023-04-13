@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/svg.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChooseProcessWidget extends StatelessWidget {
@@ -45,7 +46,7 @@ class ChooseProcessWidget extends StatelessWidget {
                       Row(children: [
                         Icon(Icons.warning_amber_sharp,color: Colors.white,size: 18.sp,),
                         SizedBox(width: 2.w,),
-                        Text("Note:",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
+                        Text("${S().note}:",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
                       ],),
                       SizedBox(height: 0.8.h,),
                       Expanded(child: Text(description!,style: TextStyle(color: Colors.white,fontSize: 14.sp),))

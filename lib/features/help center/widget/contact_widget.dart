@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/utills/svg.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ContactWidget extends StatelessWidget {
@@ -10,7 +11,7 @@ final String image;
 final GestureTapCallback pressed;
   @override
   Widget build(BuildContext context) {
-    return     GestureDetector(
+    return GestureDetector(
       onTap: pressed,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 20.sp,horizontal: 25.sp),
@@ -27,7 +28,7 @@ final GestureTapCallback pressed;
           children: [
             Expanded(child: AppSVG(assetName: image)),
             SizedBox(height: 2.h,),
-            Text("Follow US",style: TextStyle(fontSize: 16.sp,color: MyShared.getInt(key: MySharedKeys.theme) == 1 ? Colors.black : Colors.black,fontWeight: FontWeight.bold),)
+            Text("${S().followUS}",style: TextStyle(fontSize: 16.sp,color: MyShared.getInt(key: MySharedKeys.theme) == 1 ? Colors.black : Colors.black,fontWeight: FontWeight.bold),)
           ],
         ),
 

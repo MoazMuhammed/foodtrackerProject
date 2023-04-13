@@ -7,6 +7,7 @@ import 'package:foodtracker/features/AI/view/ai_screen.dart';
 import 'package:foodtracker/features/Home/view/home_screen.dart';
 import 'package:foodtracker/features/category/view/category_screen.dart';
 import 'package:foodtracker/features/drawer/widget/drawer.dart';
+import 'package:foodtracker/generated/l10n.dart';
 
 class MainScreens extends StatefulWidget {
   const MainScreens({Key? key}) : super(key: key);
@@ -59,19 +60,19 @@ class _MainScreensState extends State<MainScreens> {
       currentIndex: cubit.index,
       items:  [
         BottomNavigationBarItem(
-            label:'home',
+            label:'${S().home}',
             icon: AppSVG(assetName:'home',color: cubit.index ==0 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
-            label:'category',
+            label:'${S().allergy}',
             icon: AppSVG(assetName: 'category', color: cubit.index ==1 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
-            label:'FA Scanner',
+            label:'${S().faScanner}',
             icon: AppSVG(assetName: 'faScanner', color: cubit.index ==2 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),
         BottomNavigationBarItem(
-            label:'cart',
+            label:'${S().cartAllergy}',
             icon: AppSVG(assetName:'cart',
               color: cubit.index ==3 ? AppColors.primary: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
         ),

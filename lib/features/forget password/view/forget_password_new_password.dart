@@ -40,7 +40,7 @@ class _ForgetPasswordNewPasswordScreenState
             SizedBox(
               height: 5.h,
             ),
-            Text("Please Enter Your New password",
+            Text("${S().enterNewPassword}",
                 style:
                     TextStyle(fontWeight: FontWeight.bold, fontSize: 16.8.sp),
                 textAlign: TextAlign.center),
@@ -48,14 +48,14 @@ class _ForgetPasswordNewPasswordScreenState
               height: 2.h,
             ),
             AppTextField(
-                hint: 'New password',
+                hint: '${S().newPassword}',
                 keyboardType: TextInputType.visiblePassword,
                 controller: TextEditingController(),
                 isPassword: true,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.visiblePassword),
             AppTextField(
-                hint: 'Confirm password',
+                hint: '${S().confirmNewPassword}',
                 keyboardType: TextInputType.visiblePassword,
                 controller: TextEditingController(),
                 isPassword: true,
@@ -68,8 +68,8 @@ class _ForgetPasswordNewPasswordScreenState
               onPressed: () {
                 push(context, const ForgetPasswordCongratulationScreen());
               },
-              label: 'Confirm',
-              sizeFont: 18.sp,
+              label: '${S().confirm}',
+              sizeFont: 16.sp,
               borderRadius: BorderRadius.circular(12.sp),
               bgColor: AppColors.primary,
             )

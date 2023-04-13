@@ -3,6 +3,7 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/features/onBoard/view/on_boarding_screen.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -33,7 +34,7 @@ class OnBoardingWidget extends StatelessWidget {
             ),
             Center(
               child: Text(
-                "Lets Get Started",
+                "${S().letsGetStarted}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.sp,),
               ),
             ),
@@ -79,7 +80,7 @@ class OnBoardingWidget extends StatelessWidget {
               visible: lastPage,
               child: AppButton(
                 onPressed: onPressed,
-                label: "Start now",
+                label: "${S().startNow}",
                 bgColor: AppColors.primary,
                 borderRadius: BorderRadius.circular(10.sp),padding: EdgeInsets.symmetric(horizontal: 25.sp), sizeFont: 16.sp,
               ),

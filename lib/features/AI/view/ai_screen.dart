@@ -9,6 +9,7 @@ import 'package:foodtracker/features/AI/view/ai_analysis_screen.dart';
 import 'package:foodtracker/features/AI/widget/choose_process_widget.dart';
 import 'package:foodtracker/features/Home/view/home_screen.dart';
 import 'package:foodtracker/features/drawer/widget/terms.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -38,33 +39,9 @@ class _AIScreenState extends State<AIScreen> {
       setState(() {
         _image = File(pickedImage.path);
       });
+      push(context, AiAnalysisScreen(file: _image!));
     }
   }
-  // Future<void> _requestImagePermission(BuildContext context) async {
-  //   final PermissionStatus status = await Permission.photos.request();
-  //   if (status == PermissionStatus.granted) {
-  //     return   uploadImageWithCamera();
-  //     ;
-  //   } else if (status == PermissionStatus.denied) {
-  //     // Permission denied
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //       content: Text('Please grant access to photos to continue.'),
-  //       action: SnackBarAction(
-  //         label: 'Grant',
-  //         onPressed: () => _requestImagePermission(context),
-  //       ),
-  //     ));
-  //   } else if (status == PermissionStatus.permanentlyDenied) {
-  //     // Permission permanently denied
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //       content: Text('You have permanently denied access to photos.'),
-  //       action: SnackBarAction(
-  //         label: 'Settings',
-  //         onPressed: () => openAppSettings(),
-  //       ),
-  //     ));
-  //   }
-  // }
 
   Future<bool> requestCameraPermission() async {
     var status = await Permission.camera.status;
@@ -102,7 +79,7 @@ class _AIScreenState extends State<AIScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Choose Service of Process",
+                "${S().chooseService}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
               ),
               SizedBox(
@@ -110,7 +87,7 @@ class _AIScreenState extends State<AIScreen> {
               ),
               ChooseProcessWidget(
                 image: "photoAnalysis",
-                title: "Photo Analysis",
+                title: "${S().photoAnalysis}",
                 onPressed: () {
                   showModalBottomSheet<void>(
                     context: context,
@@ -133,13 +110,13 @@ class _AIScreenState extends State<AIScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("Choose type",style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.bold)),
+                                    Text("${S().chooseType}",style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.bold)),
                                     SizedBox(height: 2.h,),
                                     AppButton(
                                         onPressed: () {
                                           requestCameraPermission();
                                         },
-                                        label: "Camera",
+                                        label: "${S().camera}",
                                         sizeFont: 16.sp,
                                         bgColor: AppColors.primary),
                                     SizedBox(
@@ -149,7 +126,7 @@ class _AIScreenState extends State<AIScreen> {
                                       onPressed: () {
                                         uploadImageWithGallery();
                                       },
-                                      label: "Gallery",
+                                      label: "${S().gallery}",
                                       sizeFont: 16.sp,
                                       bgColor: AppColors.primary,
                                     ),
@@ -167,7 +144,7 @@ class _AIScreenState extends State<AIScreen> {
                                   onPressed: () {
                                     pop(context);
                                   },
-                                  label: "Back",
+                                  label: "${S().back}",
                                   sizeFont: 16.sp,
                                   bgColor: AppColors.container),
                             ))
@@ -178,16 +155,16 @@ class _AIScreenState extends State<AIScreen> {
                   );
                 },
                 description:
-                    "to get the type of allergy by analysis the photo using artificial intelligence.",
+                    "${S().photoAnalysisNote}",
               ),
               SizedBox(
                 height: 3.h,
               ),
               ChooseProcessWidget(
                 image: "medical",
-                title: "Medical Analysis",
+                title: "${S().medicalAnalysis}",
                 onPressed: () => push(context, CheckDataEnter()),
-                description: "For get the result from medical reports like IGE",
+                description: "${S().medicalAnalysisNote}",
               )
             ],
           ),

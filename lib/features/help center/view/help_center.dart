@@ -3,6 +3,7 @@ import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/features/help%20center/widget/contact_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -21,7 +22,7 @@ class _HelpCenterState extends State<HelpCenter> {
         body: Column(
           children: [
             ForgetPasswordBarWidget(
-                onPressed: () => pop(context), title: "Help Center"),
+                onPressed: () => pop(context), title: "${S().helpCenter}"),
             SizedBox(
               height: 3.h,
             ),
@@ -29,13 +30,13 @@ class _HelpCenterState extends State<HelpCenter> {
             SizedBox(
               height: 5.h,
             ),
-            Text("How Can I Help You?",
+            Text("${S().helpCenterTitle}",
                 style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 1.5.h,
             ),
             Text(
-              "making it look like readable English. Many\ndesktop publishing packages and web\npage editors now use Lorem Ipsum as\ntheir default model text, and a search",
+              "${S().helpCenterDescription}",
               style: TextStyle(
                 fontSize: 16.sp,
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodtracker/core/widgets/app_bar.dart';
 import 'package:foodtracker/core/widgets/app_search.dart';
 import 'package:foodtracker/features/Home/widget/post_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             AppBarWidget(),
             AppSearch(
-              hint: 'Search',
+              hint: '${S().search}',
               keyboardType: TextInputType.text,
               controller: TextEditingController(),
               textInputAction: TextInputAction.done,
