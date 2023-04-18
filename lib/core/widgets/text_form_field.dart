@@ -83,7 +83,7 @@ class _AppTextFieldState extends State<AppTextField> {
                   },
                   child: Icon(
                     obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: AppColors.black,
+                    color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodtracker/core/utills/svg.dart';
+import 'package:foodtracker/core/utills/app_image.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CardAllergyTypeWidget extends StatefulWidget {
   const CardAllergyTypeWidget({Key? key}) : super(key: key);
@@ -23,29 +24,26 @@ class _CardAllergyTypeWidgetState extends State<CardAllergyTypeWidget> {
             itemCount: 10,
             itemBuilder: (context, index) {
               return Container(
-                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.grey),
-                child: Stack(children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppSVG(assetName: "eggAllergy"),
-                      Expanded(
-                        child: const Text(
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomStart,
+                  children: [
+                      AppImage(imageUrl: "https://cdn.britannica.com/94/151894-050-F72A5317/Brown-eggs.jpg", width: double.infinity, height: double.infinity, borderRadius: BorderRadius.circular(14.sp)),
+                      Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: 16.sp,vertical: 12.sp),
+                        child: Text(
                           'Eggs Allergy',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              color: Colors.white,fontSize: 16.sp),
                           textAlign: TextAlign.start,
                         ),
                       )
                     ],
                   ),
-                ]),
               );
-            }))
-    ;
+            }));
   }
 }

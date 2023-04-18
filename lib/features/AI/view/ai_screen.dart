@@ -80,7 +80,7 @@ class _AIScreenState extends State<AIScreen> {
             children: [
               Text(
                 "${S().chooseService}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white ),
               ),
               SizedBox(
                 height: 5.h,
@@ -110,7 +110,7 @@ class _AIScreenState extends State<AIScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("${S().chooseType}",style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.bold)),
+                                    Text("${S().chooseType}",style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.bold,color:  Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)),
                                     SizedBox(height: 2.h,),
                                     AppButton(
                                         onPressed: () {

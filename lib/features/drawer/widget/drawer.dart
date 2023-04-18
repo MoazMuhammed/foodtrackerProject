@@ -12,6 +12,8 @@ import 'package:foodtracker/features/drawer/widget/list_view.dart';
 import 'package:foodtracker/features/drawer/widget/terms.dart';
 import 'package:foodtracker/features/googleMap/view/google_map.dart';
 import 'package:foodtracker/features/help%20center/view/help_center.dart';
+import 'package:foodtracker/features/profile/view/profile_screen.dart';
+import 'package:foodtracker/features/settings/view/settings_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -35,33 +37,36 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         child: Column(children: [
           Padding(
             padding: EdgeInsets.symmetric(vertical: 25.sp, horizontal: 14.sp),
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.2.w),
-                            borderRadius: BorderRadius.circular(20.sp),color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
-                        child: AppImage(
-                            imageUrl:
-                            "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
-                            width: 41.5.sp,
-                            height: 41.5.sp,
-                            borderRadius: BorderRadius.circular(20.sp)))
-                  ]),
-                  SizedBox(height: 1.h,),
-                  Center(
-                    child: Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 14.sp),
-                      child: Text(MyShared.getString(key: MySharedKeys.email),style: TextStyle(fontSize: 18.sp,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.bold),maxLines: 1),
-                    ),
-                  )
+            child: GestureDetector(
+              onTap: () => push(context, ProfileScreen()),
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(children: [
+                      Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 0.2.w),
+                              borderRadius: BorderRadius.circular(20.sp),color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
+                          child: AppImage(
+                              imageUrl:
+                              "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+                              width: 41.5.sp,
+                              height: 41.5.sp,
+                              borderRadius: BorderRadius.circular(20.sp)))
+                    ]),
+                    SizedBox(height: 1.h,),
+                    Center(
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: 14.sp),
+                        child: Text(MyShared.getString(key: MySharedKeys.email),style: TextStyle(fontSize: 18.sp,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.bold),maxLines: 1),
+                      ),
+                    )
 
-                ],
-              )
+                  ],
+                )
+              ),
             ),
           ),
           Padding(
@@ -120,7 +125,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     children: [
                       ListViewDrawer(
                         title: "${S().settings}",
-                        onTap: () {},
+                        onTap: () {
+                          push(context, SettingsScreen());
+                        },
                         icon: 'settings',
                       ),
                       SizedBox(

@@ -3,6 +3,8 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  connectivity_plus
+  dialogflow_grpc
   geolocator_windows
   url_launcher_windows
 )

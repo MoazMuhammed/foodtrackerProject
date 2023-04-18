@@ -21,7 +21,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           const AppBarWidget(),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 10.sp,vertical: 20.sp),
-            child: Text("${S().allergyType}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18.sp),),
+            child: Text("${S().allergyType}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18.sp,color:  Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),),
           ),
           const CardAllergyTypeWidget()        ],
       ),

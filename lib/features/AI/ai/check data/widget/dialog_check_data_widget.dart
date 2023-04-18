@@ -38,6 +38,6 @@ class _DialogCheckDataWidgetState extends State<DialogCheckDataWidget> {
           ],
         ),
       ),
-    );;
+    );
   }
 }

@@ -7,6 +7,7 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/features/Home/view/home_screen.dart';
+import 'package:foodtracker/features/chat/view/widget/chat.dart';
 import 'package:foodtracker/features/drawer/widget/chat.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -203,7 +204,7 @@ class _CreditCardState extends State<CreditCard> {
 void _onValidate() {
   if (formKey.currentState!.validate()) {
     print('valid!');
-    push(context, ChatScreen());
+    push(context, Chat(key: UniqueKey(),));
   } else {
     print('invalid!');
   }
