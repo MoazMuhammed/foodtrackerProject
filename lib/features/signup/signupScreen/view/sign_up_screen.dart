@@ -36,10 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InternetCubit, InternetState>(
-      builder: (context, state) {
-        if (state is ConnectedState) {
-          return BlocProvider(
+    return  BlocProvider(
             create: (context) => cubit,
             child: BlocListener<SignUpCubit, SignUpState>(
               listener: (context, state) {
@@ -270,11 +267,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               )),
             ),
           );
-        } else if (state is NotConnectedState) {
-          InternetDisconnectedWidget();
         }
-        return InternetDisconnectedWidget();
-      },
-    );
   }
-}
+

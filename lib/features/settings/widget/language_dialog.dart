@@ -12,13 +12,11 @@ class LanguageDialog extends StatefulWidget {
 }
 
 class _LanguageDialogState extends State<LanguageDialog> {
-  late LanguageCubit languageCubit;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    languageCubit = context.read<LanguageCubit>();
   }
 
   @override
@@ -36,7 +34,7 @@ class _LanguageDialogState extends State<LanguageDialog> {
             Center(
               child: TextButton(
                 onPressed: () {
-                  languageCubit.changeLanguageToEn();
+                  this.context.read<LanguageCubit>().changeLanguageToAr();
                 },
                 child: Text("English", style: TextStyle(color: AppColors.primary,fontWeight: FontWeight.bold,fontSize: 16.sp),),
               ),
@@ -45,7 +43,7 @@ class _LanguageDialogState extends State<LanguageDialog> {
             Center(
               child: TextButton(
                 onPressed: () {
-                  languageCubit.changeLanguageToAr();
+                  this.context.read<LanguageCubit>().changeLanguageToEn();
                 },
                 child: Text("Arabic", style: TextStyle(color: AppColors.primary,fontWeight: FontWeight.bold,fontSize: 16.sp)),
               ),

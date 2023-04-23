@@ -1,24 +1,17 @@
-import 'dart:io';
-
-import 'package:app_settings/app_settings.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:foodtracker/core/cubits/internet/internet_cubit.dart';
 import 'package:foodtracker/core/cubits/main/main_cubit.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/utills/svg.dart';
-import 'package:foodtracker/core/widgets/app_bar_home.dart';
-import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/internet_disconnected_widget.dart';
 import 'package:foodtracker/features/AI/view/ai_screen.dart';
 import 'package:foodtracker/features/Home/view/home_screen.dart';
 import 'package:foodtracker/features/category/view/category_screen.dart';
 import 'package:foodtracker/features/drawer/widget/drawer.dart';
 import 'package:foodtracker/generated/l10n.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MainScreens extends StatefulWidget {
   const MainScreens({Key? key}) : super(key: key);
@@ -53,34 +46,33 @@ class _MainScreensState extends State<MainScreens> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => cubit,
+      child: BlocBuilder<MainCubit, MainState>(
+        builder: (context, state) {
           return BlocBuilder<InternetCubit, InternetState>(
-  builder: (context, state) {
-    if (state is ConnectedState) {
-      return BlocProvider(
-        create: (context) => cubit,
-        child: BlocBuilder<MainCubit, MainState>(
-          builder: (context, state) {
-            return SafeArea(
-              child: Scaffold(
-                body: RefreshIndicator(onRefresh: () async{
-                  initState();
-                },
-                    child: cubit.screens[cubit.index]),
-                bottomNavigationBar: bottomNavBar(),
-                endDrawer: DrawerWidget(name: "name"),
-              ),
-            );
-          },
-        ),
-      );
-    }
-    else if (state is NotConnectedState){
-      InternetDisconnectedWidget()  ;
-    }
-    return InternetDisconnectedWidget()  ;
-
-  }
-);
+            builder: (context, state) {
+              if (state is ConnectedState) {
+                return SafeArea(
+                  child: Scaffold(
+                    body: RefreshIndicator(
+                        onRefresh: () async {
+                          initState();
+                        },
+                        child: cubit.screens[cubit.index]),
+                    bottomNavigationBar: bottomNavBar(),
+                    endDrawer: DrawerWidget(name: "name"),
+                  ),
+                );
+              } else if (state is NotConnectedState) {
+                InternetDisconnectedWidget();
+              }
+              return InternetDisconnectedWidget();
+            },
+          );
+        },
+      ),
+    );
   }
 
   Widget bottomNavBar() {

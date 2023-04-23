@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
+import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
@@ -16,9 +16,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  double buttonOpacity = 0;
+
   @override
   void initState() {
     super.initState();
+
     Future.delayed(const Duration(milliseconds: 2000)).then((value) {
       if (MyShared.isFirstOpen()) {
         pushReplacement(context,  OnBoardingScreen());
@@ -31,42 +34,65 @@ class _SplashScreenState extends State<SplashScreen> {
         pushReplacement(context,  const LoginScreen());
       }
     });
+
+    Future.delayed(
+      const Duration(milliseconds: 1500),
+          () {
+        buttonOpacity = 1;
+        setState(() {});
+
+      },
+    );
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedContainer(
-              duration: Duration(seconds: 1),
-    curve: Curves.easeInOut,
-    margin: EdgeInsets.only(left: 200),
-              child: AppSVG(
-                assetName: 'logo',
-                height: 12.h,
-                width: 12.w,
+      backgroundColor: Colors.white,
+      body: Stack(
+        alignment: AlignmentDirectional.bottomStart,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AnimatedContainer(
+                      height: 40.sp,
+                      width: 40.sp,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.bounceOut,
+                      child: AppSVG(
+                        height: 30.h,
+                        width: 20.w,
+                        assetName: 'logo',
+                      ),
+                    ),
+                    SizedBox(height: 1.h,),
+                    AnimatedOpacity(
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.bounceInOut,
+                      opacity: buttonOpacity,
+                      child: Text(
+                        "Food Tracker",
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 3.h,),
-            Text("Food Tracker",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),)
-          ],
-        ),
-      ));
-  }
-
-  void navigate() {
-    if (MyShared.isFirstOpen()) {
-      // pushAndRemoveUntil(context, const OnBoardingScreen());
-      return;
-    }
-
-    if (MyShared.getString(key: MySharedKeys.apiToken).isEmpty) {
-      // pushAndRemoveUntil(context, const SignInScreen());
-    } else {
-      // pushAndRemoveUntil(context, const MainScreen());
-    }
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

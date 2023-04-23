@@ -18,7 +18,7 @@ class AppTextField extends StatefulWidget {
     this.validators,
     required this.textInputAction,
     required this.textInputType,
-     this.title = "",
+     this.title = "",  this.obscureText = false,
   }) : super(key: key);
   final Color textColor;
   final String hint;
@@ -36,12 +36,14 @@ class AppTextField extends StatefulWidget {
   EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry? padding;
 
+ late bool obscureText;
+
+
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
 
 class _AppTextFieldState extends State<AppTextField> {
-  bool obscureText = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class _AppTextFieldState extends State<AppTextField> {
 
           TextFormField(
             validator: widget.validators,
-            obscureText: obscureText,
+            obscureText: widget.obscureText,
             controller: widget.controller,
             keyboardType: widget.textInputType,
             textInputAction: widget.textInputAction,
@@ -78,11 +80,11 @@ class _AppTextFieldState extends State<AppTextField> {
                 child: InkWell(
                   onTap: () {
                     setState(() {
-                      obscureText = !obscureText;
+                      widget.obscureText = !widget.obscureText;
                     });
                   },
                   child: Icon(
-                    obscureText ? Icons.visibility_off : Icons.visibility,
+                    widget.obscureText ? Icons.visibility_off : Icons.visibility,
                     color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
                   ),
                 ),

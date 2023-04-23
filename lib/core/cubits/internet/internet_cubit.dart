@@ -29,6 +29,7 @@ class InternetCubit extends Cubit<InternetState> {
       }
     });
   }
+
   @override
   Future<void> close() {
     _subscription!.cancel();
