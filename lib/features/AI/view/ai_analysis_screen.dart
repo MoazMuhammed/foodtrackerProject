@@ -34,7 +34,7 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen> {
               ),
             ],
           ),
-          AIAnalysisContainerWidget()        ],
+          Expanded(child: AIAnalysisContainerWidget())        ],
       ),
     ));
   }

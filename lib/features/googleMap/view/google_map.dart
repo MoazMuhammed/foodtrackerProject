@@ -106,7 +106,7 @@ googleMapController = controller;                  },
     permission = await Geolocator.checkPermission();
 
     if (permission == LocationPermission.denied) {
-      openAppSettings();
+   openAppSettings();
       if (permission == LocationPermission.denied) {
         openAppSettings();
       }

@@ -28,13 +28,13 @@ class _LanguageDialogState extends State<LanguageDialog> {
       contentPadding: EdgeInsets.symmetric(horizontal: 20.sp,vertical: 12.sp),
       content: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.sp,vertical: 15.sp),
-        height: 45.sp,
+        height: 16.h,
         child: Column(
           children: [
             Center(
               child: TextButton(
                 onPressed: () {
-                  this.context.read<LanguageCubit>().changeLanguageToAr();
+                  this.context.read<LanguageCubit>().changeLanguageToEn();
                 },
                 child: Text("English", style: TextStyle(color: AppColors.primary,fontWeight: FontWeight.bold,fontSize: 16.sp),),
               ),
@@ -43,7 +43,7 @@ class _LanguageDialogState extends State<LanguageDialog> {
             Center(
               child: TextButton(
                 onPressed: () {
-                  this.context.read<LanguageCubit>().changeLanguageToEn();
+                  this.context.read<LanguageCubit>().changeLanguageToAr();
                 },
                 child: Text("Arabic", style: TextStyle(color: AppColors.primary,fontWeight: FontWeight.bold,fontSize: 16.sp)),
               ),
