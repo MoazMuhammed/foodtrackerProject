@@ -6,6 +6,7 @@ import 'package:foodtracker/core/widgets/app_bar.dart';
 import 'package:foodtracker/features/drawer/widget/drawer.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class GoogleMapScreen extends StatefulWidget {
@@ -34,8 +35,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
               GoogleMap(
                 mapType: MapType.hybrid,
                 onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
+googleMapController = controller;                  },
                 initialCameraPosition: _kGooglePlex,
                 markers: markers,
               ),
@@ -106,12 +106,15 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
     permission = await Geolocator.checkPermission();
 
     if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+      openAppSettings();
       if (permission == LocationPermission.denied) {
-        return Future.error("Location permision denied");
+        openAppSettings();
       }
     }
     Position position = await Geolocator.getCurrentPosition();
     return position;
   }
+
+
+
 }
