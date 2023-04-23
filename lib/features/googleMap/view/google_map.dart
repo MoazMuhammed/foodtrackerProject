@@ -16,10 +16,13 @@ class GoogleMapScreen extends StatefulWidget {
 }
 
 class _GoogleMapScreenState extends State<GoogleMapScreen> {
+  Timer? _debounce;
+
   Completer<GoogleMapController> _controller = Completer();
   var markers = HashSet<Marker>();
   late GoogleMapController googleMapController;
-  TextEditingController _searchController = TextEditingController();
+  static final CameraPosition _kGooglePlex =
+      CameraPosition(target: LatLng(30.033333, 31.233334), zoom: 14);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +32,11 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
           body: Stack(
             children: [
               GoogleMap(
+                mapType: MapType.hybrid,
                 onMapCreated: (GoogleMapController controller) {
-                  googleMapController = controller;
+                  _controller.complete(controller);
                 },
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(30.033333, 31.233334), zoom: 14),
+                initialCameraPosition: _kGooglePlex,
                 markers: markers,
               ),
               Padding(
@@ -48,7 +51,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                             CameraUpdate.newCameraPosition(CameraPosition(
                                 target: LatLng(
                                     position.latitude, position.longitude),
-                                zoom: 4)));
+                                zoom: 14)));
                         markers.clear();
                         markers.add(Marker(
                             markerId: MarkerId("CurrentLocation"),
@@ -60,7 +63,10 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                           height: 30.sp,
                           width: 30.sp,
                           decoration: BoxDecoration(
-                              color: Colors.white60,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Colors.white54
+                                  : Colors.black54,
                               borderRadius: BorderRadius.circular(30.sp)),
                           child: Icon(
                             Icons.my_location,
@@ -71,7 +77,10 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
               Column(
                 children: [
                   Container(
-                    decoration: BoxDecoration(color: Colors.white54),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.white54
+                            : Colors.black54),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: 18.sp, vertical: 14.sp),

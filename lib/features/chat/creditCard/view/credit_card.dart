@@ -53,7 +53,7 @@ class _CreditCardState extends State<CreditCard> {
               children: <Widget>[
                 ForgetPasswordBarWidget(onPressed: () => pop(context), title: "Credit Card"),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 18.sp,vertical: 18.sp),
+                  padding: EdgeInsets.symmetric(horizontal: 12.sp,vertical: 12.sp),
                   child: CreditCardWidget(
                     glassmorphismConfig:
                     useGlassMorphism ? Glassmorphism.defaultConfig() : null,
@@ -77,20 +77,12 @@ class _CreditCardState extends State<CreditCard> {
                     onCreditCardWidgetChange:
                         (CreditCardBrand creditCardBrand) {},
                     customCardTypeIcons: <CustomCardTypeIcon>[
-                      CustomCardTypeIcon(
-                        cardType: CardType.mastercard,
-                        cardImage: Image.asset(
-                          'assets/mastercard.png',
-                          height: 48.h,
-                          width: 48.w,
-                        ),
-                      ),
                     ],
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18.sp),
+                    padding: EdgeInsets.symmetric(horizontal: 19.sp),
                     child: SingleChildScrollView(
                       child: Column(
                         children: <Widget>[
@@ -167,7 +159,7 @@ class _CreditCardState extends State<CreditCard> {
                               child:  Text(
                                 'Validate',
                                 style: TextStyle(
-                                  color: Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.black,
+                                  color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
                                   fontFamily: 'halter',
                                   fontSize: 14.sp,
                                   package: 'flutter_credit_card',
@@ -177,7 +169,7 @@ class _CreditCardState extends State<CreditCard> {
                           ),
                           SizedBox(height: 3.h,),
                           Padding(
-                            padding:  EdgeInsets.symmetric(vertical: 12.sp,horizontal: 12.sp),
+                            padding:  EdgeInsets.symmetric(vertical: 18.sp,horizontal: 18.sp),
                             child: Center(
                               child: Row(
                                 children: [

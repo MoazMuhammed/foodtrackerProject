@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
+import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:dialogflow_grpc/dialogflow_grpc.dart';
 import 'package:dialogflow_grpc/generated/google/cloud/dialogflow/v2beta1/session.pb.dart';
@@ -64,7 +67,7 @@ class _ChatState extends State<Chat> {
       if (fulfillmentText.isNotEmpty) {
         ChatMessage botMessage = ChatMessage(
           text: fulfillmentText,
-          name: "Bot",
+          name: "FA",
           type: false,
         );
         setState(() {
@@ -162,14 +165,9 @@ class _ChatState extends State<Chat> {
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 4.0),
                       child: IconButton(
-                        icon: Icon(Icons.send),
+                        icon: Icon(Icons.send,color: AppColors.primary),
                         onPressed: () => handleSubmitted(_textController.text),
                       ),
-                    ),
-                    IconButton(
-                      iconSize: 30.0,
-                      icon: Icon(_isRecording ? Icons.mic_off : Icons.mic),
-                      onPressed: _isRecording ? stopStream : handleStream,
                     ),
                   ],
                 ),
@@ -190,28 +188,36 @@ class ChatMessage extends StatelessWidget {
   List<Widget> otherMessage(context) {
     return <Widget>[
       Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            child: CircleAvatar(child: new Text('B')),
+            child: Stack(children: [
+              Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0.2.w),
+                      borderRadius: BorderRadius.circular(50.sp),color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
+                  child: AppSVG(assetName: "logo"),height: 25.sp,width: 25.sp,)
+            ]),
           ),
-          Container(
-            margin: const EdgeInsets.only(right: 4.0, top: 6),
-            child:
-            Text(this.name, style: TextStyle(fontWeight: FontWeight.bold)),
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(right: 4.0, top: 6),
+              child:
+              Text(this.name, style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
           )
         ],
       ),
       new Expanded(
         child: Container(
-          margin: const EdgeInsets.only(top: 5.0),
+          margin:  EdgeInsets.only(top: 5.0),
           child: BubbleSpecialOne(
             text: text,
             isSender: false,
-            color: Colors.purple.shade100,
+            color: AppColors.primary,
             textStyle: TextStyle(
-              fontSize: 20,
-              color: Colors.purple,
+              fontSize: 18.sp,
+              color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
             ),
           ),
         ),
@@ -230,10 +236,10 @@ class ChatMessage extends StatelessWidget {
               child: BubbleSpecialOne(
                 text: text,
                 isSender: true,
-                color: Colors.purple.shade100,
+                color: AppColors.hint,
                 textStyle: TextStyle(
-                  fontSize: 20,
-                  color: Colors.purple,
+                  fontSize: 18,
+                  color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
                 ),
               ),
             ),
