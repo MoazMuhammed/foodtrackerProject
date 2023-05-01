@@ -4,6 +4,7 @@ class EndPoints {
   static const String registerPatient = 'registration/patient/';
   static const String registerDoctor = 'registration/doctor/';
   static const String posts = 'addposts/';
+  static const String userPosts = 'user-posts/';
   static const String language = 'languages/translation';
 
 }

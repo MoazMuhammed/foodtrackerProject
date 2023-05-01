@@ -74,11 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(child:
                   ListView.separated(itemBuilder: (context, index) {
                     PostsModel postModel = cubit.posts[index];
-                    return PostWidget(name: postModel.ownerName,
+                    return PostWidget(
+                      name: postModel.ownerName,
                       time: postModel.createdAt,
                       title: postModel.title,
                       image: postModel.image,
-                      likes: postModel.likes.length, onPressed: () {  push(context, CommentScreen());},
+                      likes: postModel.likes.length, onPressed: () {
+                        push(context, CommentScreen());},
                       onPressed1: () async {
                       safePrint(postModel.title);
                       try {

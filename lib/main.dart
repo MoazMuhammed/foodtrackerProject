@@ -25,6 +25,7 @@ void main() async {
   MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
   await MyDio.init();
   safePrint(MyShared.getString(key: MySharedKeys.apiToken));
+  safePrint(MyShared.getInt(key: MySharedKeys.UID));
   runApp(ChangeNotifierProvider<ThemeProvider>(
       create: (_) =>
       ThemeProvider()
