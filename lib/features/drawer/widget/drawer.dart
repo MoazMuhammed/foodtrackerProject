@@ -12,11 +12,13 @@ import 'package:foodtracker/features/drawer/widget/list_view.dart';
 import 'package:foodtracker/features/drawer/widget/terms.dart';
 import 'package:foodtracker/features/googleMap/view/google_map.dart';
 import 'package:foodtracker/features/help%20center/view/help_center.dart';
+import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/features/profile/view/profile_screen.dart';
 import 'package:foodtracker/features/settings/view/settings_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -51,7 +53,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               borderRadius: BorderRadius.circular(20.sp),color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
                           child: AppImage(
                               imageUrl:
-                              "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+                              "${MyShared.getString(key: MySharedKeys.pic)}",
                               width: 41.5.sp,
                               height: 41.5.sp,
                               borderRadius: BorderRadius.circular(20.sp)))
@@ -60,7 +62,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     Center(
                       child: Padding(
                         padding:  EdgeInsets.symmetric(horizontal: 14.sp),
-                        child: Text(MyShared.getString(key: MySharedKeys.email),style: TextStyle(fontSize: 18.sp,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.bold),maxLines: 1),
+                        child: Text(MyShared.getString(key: MySharedKeys.name),style: TextStyle(fontSize: 18.sp,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.bold),maxLines: 1),
                       ),
                     )
 
@@ -189,7 +191,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 Column(
                   children: [
                     AppButton(
-                      onPressed: () {},
+                      onPressed: ()async {
+
+                        SharedPreferences preferences = await SharedPreferences.getInstance();
+                        await preferences.clear();
+                        pushAndRemoveUntil(context, LoginScreen());
+
+                      },
                       label: '${S().logOut}',
                       sizeFont: 16.sp,
                       bgColor: AppColors.primary,

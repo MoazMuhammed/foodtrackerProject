@@ -52,7 +52,7 @@ class _HelpCenterState extends State<HelpCenter> {
                   ContactWidget(
                     image: 'fbContact',
                     pressed: () {
-                      launchUrlString("https://web.facebook.com/moaz.mohames");
+                      launchUrlString("https://web.facebook.com/foodallergytracker");
                     },
                   ),
                   SizedBox(
@@ -60,9 +60,9 @@ class _HelpCenterState extends State<HelpCenter> {
                   ),
                   ContactWidget(
                     image: 'emailContact',
-                    pressed: () {launchUrlString("https://mail.google.com/mail/u/0/#inbox");},
+                    pressed: () {launchUrlString("https://mail.google.com/mail/foodallergytracker");},
                   ),
-                ],
+                ]
               ),
             ),
             SizedBox(

@@ -55,11 +55,7 @@ class _MainScreensState extends State<MainScreens> {
               if (state is ConnectedState) {
                 return SafeArea(
                   child: Scaffold(
-                    body: RefreshIndicator(
-                        onRefresh: () async {
-                          initState();
-                        },
-                        child: cubit.screens[cubit.index]),
+                    body: cubit.screens[cubit.index],
                     bottomNavigationBar: bottomNavBar(),
                     endDrawer: DrawerWidget(name: "name"),
                   ),

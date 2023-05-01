@@ -6,17 +6,35 @@ import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/Home/view/comment_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
+import 'package:readmore/readmore.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'reacts_widget.dart';
+import 'text_form_field_comment.dart';
 
 class PostWidget extends StatefulWidget {
-  const PostWidget({Key? key}) : super(key: key);
+  const PostWidget(
+      {Key? key,
+      required this.name,
+      required this.time,
+      required this.title,
+      this.image,
+      required this.likes, required this.onPressed, required this.onPressed1})
+      : super(key: key);
+  final String name;
+  final String time;
+  final String title;
+  final String? image;
+  final int likes;
+  final GestureTapCallback onPressed;
+  final GestureTapCallback onPressed1;
+
 
   @override
   State<PostWidget> createState() => _PostWidgetState();
 }
 
 class _PostWidgetState extends State<PostWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,9 +42,9 @@ class _PostWidgetState extends State<PostWidget> {
         borderRadius: BorderRadius.circular(10.sp),
       ),
       child: Padding(
-        padding:
-        EdgeInsets.symmetric(vertical: 10.sp, horizontal: 2.sp),
+        padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 2.sp),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -39,84 +57,87 @@ class _PostWidgetState extends State<PostWidget> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Moaz Muhammed",
+                    Text(widget.name.toString(),
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15.sp)),
-                     Text(
-                      '3 min',style: TextStyle(fontSize: 13.sp),
+                            fontWeight: FontWeight.bold, fontSize: 15.sp)),
+                    Text(
+                      widget.time,
+                      style: TextStyle(
+                        fontSize: 13.sp,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
                 const Spacer(),
-                Text(
-                  '${S().follow}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primary,
-                      fontSize: 13.sp),
+                InkWell(
+                  onTap: () => push(context, CommentScreen()),
+                  child: Text(
+                    '${S().follow}',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                        fontSize: 13.sp),
+                  ),
                 ),
                 SizedBox(
                   width: 2.w,
                 ),
-                 AppSVG(assetName: 'points',color: MyShared.getInt(key: MySharedKeys.theme) == 1 ? Colors.white : Colors.black,height: 0.5.h,)
+                AppSVG(
+                  assetName: 'points',
+                  color: MyShared.getInt(key: MySharedKeys.theme) == 1
+                      ? Colors.white
+                      : Colors.black,
+                  height: 0.5.h,
+                )
               ],
             ),
             SizedBox(
-              height: 1.5.h,
+              height: 0.5.h,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.sp),
-              child: Text(
-                  'There are many variations of passages of Lorem Ipsum available',
-                  style: TextStyle(fontSize: 14.sp),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis),
+              padding: EdgeInsets.symmetric(horizontal: 30.sp),
+              child: ReadMoreText( widget.title,trimExpandedText: "Show Less",trimCollapsedText: "Show More",trimLines: 3,textAlign: TextAlign.justify,trimMode: TrimMode.Line,lessStyle: TextStyle(fontWeight: FontWeight.bold,color: AppColors.primary),moreStyle: TextStyle(fontWeight: FontWeight.bold,color: AppColors.primary),
+              ),
+              ),
+            SizedBox(height: 1.8.h),
+            Center(
+              child: Image(
+                 image: NetworkImage("${widget.image}"),
+                 fit: BoxFit.fill),
             ),
-            SizedBox(
-              height: 1.4.h,
-            ),
-            const Image(
-                image: AssetImage('assets/images/post.png'),
-                fit: BoxFit.fill),
+            SizedBox(height: 1.8.h),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.sp,horizontal: 10.sp),
+              padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 10.sp),
               child: Row(
                 children: [
                   ReactWidget(
                     image: 'love',
-                    number: '35',
+                    number: widget.likes,
                     onPressed: () {},
                   ),
-                  SizedBox(
-                    width: 2.w,
+                  SizedBox(width: 1.w,),
+                  Container(
+                    height: 5.8.h,width: 59.sp,
+                    child: AppComment(
+                      hint: "${S().addComment}",
+                      keyboardType: TextInputType.text,
+                      controller: TextEditingController(),
+                      textInputAction: TextInputAction.send,
+                      textInputType: TextInputType.text,
+
+                    ),
                   ),
                   ReactWidget(
-                    image: 'happy',
-                    number: '7',
-                    onPressed: () {},
+                    image: 'love',
+                    number: widget.likes,
+                    onPressed: widget.onPressed1,
                   ),
-                  SizedBox(
-                    width: 2.w,
-                  ),
-                  ReactWidget(
-                    image: 'sad',
-                    number: '2',
-                    onPressed: () {},
-                  ),
-                  const Spacer(),
-                  GestureDetector(onTap: () => push(context, CommentScreen()),child:  AppSVG(assetName: 'comment',height: 1.6.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
-                  SizedBox(
-                    width: 3.w,
-                  ),
-                   AppSVG(assetName: 'save',height: 1.6.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)
+
+
                 ],
               ),
             ),
-
-          ],
-        ),
-      ),
-    );
+    ])));
   }
 }

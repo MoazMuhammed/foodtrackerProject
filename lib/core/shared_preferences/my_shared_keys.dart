@@ -14,6 +14,11 @@ enum MySharedKeys {
   studentStatus,
   isDoctor,
   iGE,
-  theme
+  theme,
+  name,
+  pic,
+  is_doctor,
+  UID
+
 
 }

@@ -13,6 +13,7 @@ import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/styles/theme_provider.dart';
+import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/features/splash/splash_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,7 @@ void main() async {
   await MyShared.init();
   MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
   await MyDio.init();
+  safePrint(MyShared.getString(key: MySharedKeys.apiToken));
   runApp(ChangeNotifierProvider<ThemeProvider>(
       create: (_) =>
       ThemeProvider()

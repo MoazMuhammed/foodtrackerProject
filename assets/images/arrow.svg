@@ -1,6 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-  <g id="Group_131" data-name="Group 131" transform="translate(-17 -24)">
-    <circle id="Ellipse_199" data-name="Ellipse 199" cx="12.5" cy="12.5" r="12.5" transform="translate(17 24)" fill="#eaeaea"/>
-    <path id="arrow-right-bold-svgrepo-com" d="M.282.282a.962.962,0,0,0,0,1.36L5.042,6.4l-4.76,4.76a.962.962,0,1,0,1.36,1.36l5.44-5.44a.961.961,0,0,0,0-1.36L1.641.282A.962.962,0,0,0,.282.282Z" transform="translate(33.234 43.255) rotate(180)" fill="#2d2d2d"/>
-  </g>
+<svg id="Component_4_4" data-name="Component 4 – 4" xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31">
+  <circle id="Ellipse_199" data-name="Ellipse 199" cx="15.5" cy="15.5" r="15.5" fill="#eaeaea"/>
+  <path id="arrow-right-bold-svgrepo-com" d="M320.35,86.315a1.192,1.192,0,0,0,0,1.686l5.9,5.9-5.9,5.9a1.192,1.192,0,1,0,1.686,1.686l6.745-6.746a1.192,1.192,0,0,0,0-1.686l-6.746-6.746A1.192,1.192,0,0,0,320.35,86.315Z" transform="translate(340.131 109.842) rotate(180)" fill="#2d2d2d"/>
 </svg>

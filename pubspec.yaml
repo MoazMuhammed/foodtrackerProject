@@ -70,6 +70,11 @@ dependencies:
   flutter_phoenix: ^1.1.0
   flutter_riverpod: ^2.3.5
   location: ^4.4.0
+  uuid: ^3.0.7
+  material_floating_search_bar: ^0.3.7
+  readmore: ^2.2.0
+  share_plus: ^4.5.3
+  esys_flutter_share_plus: ^2.2.0
 
 
 dev_dependencies:

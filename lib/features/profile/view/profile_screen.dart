@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: Column(
                                 children: [
                                   SizedBox(height: 6.h,),
-                                  Text("Moaz Muhammed",
+                                  Text(MyShared.getString(key: MySharedKeys.name),
                                       style: TextStyle(
                                           fontSize: 17.sp,
                                           color: Theme.of(context).brightness ==
@@ -195,7 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             : Colors.white),
                     child: AppImage(
                         imageUrl:
-                        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+                        "${MyShared.getString(key: MySharedKeys.pic)}",
                         width: 35.sp,
                         height: 35.sp,
                         borderRadius: BorderRadius.circular(20.sp)))
@@ -237,20 +237,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         height: 2.h,
                       ),
-                      Expanded(
-                        child: ListView.separated(
-                          itemBuilder: (context, index) => PostWidget(),
-                          itemCount: 7,
-                          separatorBuilder: (BuildContext context, int index) {
-                            return Divider(
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? Colors.black
-                                  : Colors.white,
-                            );
-                          },
-                        ),
-                      ),
+                      // Expanded(
+                      //   child: ListView.separated(
+                      //     itemBuilder: (context, index) => PostWidget(),
+                      //     itemCount: 7,
+                      //     separatorBuilder: (BuildContext context, int index) {
+                      //       return Divider(
+                      //         color: Theme.of(context).brightness ==
+                      //                 Brightness.light
+                      //             ? Colors.black
+                      //             : Colors.white,
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

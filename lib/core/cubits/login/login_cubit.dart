@@ -16,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     var response = await MyDio.post(
         endPoint: EndPoints.login,
-        data: {"username": email, "password": password});
+        data: {"email": email, "password": password});
     try {
       loginModel = LoginModel.fromJson(response!.data);
       if (response.statusCode == 200) {

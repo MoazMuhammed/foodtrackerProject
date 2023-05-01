@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/internet/internet_cubit.dart';
 import 'package:foodtracker/core/cubits/language/language_cubit.dart';
 import 'package:foodtracker/core/cubits/login/login_cubit.dart';
+import 'package:foodtracker/core/cubits/login_user/login_user_cubit.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
@@ -38,22 +39,23 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   final _formKey = GlobalKey<FormState>();
-  final cubit = LoginCubit();
+  final cubit = LoginUserCubit();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => cubit,
-      child: BlocListener<LoginCubit, LoginState>(
+      child: BlocListener<LoginUserCubit, LoginUserState>(
         listener: (context, state) {
-          if (state is LoginLoading) {
+          if (state is LoginUserLoading) {
             showLoading();
           }
-          if (state is LoginSuccess) {
+          if (state is LoginUserSuccess) {
             hideLoading();
             pushAndRemoveUntil(context, MainScreens());
           }
-          if (state is LoginFailure) {
+          if (state is LoginUserFailure) {
+            hideLoading();
             showError("Email or Password is wrong");
           }
         },
@@ -157,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           AppButton(
                             onPressed: () {
-                              cubit.userLogin(
+                              cubit.userUserLogin(
                                   email: emailController.text,
                                   password: passwordController.text);
 

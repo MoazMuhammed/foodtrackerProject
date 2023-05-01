@@ -91,29 +91,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Column(
                         children: [
                           AppTextField(
-                              hint: 'First Name',
-                              keyboardType: TextInputType.visiblePassword,
-                              controller: firstNameController,
-                              isPassword: false,
-                              textInputAction: TextInputAction.done,
-                              textInputType: TextInputType.visiblePassword,
-                              title: 'First Name'),
-                          AppTextField(
-                              hint: 'Last Name',
-                              keyboardType: TextInputType.visiblePassword,
-                              controller: lastNameController,
-                              isPassword: false,
-                              textInputAction: TextInputAction.done,
-                              textInputType: TextInputType.visiblePassword,
-                              title: 'Last Name'),
-                          AppTextField(
-                              hint: 'Enter Your Name',
+                              hint: 'Enter Your UserName',
                               keyboardType: TextInputType.name,
                               controller: userNameController,
                               isPassword: false,
                               textInputAction: TextInputAction.next,
                               textInputType: TextInputType.name,
-                              title: 'Name'),
+                              title: 'UserName'),
                           AppTextField(
                               hint: 'Enter Your Email',
                               keyboardType: TextInputType.emailAddress,
@@ -165,21 +149,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 return null;
                               },
                               title: 'Confirm Password'),
-                          Visibility(
-                            visible: MyShared.getBoolean(
-                                    key: MySharedKeys.isDoctor) ==
-                                true,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                const AppSVG(assetName: 'doctor'),
-                                const Text("Add Medical license ")
-                              ],
-                            ),
-                          ),
                           SizedBox(
                             height: 3.h,
                           ),
@@ -187,8 +156,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             onPressed: () {
                               cubit.userRegister(
                                 username: userNameController.text,
-                                first_name: "Muhammed",
-                                last_name: "Atiya",
                                 email: emailController.text,
                                 phone: phoneController.text,
                                 password1: passwordController.text,

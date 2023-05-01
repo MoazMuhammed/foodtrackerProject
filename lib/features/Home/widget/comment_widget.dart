@@ -4,7 +4,10 @@ import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CommentWidget extends StatefulWidget {
-  const CommentWidget({Key? key}) : super(key: key);
+  const CommentWidget({Key? key, required this.name, required this.time, required this.comment}) : super(key: key);
+final String name;
+final String time;
+final String comment;
 
   @override
   State<CommentWidget> createState() => _CommentWidgetState();
@@ -22,6 +25,7 @@ class _CommentWidgetState extends State<CommentWidget> {
               AppImage(imageUrl: "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=", width: 25.sp, height: 25.sp, borderRadius: BorderRadius.circular(30.sp)),
               SizedBox(width: 2.w,),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,17 +33,15 @@ class _CommentWidgetState extends State<CommentWidget> {
                     children: [
                       Row(
                         children: [
-                          Text("Moaz Muhammed",style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.bold),),
+                          Text(widget.name,style: TextStyle(fontSize: 15.sp,fontWeight: FontWeight.bold),),
                           SizedBox(width: 1.w,),
-                          Text("3d",style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Colors.grey),),
+                          Text(widget.time,style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.bold,color: Colors.grey),overflow: TextOverflow.ellipsis),
 
                         ],
                       ),
-                      Text("How sweet",style: TextStyle(fontSize: 15.sp),),
+                      Text(widget.comment,style: TextStyle(fontSize: 15.sp),),
 
                     ],),
-                  SizedBox(width: 30.w,),
-                  Icon(CupertinoIcons.heart),
 
                 ],
               )

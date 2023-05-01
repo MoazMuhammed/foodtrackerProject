@@ -17,9 +17,7 @@ class GoogleMapScreen extends StatefulWidget {
 }
 
 class _GoogleMapScreenState extends State<GoogleMapScreen> {
-  Timer? _debounce;
 
-  Completer<GoogleMapController> _controller = Completer();
   var markers = HashSet<Marker>();
   late GoogleMapController googleMapController;
   static final CameraPosition _kGooglePlex =
@@ -35,7 +33,13 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
               GoogleMap(
                 mapType: MapType.hybrid,
                 onMapCreated: (GoogleMapController controller) {
-googleMapController = controller;                  },
+                  googleMapController = controller;
+                  setState(() {
+                    googleMapController = controller;
+
+
+                  });
+                },
                 initialCameraPosition: _kGooglePlex,
                 markers: markers,
               ),
@@ -84,7 +88,21 @@ googleMapController = controller;                  },
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: 18.sp, vertical: 14.sp),
-                      child: AppBarWidget(),
+                      child: Column(
+                        children: [
+                          AppBarWidget(),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(14.sp),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+
                     ),
                   ),
                 ],
@@ -93,6 +111,8 @@ googleMapController = controller;                  },
           )),
     );
   }
+
+
 
   Future<Position> _determinePosition() async {
     bool serviceEnable;
@@ -106,7 +126,7 @@ googleMapController = controller;                  },
     permission = await Geolocator.checkPermission();
 
     if (permission == LocationPermission.denied) {
-   openAppSettings();
+      openAppSettings();
       if (permission == LocationPermission.denied) {
         openAppSettings();
       }
@@ -114,7 +134,4 @@ googleMapController = controller;                  },
     Position position = await Geolocator.getCurrentPosition();
     return position;
   }
-
-
-
 }

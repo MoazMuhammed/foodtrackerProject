@@ -49,7 +49,7 @@ class _AppCommentState extends State<AppComment> {
             height: 1.h,
           ),
           Container(
-            height: 5.h,
+            height: 3.5.h,
             child: TextFormField(
               onChanged: (value) => widget.onChanged,
               textAlign: TextAlign.start,
@@ -67,7 +67,6 @@ class _AppCommentState extends State<AppComment> {
               ),
             ),
           ),
-          SizedBox(height: 1.h,)
         ],
       ),
     );

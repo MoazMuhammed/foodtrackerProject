@@ -6,7 +6,7 @@ class ReactWidget extends StatefulWidget {
   const ReactWidget({Key? key, required this.image, required this.number, required this.onPressed}) : super(key: key);
 
   final String image;
-  final String number;
+  final int number;
   final GestureTapCallback onPressed;
 
   @override
@@ -20,7 +20,7 @@ class _ReactWidgetState extends State<ReactWidget> {
       onTap: widget.onPressed,
       child: Container(
           padding: EdgeInsets.symmetric(
-              horizontal: 15.sp, vertical: 6.sp),
+              horizontal: 15.sp, vertical: 10.sp),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.sp),
             border: Border.all(
@@ -33,7 +33,7 @@ class _ReactWidgetState extends State<ReactWidget> {
     ,),
               SizedBox(width: 2.w),
               Text(
-                widget.number,
+                widget.number.toString(),
                 style: TextStyle(fontSize: 13.sp),
               )
             ],

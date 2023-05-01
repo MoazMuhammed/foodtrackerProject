@@ -21,7 +21,7 @@ class CreatePostBarWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-                onTap: onPressed,
+                onTap: () => pop(context),
                 child: AppSVG(
                   assetName: 'arrow',
                   height: 2.5.h,
@@ -35,9 +35,7 @@ class CreatePostBarWidget extends StatelessWidget {
         ),
         const Spacer(),
         Expanded(
-          child: AppButton(onPressed: () {
-            pushAndRemoveUntil(context, HomeScreen());
-          }, label: "Create", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(14.sp)),
+          child: AppButton(onPressed: onPressed, label: "Create", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(14.sp)),
         )
       ],
     );

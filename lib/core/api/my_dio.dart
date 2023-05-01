@@ -12,6 +12,7 @@ class MyDio {
       receiveDataWhenStatusError: true,
       connectTimeout: 90 * 1000,
       receiveTimeout: 90 * 1000,
+      validateStatus: (status)=> true
     );
 
     dio = Dio(baseOptions);
@@ -21,7 +22,7 @@ class MyDio {
     dio.options.headers = {
       "lang": MyShared.getCurrentLanguage(),
       // "Accept": "application/json",
-      "Authorization": MyShared.getString(key: MySharedKeys.apiToken),
+      "Authorization": "Token ${MyShared.getString(key: MySharedKeys.apiToken)}",
     };
     return await dio.get(endPoint);
   }
@@ -51,5 +52,13 @@ class MyDio {
       "Authorization": MyShared.getString(key: MySharedKeys.apiToken),
     };
     return await dio.put(endPoint);
+  }
+  static Future<Response?> postFile({required String endPoint,required FormData fromData}) async {
+    dio.options.headers = {
+      "lang": MyShared.getCurrentLanguage(),
+      // "Accept": "application/json",
+      "Authorization": "Token ${MyShared.getString(key: MySharedKeys.apiToken)}",
+    };
+    return await dio.post(endPoint,data: fromData);
   }
 }
