@@ -31,6 +31,14 @@ class MyDio {
     dio.options.headers = {
       "lang": MyShared.getCurrentLanguage(),
       // "Accept": "application/json",
+      "Authorization": "Token ${MyShared.getString(key: MySharedKeys.apiToken)}",
+    };
+    return await dio.post(endPoint, data: data);
+  }
+  static Future<Response?> postLogin({required String endPoint, Map<String, dynamic>?data}) async {
+    dio.options.headers = {
+      "lang": MyShared.getCurrentLanguage(),
+      // "Accept": "application/json",
       "Authorization": MyShared.getString(key: MySharedKeys.apiToken),
     };
     return await dio.post(endPoint, data: data);
@@ -40,18 +48,18 @@ class MyDio {
     dio.options.headers = {
       "lang": MyShared.getCurrentLanguage(),
       // "Accept": "application/json",
-      "Authorization": MyShared.getString(key: MySharedKeys.apiToken),
+      "Authorization": "Token ${MyShared.getString(key: MySharedKeys.apiToken)}",
     };
     return await dio.delete(endPoint);
   }
 
-  static Future<Response?> update({required String endPoint}) async {
+  static Future<Response?> update({required String endPoint,required FormData fromData}) async {
     dio.options.headers = {
       "lang": MyShared.getCurrentLanguage(),
       // "Accept": "application/json",
-      "Authorization": MyShared.getString(key: MySharedKeys.apiToken),
+      "Authorization": "Token ${MyShared.getString(key: MySharedKeys.apiToken)}",
     };
-    return await dio.put(endPoint);
+    return await dio.put(endPoint, data: fromData);
   }
   static Future<Response?> postFile({required String endPoint,required FormData fromData}) async {
     dio.options.headers = {

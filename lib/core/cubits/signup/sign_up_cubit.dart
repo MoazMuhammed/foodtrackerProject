@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:foodtracker/core/api/endpoints.dart';
 import 'package:foodtracker/core/api/my_dio.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/features/signup/signupScreen/data/registerModel.dart';
 import 'package:meta/meta.dart';
@@ -17,7 +19,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       required String password1,
       required String password2,
       }) async {
-    var response = await MyDio.post(endPoint:EndPoints.registerPatient, data: {
+    var response = await MyDio.postLogin(endPoint:MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? EndPoints.registerDoctor : EndPoints.registerPatient, data: {
       "username": username,
       "email": email,
       "phone": phone,
@@ -28,7 +30,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       signUpModel = RegisterModel.fromJson(response!.data);
       if(response.statusCode == 204) {
         emit(SignUpSuccess("s"));
-        safePrint(signUpModel.email);
+        safePrint("signUpModel.email");
       }
       emit(SignUpSuccess(signUpModel.email));
         safePrint(signUpModel.email);

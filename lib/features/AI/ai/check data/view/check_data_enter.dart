@@ -26,7 +26,7 @@ class _CheckDataEnterState extends State<CheckDataEnter> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const AppBarDataCheckWidget(),
+              const AppBarDataCheckWidget(title: 'Check Data',),
               SizedBox(height: 8.h,),
               const AppSVG(assetName: "medicalAnalysis"),
               SizedBox(height: 5.h,),

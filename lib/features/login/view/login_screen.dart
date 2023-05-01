@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/internet/internet_cubit.dart';
 import 'package:foodtracker/core/cubits/language/language_cubit.dart';
-import 'package:foodtracker/core/cubits/login/login_cubit.dart';
 import 'package:foodtracker/core/cubits/login_user/login_user_cubit.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';

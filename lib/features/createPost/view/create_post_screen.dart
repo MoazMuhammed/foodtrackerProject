@@ -26,35 +26,7 @@ class CreatePostScreen extends StatefulWidget {
 }
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
-  List<DropdownMenuItem<int>> _dropdownItems = [
-    DropdownMenuItem(
-      value: 1,
-      child: Text('Milk Allergy'),
-    ),
-    DropdownMenuItem(
-      value: 2,
-      child: Text('Wheat Allergy'),
-    ),
-    DropdownMenuItem(
-      value: 3,
-      child: Text('Fish Allergy'),
-    ),
-    DropdownMenuItem(
-      value: 4,
-      child: Text('Beans Allergy'),
-    ),
-    DropdownMenuItem(
-      value: 5,
-      child: Text('Nuts Allergy'),
-    ),
-    DropdownMenuItem(
-      value: 6,
-      child: Text('Egg Allergy'),
-    ),
-  ];
 
-  late int _selectedValue = 1;
-  late int valueSelected = _selectedValue;
   TextEditingController textController = TextEditingController();
   SingleValueDropDownController allergySelected = SingleValueDropDownController();
 
@@ -62,11 +34,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final pickedFile = ImagePicker();
   final cubit = PostsCubit();
 
-  void _onChanged(int value) {
-    setState(() {
-      _selectedValue = value;
-    });
-  }
+
 
   uploadImageWithCamera() async {
     var pickedImage = await pickedFile.pickImage(source: ImageSource.camera);
@@ -154,7 +122,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       cubit.pushPosts(
                           title: textController.text,
                           image: _image!.path,
-                          allergy: valueSelected,
+                          allergy: allergySelected.dropDownValue!.value,
                           owner: MyShared.getInt(key: MySharedKeys.UID));
 
                     }else{
@@ -171,7 +139,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   children: [
                     AppImage(
                         imageUrl:
-                            "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+                        'http://10.0.2.2:8000//'+MyShared.getString(key: MySharedKeys.userImage),
                         width: 30.sp,
                         height: 30.sp,
                         borderRadius: BorderRadius.circular(30.sp)),
@@ -187,16 +155,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15.sp),
                           ),
-                          // DropdownButton(
-                          //   value: _selectedValue,
-                          //   items: _dropdownItems,
-                          //   onChanged: (value) {
-                          //     _onChanged;
-                          //     _selectedValue = value!;
-                          //     valueSelected =_selectedValue;
-                          //     safePrint(value);
-                          //   },
-                          // ),
+                      SizedBox(height: 1.h,),
                           Container(
                             height: 6.h,
                             child: DropDownTextFormField(
@@ -209,6 +168,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               hint: "Allergy Types",
                               controller: allergySelected,
                               enabled: false,
+                              count: 6,
                               dropDownList:  [
                                 DropDownValueModel(
                                     name: "Egg Allergy", value: 1),

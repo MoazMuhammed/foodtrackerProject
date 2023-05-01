@@ -48,7 +48,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           ),
         ),
         const Spacer(),
-        AppSVG(assetName: 'notify',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,),
+        AppSVG(assetName: 'cart', height: 2.9.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,),
         SizedBox(
           width: 3.w,
         ),

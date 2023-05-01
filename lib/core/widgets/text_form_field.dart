@@ -18,7 +18,7 @@ class AppTextField extends StatefulWidget {
     this.validators,
     required this.textInputAction,
     required this.textInputType,
-     this.title = "",  this.obscureText = false,
+     this.title = "",  this.obscureText = false, this.enable,
   }) : super(key: key);
   final Color textColor;
   final String hint;
@@ -31,7 +31,7 @@ class AppTextField extends StatefulWidget {
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final IconData? icon;
-  final
+  final bool? enable;
   BorderRadius? borderRadius;
   EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry? padding;
@@ -67,6 +67,7 @@ class _AppTextFieldState extends State<AppTextField> {
             validator: widget.validators,
             obscureText: widget.obscureText,
             controller: widget.controller,
+            enabled: widget.enable,
             keyboardType: widget.textInputType,
             textInputAction: widget.textInputAction,
             decoration: InputDecoration(

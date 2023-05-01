@@ -18,7 +18,8 @@ enum MySharedKeys {
   name,
   pic,
   is_doctor,
-  UID
+  UID,
+  userImage
 
 
 }

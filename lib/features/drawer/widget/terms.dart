@@ -56,7 +56,7 @@ class TermsScreen extends StatelessWidget {
                                     assetName: 'documentOne',
                                     color: Colors.white)),
                             Container(
-                              height: 10.h,
+                              height: 12.h,
                               decoration: BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(12.sp),
@@ -75,7 +75,7 @@ class TermsScreen extends StatelessWidget {
                                     assetName: 'documentTwo',
                                     color: Colors.white)),
                             Container(
-                              height: 10.5.h,
+                              height: 12.h,
                               decoration: BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(12.sp),

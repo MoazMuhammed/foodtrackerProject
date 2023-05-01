@@ -75,6 +75,7 @@ dependencies:
   readmore: ^2.2.0
   share_plus: ^4.5.3
   esys_flutter_share_plus: ^2.2.0
+  app_popup_menu: ^1.0.0
 
 
 dev_dependencies:

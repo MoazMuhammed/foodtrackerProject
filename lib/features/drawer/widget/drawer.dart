@@ -7,6 +7,7 @@ import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/features/chat/creditCard/view/credit_card.dart';
+import 'package:foodtracker/features/chat/view/widget/chat.dart';
 import 'package:foodtracker/features/contactUS/view/contact_us_screen.dart';
 import 'package:foodtracker/features/drawer/widget/list_view.dart';
 import 'package:foodtracker/features/drawer/widget/terms.dart';
@@ -50,10 +51,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       Container(
                           decoration: BoxDecoration(
                               border: Border.all(width: 0.2.w),
-                              borderRadius: BorderRadius.circular(20.sp),color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
+                              borderRadius: BorderRadius.circular(20.sp),),
                           child: AppImage(
                               imageUrl:
-                              "${MyShared.getString(key: MySharedKeys.pic)}",
+                              'http://10.0.2.2:8000//'+MyShared.getString(key: MySharedKeys.userImage),
                               width: 41.5.sp,
                               height: 41.5.sp,
                               borderRadius: BorderRadius.circular(20.sp)))
@@ -158,7 +159,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       ListViewDrawer(
                         title: "${S().chat}",
                         onTap: () {
-                          push(context, CreditCard());
+                          push(context, Chat(key: UniqueKey(),));
                         },
                         icon: 'chat',
                       ),

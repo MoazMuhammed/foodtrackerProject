@@ -380,10 +380,10 @@ class S {
     );
   }
 
-  /// `Cart`
+  /// `Product`
   String get cartAllergy {
     return Intl.message(
-      'Cart',
+      'Product',
       name: 'cartAllergy',
       desc: '',
       args: [],

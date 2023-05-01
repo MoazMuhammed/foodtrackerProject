@@ -4,8 +4,8 @@ import 'package:foodtracker/core/utills/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AppBarDataCheckWidget extends StatelessWidget {
-  const AppBarDataCheckWidget({Key? key,}) : super(key: key);
-
+  const AppBarDataCheckWidget({Key? key, required this.title,}) : super(key: key);
+final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,7 +18,7 @@ class AppBarDataCheckWidget extends StatelessWidget {
             SizedBox(
               width: 2.w,
             ),
-            Text('Check Data', style: TextStyle(fontSize: 17.sp)),
+            Text(title, style: TextStyle(fontSize: 17.sp)),
             Spacer(),
             AppSVG(assetName: 'notify', height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
             SizedBox(

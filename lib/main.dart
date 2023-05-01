@@ -26,6 +26,7 @@ void main() async {
   await MyDio.init();
   safePrint(MyShared.getString(key: MySharedKeys.apiToken));
   safePrint(MyShared.getInt(key: MySharedKeys.UID));
+  safePrint("http://127.0.0.1:8000/"+MyShared.getString(key: MySharedKeys.userImage));
   runApp(ChangeNotifierProvider<ThemeProvider>(
       create: (_) =>
       ThemeProvider()

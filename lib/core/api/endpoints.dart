@@ -4,7 +4,15 @@ class EndPoints {
   static const String registerPatient = 'registration/patient/';
   static const String registerDoctor = 'registration/doctor/';
   static const String posts = 'addposts/';
+  static const String addComment = 'comments/';
+  static const String likePosts = 'addposts/id/like/';
   static const String userPosts = 'user-posts/';
+  static const String categoryDetails = 'foodallegry/';
+  static const String getCategory = 'minifoodallergy/';
   static const String language = 'languages/translation';
+  static const String comments = 'posts/18/comments/';
+  static const String deletePost = 'addposts/';
+  static const String editUserData = 'user-profile/';
+  static const String productRecommended = 'products/recommended/';
 
 }

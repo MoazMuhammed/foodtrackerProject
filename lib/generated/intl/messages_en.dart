@@ -35,7 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cardHolder": MessageLookupByLibrary.simpleMessage("Card Holder"),
-        "cartAllergy": MessageLookupByLibrary.simpleMessage("Cart"),
+        "cartAllergy": MessageLookupByLibrary.simpleMessage("Product"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "checkData": MessageLookupByLibrary.simpleMessage("Check Data"),
         "chooseService":

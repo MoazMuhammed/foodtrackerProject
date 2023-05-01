@@ -15,6 +15,7 @@ class GetPostsCubit extends Cubit<GetPostsState> {
   getPost() async {
     var response = await MyDio.get(endPoint: EndPoints.posts);
     List  data = [];
+    safePrint(response!.data);
       data = response!.data;
     posts = data
         .map((postJson) => PostsModel.fromJson(postJson))

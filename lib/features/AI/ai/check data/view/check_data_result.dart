@@ -27,7 +27,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
             children: [
               Column(
                 children: [
-                  AppBarDataCheckWidget(),
+                  AppBarDataCheckWidget(title: 'Check Data',),
                   SizedBox(
                     height: 4.h,
                   ),

@@ -42,7 +42,7 @@ class _DropDownTextFormFieldState extends State<DropDownTextFormField> {
           ),
           hintText: widget.hint,
           focusColor: Colors.grey.shade200,
-          fillColor: Colors.grey.shade200,
+          fillColor: Theme.of(context).brightness == Brightness.light ?Colors.white:Colors.black,
           filled: true,
           hintStyle: TextStyle(
               fontSize: 16.sp,

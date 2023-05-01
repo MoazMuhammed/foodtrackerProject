@@ -19,7 +19,7 @@ class LoginUserCubit extends Cubit<LoginUserState> {
 
   userUserLogin({required String email, required String password}) async {
     emit(LoginUserLoading());
-    var response = await MyDio.post(
+    var response = await MyDio.postLogin(
         endPoint: EndPoints.login,
         data: {"email": email, "password": password});
     try {
@@ -75,6 +75,7 @@ class LoginUserCubit extends Cubit<LoginUserState> {
     MyShared.putString(key: MySharedKeys.name, value: loginUserModel.name);
     MyShared.putString(key: MySharedKeys.pic, value: loginUserModel.image);
     MyShared.putString(key: MySharedKeys.phone, value: loginUserModel.phone);
+    MyShared.putString(key: MySharedKeys.userImage, value: loginUserModel.image);
     MyShared.putBoolean(key: MySharedKeys.is_doctor, value: loginUserModel.isDoctor);
     MyShared.putInt(key: MySharedKeys.UID, value: loginUserModel.id.toInt());
 
