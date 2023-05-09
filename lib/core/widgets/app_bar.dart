@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
+import 'package:foodtracker/features/cart/view/check_data_screen.dart';
 import 'package:foodtracker/features/createPost/view/create_post_screen.dart';
 import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -48,7 +49,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           ),
         ),
         const Spacer(),
-        AppSVG(assetName: 'cart', height: 2.9.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,),
+        InkWell(onTap: () => push(context, CheckDataScreen()),child: AppSVG(assetName: 'cart', height: 2.9.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
         SizedBox(
           width: 3.w,
         ),

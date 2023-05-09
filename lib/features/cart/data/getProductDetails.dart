@@ -1,5 +1,66 @@
 import 'dart:convert';
 /// id : 1
+/// products : [{"id":1,"rating":null,"allergies":[{"id":1,"arabicName":"لبن","englishName":"milk"}],"arabicName":"منتج 1","englishName":"product 1","arabicDescription":"منتج 1","englishDescription":"product 1","price":280,"image":"/media/1"}]
+/// arabicName : "لبن"
+/// englishName : "milk"
+
+GetProductDetails getProductDetailsFromJson(String str) => GetProductDetails.fromJson(json.decode(str));
+String getProductDetailsToJson(GetProductDetails data) => json.encode(data.toJson());
+class GetProductDetails {
+  GetProductDetails({
+      num? id, 
+      List<Products>? products, 
+      String? arabicName, 
+      String? englishName,}){
+    _id = id;
+    _products = products;
+    _arabicName = arabicName;
+    _englishName = englishName;
+}
+
+  GetProductDetails.fromJson(dynamic json) {
+    _id = json['id'];
+    if (json['products'] != null) {
+      _products = [];
+      json['products'].forEach((v) {
+        _products?.add(Products.fromJson(v));
+      });
+    }
+    _arabicName = json['arabicName'];
+    _englishName = json['englishName'];
+  }
+  num? _id;
+  List<Products>? _products;
+  String? _arabicName;
+  String? _englishName;
+GetProductDetails copyWith({  num? id,
+  List<Products>? products,
+  String? arabicName,
+  String? englishName,
+}) => GetProductDetails(  id: id ?? _id,
+  products: products ?? _products,
+  arabicName: arabicName ?? _arabicName,
+  englishName: englishName ?? _englishName,
+);
+  num? get id => _id;
+  List<Products> get products => _products ?? [];
+  String? get arabicName => _arabicName;
+  String? get englishName => _englishName;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = _id;
+    if (_products != null) {
+      map['products'] = _products?.map((v) => v.toJson()).toList();
+    }
+    map['arabicName'] = _arabicName;
+    map['englishName'] = _englishName;
+    return map;
+  }
+
+}
+
+/// id : 1
 /// rating : null
 /// allergies : [{"id":1,"arabicName":"لبن","englishName":"milk"}]
 /// arabicName : "منتج 1"
@@ -9,10 +70,10 @@ import 'dart:convert';
 /// price : 280
 /// image : "/media/1"
 
-GetProductRecommended getProductRecommendedFromJson(String str) => GetProductRecommended.fromJson(json.decode(str));
-String getProductRecommendedToJson(GetProductRecommended data) => json.encode(data.toJson());
-class GetProductRecommended {
-  GetProductRecommended({
+Products productsFromJson(String str) => Products.fromJson(json.decode(str));
+String productsToJson(Products data) => json.encode(data.toJson());
+class Products {
+  Products({
       num? id, 
       dynamic rating, 
       List<Allergies>? allergies, 
@@ -33,7 +94,7 @@ class GetProductRecommended {
     _image = image;
 }
 
-  GetProductRecommended.fromJson(dynamic json) {
+  Products.fromJson(dynamic json) {
     _id = json['id'];
     _rating = json['rating'];
     if (json['allergies'] != null) {
@@ -58,7 +119,7 @@ class GetProductRecommended {
   String? _englishDescription;
   num? _price;
   String? _image;
-GetProductRecommended copyWith({  num? id,
+Products copyWith({  num? id,
   dynamic rating,
   List<Allergies>? allergies,
   String? arabicName,
@@ -67,7 +128,7 @@ GetProductRecommended copyWith({  num? id,
   String? englishDescription,
   num? price,
   String? image,
-}) => GetProductRecommended(  id: id ?? _id,
+}) => Products(  id: id ?? _id,
   rating: rating ?? _rating,
   allergies: allergies ?? _allergies,
   arabicName: arabicName ?? _arabicName,
@@ -136,9 +197,9 @@ Allergies copyWith({  num? id,
   arabicName: arabicName ?? _arabicName,
   englishName: englishName ?? _englishName,
 );
-  num get id => _id ?? 0;
-  String? get arabicName => _arabicName ?? '';
-  String? get englishName => _englishName ?? '';
+  num? get id => _id;
+  String? get arabicName => _arabicName;
+  String? get englishName => _englishName;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

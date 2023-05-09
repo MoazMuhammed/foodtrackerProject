@@ -14,5 +14,9 @@ class EndPoints {
   static const String deletePost = 'addposts/';
   static const String editUserData = 'user-profile/';
   static const String productRecommended = 'products/recommended/';
+  static const String rateProduct = 'products/1/rate/';
+  static const String productDetails = 'allergy/';
+  static const String addCart = 'cart/';
+  static const String deleteItem = 'cart/';
 
 }

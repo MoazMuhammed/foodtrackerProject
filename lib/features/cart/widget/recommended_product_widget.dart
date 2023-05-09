@@ -7,11 +7,13 @@ import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecommendedProductWidget extends StatefulWidget {
-  const RecommendedProductWidget({Key? key, required this.productImage, required this.productName, required this.productPrice, required this.productdetaiils}) : super(key: key);
+  const RecommendedProductWidget({Key? key, required this.productImage, required this.productName, required this.productPrice, required this.productdetaiils, required this.onRatingUpdate, required this.addToCart}) : super(key: key);
   final String productImage;
   final String productName;
   final String productPrice;
   final String productdetaiils;
+  final ValueChanged<double> onRatingUpdate;
+  final GestureTapCallback addToCart;
 
 
   @override
@@ -31,29 +33,23 @@ class _RecommendedProductWidgetState extends State<RecommendedProductWidget> {
         padding:  EdgeInsets.symmetric(horizontal: 12.sp,vertical: 15.sp),
         child: Column(
           children: [
-            AppImage(imageUrl: widget.productImage, width: 50.sp, height: 50.sp, borderRadius: BorderRadius.circular(14.sp)),
+            AppImage(imageUrl: widget.productImage, width: 40.sp, height: 40.sp, borderRadius: BorderRadius.circular(14.sp)),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 14.sp,vertical: 12.sp),
+              padding:  EdgeInsets.symmetric(horizontal: 12.sp,vertical: 12.sp),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.productName,
-                    style: TextStyle(
-                        color:  Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.sp,overflow: TextOverflow.ellipsis),
-                    textAlign: TextAlign.start,maxLines: 1,
+                  Center(
+                    child: Text(
+                      widget.productName,
+                      style: TextStyle(
+                          color:  Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp,overflow: TextOverflow.ellipsis),
+                      textAlign: TextAlign.start,maxLines: 1,
+                    ),
                   ),
                   SizedBox(height: 0.5.h,),
-                  Text(
-                    widget.productdetaiils,
-                    style: TextStyle(
-                        color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.sp,overflow: TextOverflow.ellipsis),
-                    textAlign: TextAlign.start,maxLines: 1,
-                  ),   SizedBox(height: 0.5.h,),
                   Text(
                     widget.productPrice+' EGP',
                     style: TextStyle(
@@ -62,12 +58,11 @@ class _RecommendedProductWidgetState extends State<RecommendedProductWidget> {
                         fontSize: 15.sp,overflow: TextOverflow.ellipsis),
                     textAlign: TextAlign.start,maxLines: 1,
                   ),
-                  SizedBox(height: 1.5.h,),
                   Row(
                     children: [
                       Expanded(
                         child: RatingBar.builder(
-                          initialRating: 3,
+                          initialRating: 5,
                           minRating: 1,
                           direction: Axis.horizontal,
                           allowHalfRating: true,
@@ -78,13 +73,20 @@ class _RecommendedProductWidgetState extends State<RecommendedProductWidget> {
                             Icons.star,
                             color: Colors.amber,
 
-                          ), onRatingUpdate: (rating) {
-                          print(rating);
-                        },),
+                          ), onRatingUpdate: widget.onRatingUpdate,
+                          ),
+                        flex: 2,
                       ),
-                      AppSVG(assetName: 'cart',color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)
+                      Expanded(
+                        child: TextButton(onPressed: () {
+                          
+                        }, child: Text("rate")),
+                        flex: 1,
+                      )
+                      // AppSVG(assetName: 'cart',color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)
                     ],
-                  )
+                  ),
+                  AppButton(onPressed: widget.addToCart, label: "Add to cart", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(12.sp),margin: EdgeInsets.symmetric(horizontal: 12.sp),)
                 ],
               ),
             )

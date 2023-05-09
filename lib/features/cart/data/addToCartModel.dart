@@ -1,20 +1,85 @@
 import 'dart:convert';
-/// id : 1
-/// rating : null
-/// allergies : [{"id":1,"arabicName":"لبن","englishName":"milk"}]
-/// arabicName : "منتج 1"
-/// englishName : "product 1"
-/// arabicDescription : "منتج 1"
-/// englishDescription : "product 1"
-/// price : 280
-/// image : "/media/1"
+/// id : 0
+/// product : {"id":0,"rating":"string","allergies":[{"id":0,"arabicName":"string","englishName":"string"}],"arabicName":"string","englishName":"string","arabicDescription":"string","englishDescription":"string","price":0,"image":"string"}
+/// quantity : 0
+/// price : 0
+/// cart : 0
 
-GetProductRecommended getProductRecommendedFromJson(String str) => GetProductRecommended.fromJson(json.decode(str));
-String getProductRecommendedToJson(GetProductRecommended data) => json.encode(data.toJson());
-class GetProductRecommended {
-  GetProductRecommended({
+AddToCartModel addToCartModelFromJson(String str) => AddToCartModel.fromJson(json.decode(str));
+String addToCartModelToJson(AddToCartModel data) => json.encode(data.toJson());
+class AddToCartModel {
+  AddToCartModel({
       num? id, 
-      dynamic rating, 
+      Product? product, 
+      num? quantity, 
+      num? price, 
+      num? cart,}){
+    _id = id;
+    _product = product;
+    _quantity = quantity;
+    _price = price;
+    _cart = cart;
+}
+
+  AddToCartModel.fromJson(dynamic json) {
+    _id = json['id'];
+    _product = json['product'] != null ? Product.fromJson(json['product']) : null;
+    _quantity = json['quantity'];
+    _price = json['price'];
+    _cart = json['cart'];
+  }
+  num? _id;
+  Product? _product;
+  num? _quantity;
+  num? _price;
+  num? _cart;
+AddToCartModel copyWith({  num? id,
+  Product? product,
+  num? quantity,
+  num? price,
+  num? cart,
+}) => AddToCartModel(  id: id ?? _id,
+  product: product ?? _product,
+  quantity: quantity ?? _quantity,
+  price: price ?? _price,
+  cart: cart ?? _cart,
+);
+  num get id => _id ?? 0;
+  Product get product => _product ?? Product();
+  num get quantity => _quantity ?? 0;
+  num get price => _price ?? 0;
+  num get cart => _cart ?? 0;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = _id;
+    if (_product != null) {
+      map['product'] = _product?.toJson();
+    }
+    map['quantity'] = _quantity;
+    map['price'] = _price;
+    map['cart'] = _cart;
+    return map;
+  }
+
+}
+
+/// id : 0
+/// rating : "string"
+/// allergies : [{"id":0,"arabicName":"string","englishName":"string"}]
+/// arabicName : "string"
+/// englishName : "string"
+/// arabicDescription : "string"
+/// englishDescription : "string"
+/// price : 0
+/// image : "string"
+
+Product productFromJson(String str) => Product.fromJson(json.decode(str));
+String productToJson(Product data) => json.encode(data.toJson());
+class Product {
+  Product({
+      num? id, 
+      String? rating, 
       List<Allergies>? allergies, 
       String? arabicName, 
       String? englishName, 
@@ -33,7 +98,7 @@ class GetProductRecommended {
     _image = image;
 }
 
-  GetProductRecommended.fromJson(dynamic json) {
+  Product.fromJson(dynamic json) {
     _id = json['id'];
     _rating = json['rating'];
     if (json['allergies'] != null) {
@@ -50,7 +115,7 @@ class GetProductRecommended {
     _image = json['image'];
   }
   num? _id;
-  dynamic _rating;
+  String? _rating;
   List<Allergies>? _allergies;
   String? _arabicName;
   String? _englishName;
@@ -58,8 +123,8 @@ class GetProductRecommended {
   String? _englishDescription;
   num? _price;
   String? _image;
-GetProductRecommended copyWith({  num? id,
-  dynamic rating,
+Product copyWith({  num? id,
+  String? rating,
   List<Allergies>? allergies,
   String? arabicName,
   String? englishName,
@@ -67,7 +132,7 @@ GetProductRecommended copyWith({  num? id,
   String? englishDescription,
   num? price,
   String? image,
-}) => GetProductRecommended(  id: id ?? _id,
+}) => Product(  id: id ?? _id,
   rating: rating ?? _rating,
   allergies: allergies ?? _allergies,
   arabicName: arabicName ?? _arabicName,
@@ -77,15 +142,15 @@ GetProductRecommended copyWith({  num? id,
   price: price ?? _price,
   image: image ?? _image,
 );
-  num get id => _id ?? 0;
-  dynamic get rating => _rating;
-  List<Allergies> get allergies => _allergies ?? [];
-  String get arabicName => _arabicName ?? '';
-  String get englishName => _englishName ?? '';
-  String get arabicDescription => _arabicDescription ?? '';
-  String get englishDescription => _englishDescription ?? '';
-  num get price => _price ?? 0;
-  String get image => _image ?? '';
+  num? get id => _id;
+  String? get rating => _rating;
+  List<Allergies>? get allergies => _allergies;
+  String? get arabicName => _arabicName;
+  String? get englishName => _englishName;
+  String? get arabicDescription => _arabicDescription;
+  String? get englishDescription => _englishDescription;
+  num? get price => _price;
+  String? get image => _image;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -105,9 +170,9 @@ GetProductRecommended copyWith({  num? id,
 
 }
 
-/// id : 1
-/// arabicName : "لبن"
-/// englishName : "milk"
+/// id : 0
+/// arabicName : "string"
+/// englishName : "string"
 
 Allergies allergiesFromJson(String str) => Allergies.fromJson(json.decode(str));
 String allergiesToJson(Allergies data) => json.encode(data.toJson());
@@ -136,9 +201,9 @@ Allergies copyWith({  num? id,
   arabicName: arabicName ?? _arabicName,
   englishName: englishName ?? _englishName,
 );
-  num get id => _id ?? 0;
-  String? get arabicName => _arabicName ?? '';
-  String? get englishName => _englishName ?? '';
+  num? get id => _id;
+  String? get arabicName => _arabicName;
+  String? get englishName => _englishName;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

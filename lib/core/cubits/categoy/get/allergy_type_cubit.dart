@@ -14,7 +14,9 @@ class AllergyTypeCubit extends Cubit<AllergyTypeState> {
 
     var response = await MyDio.get(endPoint: EndPoints.getCategory);
     List data = [];
+
     safePrint(response!.data);
+
     data = response!.data;
     getAllergyModel = data
         .map((postJson) => GetAllergyModel.fromJson(postJson))
@@ -23,7 +25,7 @@ class AllergyTypeCubit extends Cubit<AllergyTypeState> {
         .toList();
 
 
-    emit(AllergyTypeSuccess(response.data));
+    emit(AllergyTypeSuccess(response.data.toString()));
 
   }
 }
