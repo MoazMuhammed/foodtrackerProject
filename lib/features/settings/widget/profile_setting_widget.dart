@@ -28,7 +28,7 @@ final GestureTapCallback onPressed;
                         borderRadius: BorderRadius.circular(20.sp),color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
                     child: AppImage(
                         imageUrl:
-                        "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=",
+                        "http://16.16.212.179"+ MyShared.getString(key: MySharedKeys.userImage),
                         width: 35.sp,
                         height: 35.sp,
                         borderRadius: BorderRadius.circular(20.sp)))

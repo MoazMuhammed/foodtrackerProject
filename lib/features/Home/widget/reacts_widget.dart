@@ -21,9 +21,9 @@ class _ReactWidgetState extends State<ReactWidget> {
       onTap: widget.onPressed,
       child: Container(
           padding: EdgeInsets.symmetric(
-              horizontal: 8.sp, vertical: 14.sp),
+              horizontal: 4.sp, vertical: 14.sp),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.sp),
+            borderRadius: BorderRadius.circular(14.sp),
             border: Border.all(
                 width: 0.2.w,
                 color: Colors.grey.shade400),
@@ -32,7 +32,7 @@ class _ReactWidgetState extends State<ReactWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AppSVG(assetName: widget.image, height: 16.sp,color: widget.color,),
+              AppSVG(assetName: widget.image, height: 14.sp,color: widget.color,),
               // SizedBox(width: 2.w),
               // Text(
               //   widget.number.toString(),

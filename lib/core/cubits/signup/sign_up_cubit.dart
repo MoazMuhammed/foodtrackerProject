@@ -19,7 +19,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       required String password1,
       required String password2,
       }) async {
-    var response = await MyDio.postLogin(endPoint:MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? EndPoints.registerDoctor : EndPoints.registerPatient, data: {
+    var response = await MyDio.postLogin(endPoint:MyShared.getBoolean(key: MySharedKeys.isDoctor)  == true ? EndPoints.registerDoctor : EndPoints.registerPatient, data: {
       "username": username,
       "email": email,
       "phone": phone,

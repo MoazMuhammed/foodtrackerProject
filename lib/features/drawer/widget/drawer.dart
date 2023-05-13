@@ -54,7 +54,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               borderRadius: BorderRadius.circular(20.sp),),
                           child: AppImage(
                               imageUrl:
-                              'http://10.0.2.2:8000//'+MyShared.getString(key: MySharedKeys.userImage),
+                             "http://16.16.212.179"+ MyShared.getString(key: MySharedKeys.userImage),
                               width: 41.5.sp,
                               height: 41.5.sp,
                               borderRadius: BorderRadius.circular(20.sp)))

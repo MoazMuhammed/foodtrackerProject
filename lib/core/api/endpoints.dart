@@ -1,5 +1,5 @@
 class EndPoints {
-  static const String baseUrl = 'http://10.0.2.2:8000/api/';
+  static const String baseUrl = 'http://16.16.212.179/api/';
   static const String login = 'login/';
   static const String registerPatient = 'registration/patient/';
   static const String registerDoctor = 'registration/doctor/';
@@ -18,5 +18,8 @@ class EndPoints {
   static const String productDetails = 'allergy/';
   static const String addCart = 'cart/';
   static const String deleteItem = 'cart/';
+  static const String addUserItem = 'cart/complete/';
+  static const String updateQuantity = 'cart/';
+  static const String prediction = 'predict/';
 
 }

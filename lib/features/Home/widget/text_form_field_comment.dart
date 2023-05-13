@@ -65,9 +65,9 @@ class _AppCommentState extends State<AppComment> {
                     onTap: widget.onPressed,
                     child: Icon(widget.icon,size: 17.sp,color:widget.sufColor )),
                 focusColor: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14.sp),
                     borderSide: BorderSide(color:Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)),
-                border: OutlineInputBorder(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(14.sp)
                 ),
                 hintText: widget.hint,hintStyle: TextStyle(fontSize: 14.sp),
               ),

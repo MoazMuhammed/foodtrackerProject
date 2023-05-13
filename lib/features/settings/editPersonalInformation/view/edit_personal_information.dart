@@ -84,8 +84,8 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                                 borderRadius: BorderRadius.circular(20.sp),
                               ),
                               child: AppImage(
-                                  imageUrl: 'http://10.0.2.2:8000//' +
-                                      MyShared.getString(
+                                  imageUrl:
+                                   "http://16.16.212.179/"+  MyShared.getString(
                                           key: MySharedKeys.userImage),
                                   width: 35.sp,
                                   height: 35.sp,

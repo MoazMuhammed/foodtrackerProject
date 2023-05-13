@@ -21,7 +21,7 @@ class AppImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: borderRadius,
       child: CachedNetworkImage(
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
         width: width,
         height: height,
         imageUrl: imageUrl,

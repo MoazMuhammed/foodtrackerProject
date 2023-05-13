@@ -24,16 +24,17 @@ class PostWidget extends StatefulWidget {
       required this.likes,
       required this.onPressed1,
       required this.allergyType,
-      required this.share, required this.commentScreen, required this.id, required this.controller, required this.like, required this.onPressed7, required this.color, required this.deletePost, required this.visible})
+      required this.share, required this.commentScreen, required this.id, required this.controller, required this.like, required this.onPressed7,  this.color = Colors.black, required this.deletePost, required this.visible, this.imageUser})
       : super(key: key);
   final String name;
   final String time;
   final String title;
   final String? image;
+  final String? imageUser;
   final String allergyType;
   final int likes;
   final int id;
-  final Color color;
+  final Color color ;
   final GestureTapCallback onPressed1;
   final GestureTapCallback share;
   final GestureTapCallback commentScreen;
@@ -60,9 +61,7 @@ class _PostWidgetState extends State<PostWidget> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
                 children: [
-                  const AppSVG(
-                    assetName: 'profile',
-                  ),
+                  AppImage(imageUrl: "${widget.imageUser}", width: 10.w, height: 5.h, borderRadius: BorderRadius.circular(18.sp)),
                   SizedBox(
                     width: 2.5.w,
                   ),
@@ -128,70 +127,70 @@ class _PostWidgetState extends State<PostWidget> {
                 child: AppImage(imageUrl: "${widget.image}", width: double.infinity, height: 30.h, borderRadius: BorderRadius.circular(14.sp)),
               ),
               SizedBox(height: 0.6.h,),
-              Container(
-                decoration: BoxDecoration(border: Border.all(color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,width: 2.sp),borderRadius: BorderRadius.circular(10.sp)),
-                child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10.sp,vertical: 5.sp),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ReactWidget(
-                          image: 'heart',
-                          number: widget.likes,
-                          onPressed:widget.like, color: widget.color,
-                        ),
-                        flex: 1,
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 10.sp,vertical: 5.sp),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ReactWidget(
+                        image: 'heart',
+                        number: widget.likes,
+                        onPressed:widget.like,
+                        color: widget.color,
                       ),
-                      Expanded(
-                        child: Visibility(
-                          visible: true,
-                          child: MyShared.getBoolean(key: MySharedKeys.is_doctor)
-                              ? Container(
-                                  height: 5.8.h,
-                                  width: 59.sp,
-                                  child: AppComment(
-                                    hint: "${S().addComment}",
-                                    keyboardType: TextInputType.text,
-                                    controller: widget.controller,
-                                    textInputAction: TextInputAction.send,
-                                    textInputType: TextInputType.text,
-                                    icon: Icons.send, sufColor: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? AppColors.primary : Colors.grey, enable: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? true : false, onPressed:widget.onPressed7,
-                                  ),
-                                )
-                              : Container(
-                                  height: 5.8.h,
-                                  child: AppComment(
-                                    hint: "Can't comment as "+MyShared.getString(key: MySharedKeys.name),
-                                    keyboardType: TextInputType.text,
-                                    controller: TextEditingController(),
-                                    textInputAction: TextInputAction.none,
-
-                                    textInputType: TextInputType.none, icon: Icons.lock, sufColor: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? AppColors.primary : Colors.grey, enable: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? true : false,
-                                    onPressed: () {
-                                      safePrint("context");
-
-                                    },
-                                  ),
-                                ),
-                        ),
-                        flex: 8,
-                      ),
-                      Visibility(
+                      flex: 2,
+                    ),
+                    Expanded(
+                      child: Visibility(
                         visible: true,
-                          child: MyShared.getBoolean(key: MySharedKeys.is_doctor)?
-                              GestureDetector(
-                                  onTap: widget.commentScreen,
-                                  child: AppSVG(assetName: 'comment',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,))
-                         : GestureDetector(
-                              onTap: widget.commentScreen,
-                              child: AppSVG(assetName: 'comment',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,))
+                        child: MyShared.getBoolean(key: MySharedKeys.is_doctor)
+                            ? Container(
+                                height: 5.8.h,
+                                width: 59.sp,
+                                child: AppComment(borderRadius: BorderRadius.circular(14.sp),
+                                  hint: "${S().addComment}",
+                                  keyboardType: TextInputType.text,
+                                  controller: widget.controller,
+                                  textInputAction: TextInputAction.send,
+                                  textInputType: TextInputType.text,
+                                  icon: Icons.send, sufColor: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? AppColors.primary : Colors.grey, enable: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? true : false, onPressed:widget.onPressed7,
+                                ),
+                              )
+                            : Container(
+                                height: 5.8.h,
+                                child: AppComment(
+                                  borderRadius: BorderRadius.circular(14.sp),
+                                  hint: "Can't comment as "+MyShared.getString(key: MySharedKeys.name),
+                                  keyboardType: TextInputType.text,
+                                  controller: TextEditingController(),
+                                  textInputAction: TextInputAction.none,
+
+                                  textInputType: TextInputType.none, icon: Icons.lock, sufColor: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? AppColors.primary : Colors.grey, enable: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? true : false,
+                                  onPressed: () {
+                                    safePrint("context");
+
+                                  },
+                                ),
+                              ),
                       ),
-                      SizedBox(width: 2.w,),
-                      GestureDetector(
+                      flex: 9,
+                    ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10.sp,vertical: 10.sp),
+                          decoration: BoxDecoration(border: Border.all(width: 0.1.w),borderRadius: BorderRadius.circular(14.sp)),
+                          child: GestureDetector(
+                              onTap: widget.commentScreen,
+                              child: AppSVG(assetName: 'comment',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black54:Colors.white,)),
+                        ),
+                    SizedBox(width: 2.w,),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.sp,vertical: 10.sp),
+                      decoration: BoxDecoration(border: Border.all(width: 0.1.w),borderRadius: BorderRadius.circular(14.sp)),
+                      child: GestureDetector(
                           onTap: widget.share,
-                          child: AppSVG(assetName: 'share',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white))
-                    ],
-                  ),
+                          child: AppSVG(assetName: 'share',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)),
+                    )
+                  ],
                 ),
               ),
             ])));

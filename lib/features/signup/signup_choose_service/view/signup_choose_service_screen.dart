@@ -5,6 +5,7 @@ import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
+import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/internet_disconnected_widget.dart';
@@ -22,7 +23,8 @@ class SignUpChooseService extends StatefulWidget {
 
 class _SignUpChooseServiceState extends State<SignUpChooseService> {
   bool doctor = false;
-  @override
+
+@override
   Widget build(BuildContext context) {
     return BlocBuilder<InternetCubit, InternetState>(
   builder: (context, state) {
@@ -95,18 +97,27 @@ class _SignUpChooseServiceState extends State<SignUpChooseService> {
                   padding:  EdgeInsets.symmetric(horizontal: 25.sp),
                   child: Row(
                     children: [
-                      Expanded(child: SignUpContainer(image: 'doctor', title: 'Doctor', onPressed: () { doctor = true;
-                      MyShared.putBoolean(key: MySharedKeys.isDoctor, value: true);
-                      setState(() {
+                      Expanded(child: SignUpContainer(image: 'doctor', title: 'Doctor', onPressed: () {
+                        doctor = true;
+                        MyShared.putBoolean(key: MySharedKeys.isDoctor, value: true);
+                      safePrint(MyShared.getBoolean(key: MySharedKeys.isDoctor));
 
-                      });
+
+
+                        setState(() {
+
+                        });
                       },)),
                       SizedBox(width: 10.w,),
-                      Expanded(child: SignUpContainer(image: 'patient', title: 'Patient', onPressed: () { doctor = false;
-                      MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
-                      setState(() {
+                      Expanded(child: SignUpContainer(image: 'patient', title: 'Patient', onPressed: () {
+                        doctor = false;
+                          MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
+                        safePrint(MyShared.getBoolean(key: MySharedKeys.isDoctor) );
 
-                      }); },)),
+                        setState(() {
+
+                        });
+                        },)),
                     ],
                   ),
                 ),

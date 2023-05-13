@@ -113,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 itemBuilder: (context, index) {
                                   PostsModel postModel = cubit.posts[index];
                                   return PostWidget(
+                                    imageUser:postModel.image ,
                                     name: postModel.ownerName,
                                     time: postModel.createdAt,
                                     title: postModel.title,
@@ -124,12 +125,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                         final ByteData bytes = await rootBundle
                                             .load(postModel.image);
                                         await Share.file(
-                                            'Share image',
-                                            postModel.image,
-                                            bytes.buffer.asUint8List(),
-                                            postModel.image,
+                                            'esys image',
+                                            "esys.jpg",
+                                            bytes.buffer.asUint64List(),
+                                            "image/jpg",
                                             text: postModel
-                                                .title // Optional text to share
+                                                .image // Optional text to share
                                             );
                                       } catch (e) {
                                         // Handle any exceptions thrown during the share process
@@ -174,16 +175,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       setState(() {
                                         cubitLike.likes(
                                             id: postModel.id.toInt()
-
                                         );
                                         isPressed = !isPressed ;
-
                                       });
                                     },
                                     onPressed7: () {
                                       cubitComment.postComment(
                                       postID: postModel.id.toInt(),
-                                      text: addCommentController.text);addCommentController.clear(); }, color: isPressed == false ? Colors.red : Colors.black, deletePost: () {  }, visible: false   ,
+                                      text: addCommentController.text);addCommentController.clear(); }, deletePost: () {  }, visible: false   ,
+
                                   );
                                 },
                                 itemCount: cubit.posts.reversed.length,

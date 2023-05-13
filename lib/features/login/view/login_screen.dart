@@ -225,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onTap: () {
                                     push(
                                         context,
-                                        const SignUpChooseService());
+                                         SignUpChooseService());
                                   },
                                   child: Text(
                                     S().signUp,

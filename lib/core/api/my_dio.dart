@@ -68,5 +68,13 @@ class MyDio {
       "Authorization": "Token ${MyShared.getString(key: MySharedKeys.apiToken)}",
     };
     return await dio.post(endPoint,data: fromData);
+
+  }  static Future<Response?> patch({required String endPoint,required FormData fromData}) async {
+    dio.options.headers = {
+      "lang": MyShared.getCurrentLanguage(),
+      // "Accept": "application/json",
+      "Authorization": "Token ${MyShared.getString(key: MySharedKeys.apiToken)}",
+    };
+    return await dio.patch(endPoint,data: fromData);
   }
 }
