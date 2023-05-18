@@ -23,6 +23,7 @@ class PushEditingUserDataCubit extends Cubit<PushEditingUserDataState> {
           "email": email,
         }));
     saveUserData();
+    safePrint(MyShared.getString(key: MySharedKeys.userImage));
     safePrint(response);
   }
 
@@ -33,5 +34,6 @@ class PushEditingUserDataCubit extends Cubit<PushEditingUserDataState> {
     MyShared.putString(key: MySharedKeys.phone, value: pushUserDataModel.phone);
     MyShared.putString(key: MySharedKeys.userImage, value: pushUserDataModel.profilePic);
   }
+
 
 }

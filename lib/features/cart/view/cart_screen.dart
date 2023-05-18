@@ -227,7 +227,7 @@ class _CartScreenState extends State<CartScreen> {
                                                 PushRatingCubit();
                                             return RecommendedProductWidget(
                                               productImage:
-                                                  'http://10.0.2.2:8000//' +
+                                                  'http://http://16.16.212.179/' +
                                                       getProductRecommended
                                                           .image,
                                               productName: getProductRecommended

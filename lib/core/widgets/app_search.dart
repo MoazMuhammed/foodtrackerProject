@@ -27,7 +27,7 @@ class AppSearch extends StatefulWidget {
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final IconData? icon;
-  final VoidCallback? onChanged;
+  final ValueChanged<String>? onChanged;
       BorderRadius? borderRadius;
   EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry? padding;
@@ -41,16 +41,16 @@ class _AppSearchState extends State<AppSearch> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.sp),
+      margin: EdgeInsets.symmetric(horizontal: 40.sp),
       child: Column(
         children: [
           SizedBox(
-            height: 3.h,
+            height: 2.5.h,
           ),
           Container(
-            height: 4.h,
+            height: 5.h,
             child: TextFormField(
-              onChanged: (value) => widget.onChanged,
+              onFieldSubmitted:  widget.onChanged,
               textAlign: TextAlign.start,
               validator: widget.validators,
               controller: widget.controller,
@@ -58,10 +58,10 @@ class _AppSearchState extends State<AppSearch> {
               textInputAction: widget.textInputAction,
                 decoration: InputDecoration(
                 focusColor: AppColors.black,
-                prefixIcon: Icon(Icons.search,size: 17.sp,),
+                prefixIcon: Icon(Icons.search,size: 20.sp,color: AppColors.primary),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.black.withOpacity(0.5))),
-                border: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.black.withOpacity(0.5)),borderRadius: BorderRadius.circular(16.sp)),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.sp),
                     ),
                 hintText: widget.hint,hintStyle: TextStyle(fontSize: 14.sp),
               ),

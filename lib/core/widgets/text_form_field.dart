@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/styles/colors.dart';
+import 'package:foodtracker/core/utills/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 // ignore: must_be_immutable
@@ -19,13 +20,15 @@ class AppTextField extends StatefulWidget {
     required this.textInputAction,
     required this.textInputType,
      this.title = "",  this.obscureText = false, this.enable,
+    this.isImage = false,  this.uploadMedicalId,
   }) : super(key: key);
   final Color textColor;
   final String hint;
   final TextInputType keyboardType;
-
+  final VoidCallback? uploadMedicalId;
   final String title ;
   final bool isPassword;
+  final bool isImage;
   final FormFieldValidator<dynamic>? validators;
   final TextEditingController controller;
   final TextInputAction textInputAction;
@@ -76,19 +79,31 @@ class _AppTextFieldState extends State<AppTextField> {
                   borderSide: BorderSide(color: AppColors.container,width: 0.2.w)),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.sp))),
-              suffixIcon: Visibility(
-                visible: widget.isPassword,
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      widget.obscureText = !widget.obscureText;
-                    });
-                  },
-                  child: Icon(
-                    widget.obscureText ? Icons.visibility_off : Icons.visibility,
-                    color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
+              suffixIcon: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  Visibility(
+                    visible: widget.isImage,
+                    child: InkWell(
+                      onTap: widget.uploadMedicalId,
+                      child: AppSVG(assetName: "upload"),
+                    ),
                   ),
-                ),
+                  Visibility(
+                    visible: widget.isPassword,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          widget.obscureText = !widget.obscureText;
+                        });
+                      },
+                      child: Icon(
+                        widget.obscureText ? Icons.visibility_off : Icons.visibility,
+                        color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               hintText: widget.hint,
             ),

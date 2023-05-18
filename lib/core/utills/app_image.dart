@@ -30,7 +30,7 @@ class AppImage extends StatelessWidget {
 
             Image.asset(
             "assets/images/loading.gif",
-            fit: BoxFit.fill,
+            fit: BoxFit. scaleDown,
           );
 
 

@@ -20,7 +20,7 @@ class ListViewDrawer extends StatelessWidget {
           padding: EdgeInsets.only(right: 20.sp),
           decoration: BoxDecoration(
         ),
-          child: AppSVG(assetName: icon,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,width: 5.w,)),
+          child: AppSVG(assetName: icon,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,width: 8.w,)),
       title: Text(title, style: TextStyle(fontSize: 16.sp,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)),
       onTap: onTap,
     );

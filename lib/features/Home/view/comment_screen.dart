@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/comments/comments_cubit.dart';
 import 'package:foodtracker/core/cubits/comments/posts/add_comment_cubit.dart';
 import 'package:foodtracker/core/cubits/posts/get/get_posts_cubit.dart';
+import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
@@ -36,139 +37,144 @@ class _CommentScreenState extends State<CommentScreen> {
   final cubit = CommentsCubit();
   TextEditingController addCommentController = TextEditingController();
   final cubitComment = AddCommentCubit();
+  final cubitUserDetails = UserDataCubit();
+
 
   @override
   void initState() {
     cubit.getPost(id: widget.id);
+    cubitUserDetails.getUserDetails(id: MyShared.getInt(key: MySharedKeys.UID));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => cubitComment,
+      create: (context) => cubitUserDetails,
       child: BlocProvider(
-        create: (context) => cubit,
-        child: BlocConsumer<AddCommentCubit, AddCommentState>(
-          listener: (context, state) {
-            if (state is AddCommentLoading) {
-              showLoading();
-            }
-            if (state is AddCommentSuccess) {
-              hideLoading();
-            }
-            if (state is AddCommentFailure) {
-              hideLoading();
-              showError("Error");
-            }
-          },
-          builder: (context, state) {
-            return BlocConsumer<CommentsCubit, CommentsState>(
-              listener: (context, state) {
-                if (state is GetPostsLoading) {
-                  showLoading();
-                }
-                if (state is GetPostsSuccess) {
-                  hideLoading();
-                }
-                if (state is GetPostsFailure) {
-                  hideLoading();
-                  showError("Error");
-                }
-              },
-              builder: (context, state) {
-                return SafeArea(
-                    child: Scaffold(
-                  body: Column(
-                    children: [
-                      ForgetPasswordBarWidget(
-                          onPressed: () => pop(context),
-                          title: "${S().comment}"),
-                      Visibility(
-                          visible: true,
-                          child: MyShared.getBoolean(
-                                  key: MySharedKeys.is_doctor)
-                              ? Expanded(
+        create: (context) => cubitComment,
+        child: BlocProvider(
+          create: (context) => cubit,
+          child: BlocConsumer<AddCommentCubit, AddCommentState>(
+            listener: (context, state) {
+              if (state is AddCommentLoading) {
+                showLoading();
+              }
+              if (state is AddCommentSuccess) {
+                hideLoading();
+              }
+              if (state is AddCommentFailure) {
+                hideLoading();
+                showError("Error");
+              }
+            },
+            builder: (context, state) {
+              return BlocConsumer<CommentsCubit, CommentsState>(
+                listener: (context, state) {
+                  if (state is GetPostsLoading) {
+                    showLoading();
+                  }
+                  if (state is GetPostsSuccess) {
+                    hideLoading();
+                  }
+                  if (state is GetPostsFailure) {
+                    hideLoading();
+                    showError("Error");
+                  }
+                },
+                builder: (context, state) {
+                  return SafeArea(
+                      child: Scaffold(
+                        body: Column(
+                          children: [
+                            ForgetPasswordBarWidget(
+                                onPressed: () => pop(context),
+                                title: "${S().comment}"),
+                            Visibility(
+                                visible: true,
+                                child: MyShared.getBoolean(
+                                    key: MySharedKeys.is_doctor)
+                                    ? Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 5.sp, horizontal: 20.sp),
                                     child: ListView.builder(
                                         itemBuilder: (context, index) {
                                           CommentPostModel commentPostModel =
-                                              cubit.comment[index];
+                                          cubit.comment[index];
                                           return CommentWidget(
                                             name: commentPostModel.owner,
                                             time: commentPostModel.createdDate,
-                                            comment: commentPostModel.text,
+                                            comment: commentPostModel.text, imageProfile: "http://16.16.212.179" + commentPostModel.ownerProfilePic,
                                           );
                                         },
                                         itemCount: cubit.comment.length),
                                   ),
                                 )
-                              : Expanded(
+                                    : Expanded(
                                   child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: 5.sp, horizontal: 20.sp),
                                     child: cubit.comment.isEmpty
                                         ? Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              AppSVG(assetName: 'emtyComment'),
-                                              SizedBox(
-                                                height: 1.h,
-                                              ),
-                                              Text(
-                                                  "Sorry their is no comments for Now ",
-                                                  style: TextStyle(
-                                                      fontSize: 15.sp)),
-                                            ],
-                                          )
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: [
+                                        AppSVG(assetName: 'emtyComment'),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        Text(
+                                            "Sorry their is no comments for Now ",
+                                            style: TextStyle(
+                                                fontSize: 15.sp)),
+                                      ],
+                                    )
                                         : ListView.separated(
-                                            itemBuilder: (context, index) {
-                                              CommentPostModel
-                                                  commentPostModel =
-                                                  cubit.comment[index];
+                                      itemBuilder: (context, index) {
+                                        CommentPostModel
+                                        commentPostModel =
+                                        cubit.comment[index];
 
-                                              return CommentWidget(
-                                                name: commentPostModel.owner,
-                                                time: commentPostModel
-                                                    .createdDate,
-                                                comment: commentPostModel.text,
-                                              );
-                                            },
-                                            itemCount: cubit.comment.length,
-                                            separatorBuilder:
-                                                (BuildContext context,
-                                                    int index) {
-                                              return Divider(
-                                                color: Theme.of(context)
-                                                            .brightness ==
-                                                        Brightness.light
-                                                    ? Colors.grey.shade500
-                                                    : Colors.grey,
-                                              );
-                                            },
-                                          ),
+                                        return CommentWidget(
+                                          name: commentPostModel.owner,
+                                          time: commentPostModel
+                                              .createdDate,
+                                          comment: commentPostModel.text, imageProfile: commentPostModel.ownerProfilePic,
+                                        );
+                                      },
+                                      itemCount: cubit.comment.length,
+                                      separatorBuilder:
+                                          (BuildContext context,
+                                          int index) {
+                                        return Divider(
+                                          color: Theme
+                                              .of(context)
+                                              .brightness ==
+                                              Brightness.light
+                                              ? Colors.grey.shade500
+                                              : Colors.grey,
+                                        );
+                                      },
+                                    ),
                                   ),
                                 )),
-                      Visibility(
-                          visible: true,
-                          child: MyShared.getBoolean(
-                                  key: MySharedKeys.is_doctor)
-                              ? Padding(
+                            Visibility(
+                                visible: true,
+                                child: MyShared.getBoolean(
+                                    key: MySharedKeys.is_doctor)
+                                    ? Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 12.sp, vertical: 12.sp),
                                   child: Row(
                                     children: [
                                       AppImage(
-                                          imageUrl: 'http://10.0.2.2:8000//' +
-                                              MyShared.getString(
-                                                  key: MySharedKeys.userImage),
+                                          imageUrl: 'http://16.16.212.179' +
+                                              cubitUserDetails.userData.profilePic,
                                           width: 28.sp,
                                           height: 28.sp,
                                           borderRadius:
-                                              BorderRadius.circular(30.sp)),
+                                          BorderRadius.circular(30.sp)),
                                       Expanded(
                                         child: AppComment(
                                           hint: "${S().addComment}",
@@ -178,15 +184,15 @@ class _CommentScreenState extends State<CommentScreen> {
                                           textInputType: TextInputType.text,
                                           icon: Icons.send,
                                           sufColor: MyShared.getBoolean(
-                                                      key: MySharedKeys
-                                                          .is_doctor) ==
-                                                  true
+                                              key: MySharedKeys
+                                                  .is_doctor) ==
+                                              true
                                               ? AppColors.primary
                                               : Colors.grey,
                                           enable: MyShared.getBoolean(
-                                                      key: MySharedKeys
-                                                          .is_doctor) ==
-                                                  true
+                                              key: MySharedKeys
+                                                  .is_doctor) ==
+                                              true
                                               ? true
                                               : false,
                                           onPressed: () {
@@ -194,14 +200,14 @@ class _CommentScreenState extends State<CommentScreen> {
                                             cubitComment.postComment(
                                                 postID: widget.id,
                                                 text:
-                                                    addCommentController.text);
+                                                addCommentController.text);
                                           },
                                         ),
                                       )
                                     ],
                                   ),
                                 )
-                              : Container(
+                                    : Container(
                                   width: double.infinity,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10.sp, vertical: 15.sp),
@@ -213,12 +219,13 @@ class _CommentScreenState extends State<CommentScreen> {
                                       child: Text(
                                           "only The Admins And Doctors can set a comment")),
                                 )),
-                    ],
-                  ),
-                ));
-              },
-            );
-          },
+                          ],
+                        ),
+                      ));
+                },
+              );
+            },
+          ),
         ),
       ),
     );

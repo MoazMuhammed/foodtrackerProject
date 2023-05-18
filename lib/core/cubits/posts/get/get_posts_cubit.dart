@@ -10,7 +10,6 @@ part 'get_posts_state.dart';
 class GetPostsCubit extends Cubit<GetPostsState> {
   GetPostsCubit() : super(GetPostsInitial());
   List<PostsModel> posts = [];
-  List<Comments> comments = [];
 
   getPost() async {
     var response = await MyDio.get(endPoint: EndPoints.posts);
@@ -25,11 +24,29 @@ class GetPostsCubit extends Cubit<GetPostsState> {
 
 
 
-    comments = posts.map((post) => post.comments).expand((comments) => comments).toList();
 
 
 
     safePrint(response);
+    emit(GetPostsSuccess("successMessage"));
+  }
+  getPostFromSearch({required String text}) async {
+    var response = await MyDio.get(endPoint: EndPoints.posts+'?search=${text}');
+    List  data = [];
+    safePrint(response!.data);
+      data = response!.data;
+    posts = data
+        .map((postJson) => PostsModel.fromJson(postJson))
+        .toList()
+        .reversed
+        .toList();
+
+
+
+
+
+
+    safePrint('search'+response.toString());
     emit(GetPostsSuccess("successMessage"));
   }
 }

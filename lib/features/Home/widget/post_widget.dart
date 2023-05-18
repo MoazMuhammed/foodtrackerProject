@@ -53,10 +53,22 @@ class _PostWidgetState extends State<PostWidget> {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.sp),
+          borderRadius: BorderRadius.circular(19.sp),border: Border.all(color: Colors.white24), color: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : Colors.black54,   boxShadow: [
+          BoxShadow(
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.grey.withOpacity(0.8)
+                : Colors.white38,
+            spreadRadius: 0,
+            blurRadius: 1,
+            offset: Offset(
+                0, 1), // changes position of shadow
+          ),
+        ],
         ),
         child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 4.sp),
+            padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 14.sp),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
@@ -70,7 +82,8 @@ class _PostWidgetState extends State<PostWidget> {
                     children: [
                       Text(widget.name.toString(),
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15.sp)),
+                              fontWeight: FontWeight.bold, fontSize: 16.sp)),
+                      SizedBox(height: 0.3.h,),
                       Text(
                         widget.time,
                         style: TextStyle(
@@ -86,7 +99,7 @@ class _PostWidgetState extends State<PostWidget> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: AppColors.primary,
-                        fontSize: 13.sp),
+                        fontSize: 15.sp),
                   ),
                   SizedBox(
                     width: 2.w,
@@ -105,17 +118,17 @@ class _PostWidgetState extends State<PostWidget> {
                 ],
               ),
               SizedBox(
-                height: 0.5.h,
+                height: 1.5.h,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 28.sp),
+                padding: EdgeInsets.symmetric(horizontal: 20.sp),
                 child: ReadMoreText(
                   widget.title,
                   trimExpandedText: "Show Less",
                   trimCollapsedText: "Show More",
                   trimLines: 3,
                   textAlign: TextAlign.justify,
-                  trimMode: TrimMode.Line,
+                  trimMode: TrimMode.Line,style: TextStyle(fontSize: 16.sp),
                   lessStyle: TextStyle(
                       fontWeight: FontWeight.bold, color: AppColors.primary),
                   moreStyle: TextStyle(
@@ -124,72 +137,53 @@ class _PostWidgetState extends State<PostWidget> {
               ),
               SizedBox(height: 1.0.h),
               Center(
-                child: AppImage(imageUrl: "${widget.image}", width: double.infinity, height: 30.h, borderRadius: BorderRadius.circular(14.sp)),
+                child: AppImage(imageUrl: "${widget.image}", width: double.infinity,borderRadius: BorderRadius.circular(14.sp), height: 40.h,),
               ),
               SizedBox(height: 0.6.h,),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 10.sp,vertical: 5.sp),
-                child: Row(
+                padding:  EdgeInsets.symmetric(vertical: 8.sp),
+                child: Column(
                   children: [
-                    Expanded(
-                      child: ReactWidget(
-                        image: 'heart',
-                        number: widget.likes,
-                        onPressed:widget.like,
-                        color: widget.color,
-                      ),
-                      flex: 2,
+                    Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 18.sp),
+                      child: Divider(color: Colors.black,thickness: 2.sp),
                     ),
-                    Expanded(
-                      child: Visibility(
-                        visible: true,
-                        child: MyShared.getBoolean(key: MySharedKeys.is_doctor)
-                            ? Container(
-                                height: 5.8.h,
-                                width: 59.sp,
-                                child: AppComment(borderRadius: BorderRadius.circular(14.sp),
-                                  hint: "${S().addComment}",
-                                  keyboardType: TextInputType.text,
-                                  controller: widget.controller,
-                                  textInputAction: TextInputAction.send,
-                                  textInputType: TextInputType.text,
-                                  icon: Icons.send, sufColor: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? AppColors.primary : Colors.grey, enable: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? true : false, onPressed:widget.onPressed7,
-                                ),
-                              )
-                            : Container(
-                                height: 5.8.h,
-                                child: AppComment(
-                                  borderRadius: BorderRadius.circular(14.sp),
-                                  hint: "Can't comment as "+MyShared.getString(key: MySharedKeys.name),
-                                  keyboardType: TextInputType.text,
-                                  controller: TextEditingController(),
-                                  textInputAction: TextInputAction.none,
-
-                                  textInputType: TextInputType.none, icon: Icons.lock, sufColor: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? AppColors.primary : Colors.grey, enable: MyShared.getBoolean(key: MySharedKeys.is_doctor) == true ? true : false,
-                                  onPressed: () {
-                                    safePrint("context");
-
-                                  },
-                                ),
-                              ),
-                      ),
-                      flex: 9,
-                    ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.sp,vertical: 10.sp),
-                          decoration: BoxDecoration(border: Border.all(width: 0.1.w),borderRadius: BorderRadius.circular(14.sp)),
-                          child: GestureDetector(
-                              onTap: widget.commentScreen,
-                              child: AppSVG(assetName: 'comment',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black54:Colors.white,)),
+                    SizedBox(height: 0.5.h,),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ReactWidget(
+                            image: 'like',
+                            number: "like",
+                            onPressed:widget.like,
+                            color: widget.color,
+                          ),
                         ),
-                    SizedBox(width: 2.w,),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.sp,vertical: 10.sp),
-                      decoration: BoxDecoration(border: Border.all(width: 0.1.w),borderRadius: BorderRadius.circular(14.sp)),
-                      child: GestureDetector(
-                          onTap: widget.share,
-                          child: AppSVG(assetName: 'share',height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)),
-                    )
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: widget.commentScreen,
+                            child: ReactWidget(
+                              image: 'comment',
+                              number: "Comment",
+                              onPressed:widget.commentScreen,
+                              color: widget.color,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: widget.share,
+                            child: ReactWidget(
+                              image: 'share',
+                              number: "Share",
+                              onPressed:widget.share,
+                              color: widget.color,
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
                   ],
                 ),
               ),

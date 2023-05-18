@@ -63,7 +63,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             onTap: () {
               Scaffold.of(context).openEndDrawer();
             },
-            child: AppSVG(assetName: 'drawer', height: 2.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
+            child: AppSVG(assetName: 'drawer', height: 3.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
       ],
     );
   }

@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -11,7 +8,6 @@ import 'package:foodtracker/core/cubits/internet/internet_cubit.dart';
 import 'package:foodtracker/core/cubits/language/language_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
-import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/styles/theme_provider.dart';
 import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/features/splash/splash_screen.dart';

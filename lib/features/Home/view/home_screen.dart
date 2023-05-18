@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final cubitLike = LikesCubit();
   bool isPressed = false;
   TextEditingController addCommentController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -92,113 +93,120 @@ class _HomeScreenState extends State<HomeScreen> {
                         onRefresh: () {
                           return cubit.getPost();
                         },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 18.sp, vertical: 18.sp),
-                          child: Column(
-                            children: [
-                              AppBarWidget(),
-                              AppSearch(
-                                hint: '${S().search}',
-                                keyboardType: TextInputType.text,
-                                controller: TextEditingController(),
-                                textInputAction: TextInputAction.done,
-                                textInputType: TextInputType.text,
-                              ),
-                              SizedBox(
-                                height: 2.h,
-                              ),
-                              Expanded(
-                                  child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  PostsModel postModel = cubit.posts[index];
-                                  return PostWidget(
-                                    imageUser:postModel.image ,
-                                    name: postModel.ownerName,
-                                    time: postModel.createdAt,
-                                    title: postModel.title,
-                                    image: postModel.image,
-                                    likes: postModel.likes.length,
-                                    onPressed1: () async {
-                                      safePrint(postModel.title);
-                                      try {
-                                        final ByteData bytes = await rootBundle
-                                            .load(postModel.image);
-                                        await Share.file(
-                                            'esys image',
-                                            "esys.jpg",
-                                            bytes.buffer.asUint64List(),
-                                            "image/jpg",
-                                            text: postModel
-                                                .image // Optional text to share
-                                            );
-                                      } catch (e) {
-                                        // Handle any exceptions thrown during the share process
-                                        print('Error sharing text: $e');
-                                        Share.text('my text title',
-                                            postModel.title, 'text/plain');
-                                      }
-                                    },
-                                    allergyType: postModel.allergy.toString() ,
-                                    share: () async {
-                                      safePrint(postModel.title);
-                                      try {
-                                        final ByteData bytes = await rootBundle
-                                            .load(postModel.image);
-                                        await Share.file(
-                                            'Share image',
-                                            'image.jpg',
-                                            bytes.buffer.asUint8List(),
-                                            'image/jpg',
-                                            text: postModel
-                                                .title // Optional text to share
-                                            );
-                                      } catch (e) {
-                                        // Handle any exceptions thrown during the share process
-                                        print('Error sharing text: $e');
-                                        Share.text('my text title',
-                                            postModel.title, 'text/plain');
-                                      }
-                                    },
-                                    commentScreen: () {
-                                      push(
-                                          context,
-                                          CommentScreen(
-                                              id: postModel.id.toInt(), onPressed: () {   cubitComment.postComment(
-                                              postID: postModel.id.toInt(),
-                                              text: addCommentController.text); },));
-                                    },
-                                    id: postModel.id.toInt(),
-                                    controller: addCommentController,
-                                    like: () {
-                                      safePrint('message');
-                                      setState(() {
-                                        cubitLike.likes(
-                                            id: postModel.id.toInt()
-                                        );
-                                        isPressed = !isPressed ;
-                                      });
-                                    },
-                                    onPressed7: () {
-                                      cubitComment.postComment(
-                                      postID: postModel.id.toInt(),
-                                      text: addCommentController.text);addCommentController.clear(); }, deletePost: () {  }, visible: false   ,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 18.sp,),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 18.sp),
+                              child: AppBarWidget(),
+                            ),
+                            AppSearch(
+                              hint: '${S().search}',
+                              keyboardType: TextInputType.text,
+                              controller: TextEditingController(),
+                              textInputAction: TextInputAction.done,
+                              textInputType: TextInputType.text,
+                              onChanged: (value) {
+                                cubit.getPostFromSearch(text:value );
 
-                                  );
-                                },
-                                itemCount: cubit.posts.reversed.length,
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return Divider(
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.light
-                                        ? Colors.grey.shade500
-                                        : Colors.grey,
-                                  );
-                                },
-                              ))
-                            ],
-                          ),
+                              },
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Expanded(
+                                child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                PostsModel postModel = cubit.posts[index];
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16.sp,),
+                                  child: Column(
+                                    children: [
+                                      PostWidget(
+                                        imageUser:postModel.ownerProfilePic ,
+                                        name: postModel.owner,
+                                        time: postModel.createdAt,
+                                        title: postModel.title,
+                                        image: postModel.image,
+                                        likes: postModel.likes.length,
+                                        onPressed1: () async {
+                                          safePrint(postModel.title);
+                                          try {
+                                            final ByteData bytes = await rootBundle
+                                                .load(postModel.image);
+                                            await Share.file(
+                                                'esys image',
+                                                "esys.jpg",
+                                                bytes.buffer.asUint64List(),
+                                                "image/jpg",
+                                                text: postModel
+                                                    .image // Optional text to share
+                                                );
+                                          } catch (e) {
+                                            // Handle any exceptions thrown during the share process
+                                            print('Error sharing text: $e');
+                                            Share.text('my text title',
+                                                postModel.title, 'text/plain');
+                                          }
+                                        },
+                                        allergyType: postModel.allergyEnglishName.toString() ,
+                                        share: () async {
+                                          safePrint(postModel.title);
+                                          try {
+                                            final ByteData bytes = await rootBundle
+                                                .load(postModel.image);
+                                            await Share.file(
+                                                'Share image',
+                                                'image.jpg',
+                                                bytes.buffer.asUint8List(),
+                                                'image/jpg',
+                                                text: postModel
+                                                    .title // Optional text to share
+                                                );
+                                          } catch (e) {
+                                            // Handle any exceptions thrown during the share process
+                                            print('Error sharing text: $e');
+                                            Share.text('my text title',
+                                                postModel.title, 'text/plain');
+                                          }
+                                        },
+                                        commentScreen: () {
+                                          push(
+                                              context,
+                                              CommentScreen(
+                                                  id: postModel.id.toInt(), onPressed: () {   cubitComment.postComment(
+                                                  postID: postModel.id.toInt(),
+                                                  text: addCommentController.text); },));
+                                        },
+                                        id: postModel.id.toInt(),
+                                        controller: addCommentController,
+                                        like: () {
+                                          setState(() {
+                                            postModel.isLiked =! postModel.isLiked;
+                                            cubitLike.likes(
+                                                id: postModel.id.toInt()
+                                            );
+
+                                          });
+                                        },
+                                        onPressed7: () {
+                                          cubitComment.postComment(
+                                          postID: postModel.id.toInt(),
+                                          text: addCommentController.text);addCommentController.clear(); }, deletePost: () {  }, visible: false   ,color: postModel.isLiked == true ? Colors.red : Colors.black,
+
+                                      ),
+                                  SizedBox(height: 3.h),
+
+                                  ],
+                                  ),
+                                );
+                              },
+                              itemCount: cubit.posts.reversed.length,
+
+                            ))
+                          ],
                         ),
                       );
                     },

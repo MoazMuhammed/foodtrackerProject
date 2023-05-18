@@ -75,7 +75,7 @@ class _MainScreensState extends State<MainScreens> {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       backgroundColor: Theme.of(context).brightness == Brightness.light
-          ? Colors.grey.shade200
+          ? Colors. white70
           : Colors.grey.shade800,
       selectedItemColor: AppColors.primary,
       unselectedItemColor: Theme.of(context).brightness == Brightness.light
@@ -110,7 +110,7 @@ class _MainScreensState extends State<MainScreens> {
         BottomNavigationBarItem(
             label: '${S().faScanner}',
             icon: AppSVG(
-              assetName: 'faScanner',
+              assetName: 'scanner',
               color: cubit.index == 2
                   ? AppColors.primary
                   : Theme.of(context).brightness == Brightness.light

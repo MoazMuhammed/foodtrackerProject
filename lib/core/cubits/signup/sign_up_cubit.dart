@@ -23,23 +23,22 @@ class SignUpCubit extends Cubit<SignUpState> {
       "username": username,
       "email": email,
       "phone": phone,
-      "password1": password1,
-      "password2": password2,
+      "password": password1,
+      "password_again": password2,
     });
     try{
       signUpModel = RegisterModel.fromJson(response!.data);
-      if(response.statusCode == 204) {
-        emit(SignUpSuccess("s"));
-        safePrint("signUpModel.email");
-      }
-      emit(SignUpSuccess(signUpModel.email));
+      if(response.statusCode == 200) {
+        emit(SignUpSuccess("response.data.toString()"));
         safePrint(signUpModel.email);
+      }
      if(response.statusCode == 400) {
-        emit(SignUpFailure("response.data.toString()"));
+        emit(SignUpFailure(response.data.toString()));
         safePrint(response.data.toString());
       }
     }catch(e){
-      emit(SignUpSuccess("s"));
+      emit(SignUpFailure(response!.data.toString()));
+      safePrint(e);
     }
   }
 }

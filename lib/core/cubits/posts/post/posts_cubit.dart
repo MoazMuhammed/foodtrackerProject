@@ -16,14 +16,12 @@ class PostsCubit extends Cubit<PostsState> {
   PostsCubit() : super(PostsInitial());
   PostsModel postsModel = PostsModel();
 
-  pushPosts({required String title, required String image, required int allergy,required int owner}) async {
+  pushPosts({required String title, required String image}) async {
     emit(PostsLoading());
     var response = await MyDio.postFile(endPoint: EndPoints.posts,
         fromData: FormData.fromMap({
       "title": title,
       "image": await MultipartFile.fromFile(image),
-      "allergy": allergy,
-      "owner": owner,
     }));
     try{
 

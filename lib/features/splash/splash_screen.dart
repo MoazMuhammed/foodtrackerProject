@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtracker/core/cubits/userStatus/user_status_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
@@ -16,22 +18,25 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final cubit = UserStatusCubit();
+
   double buttonOpacity = 0;
 
   @override
   void initState() {
+    cubit.getUserStatus();
     super.initState();
 
     Future.delayed(const Duration(milliseconds: 2000)).then((value) {
       if (MyShared.isFirstOpen()) {
-        pushReplacement(context,  OnBoardingScreen());
+        pushReplacement(context, OnBoardingScreen());
         return;
       }
 
       if (MyShared.isLoggedIn()) {
         pushReplacement(context, const MainScreens());
       } else {
-        pushReplacement(context,  const LoginScreen());
+        pushReplacement(context, const LoginScreen());
       }
     });
 
@@ -40,7 +45,6 @@ class _SplashScreenState extends State<SplashScreen> {
           () {
         buttonOpacity = 1;
         setState(() {});
-
       },
     );
   }
@@ -48,50 +52,53 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        alignment: AlignmentDirectional.bottomStart,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedContainer(
-                      height: 40.sp,
-                      width: 40.sp,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.bounceOut,
-                      child: AppSVG(
-                        height: 30.h,
-                        width: 20.w,
-                        assetName: 'logo',
-                      ),
-                    ),
-                    SizedBox(height: 1.h,),
-                    AnimatedOpacity(
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.bounceInOut,
-                      opacity: buttonOpacity,
-                      child: Text(
-                        "Food Tracker",
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.bold,
+    return BlocProvider(
+      create: (context) => cubit,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Stack(
+          alignment: AlignmentDirectional.bottomStart,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedContainer(
+                        height: 40.sp,
+                        width: 40.sp,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.bounceOut,
+                        child: AppSVG(
+                          height: 30.h,
+                          width: 20.w,
+                          assetName: 'logo',
                         ),
                       ),
-                    )
-                  ],
+                      SizedBox(height: 1.h,),
+                      AnimatedOpacity(
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.bounceInOut,
+                        opacity: buttonOpacity,
+                        child: Text(
+                          "Food Tracker",
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

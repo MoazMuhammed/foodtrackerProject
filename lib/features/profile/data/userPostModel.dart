@@ -1,114 +1,123 @@
 import 'dart:convert';
 /// id : 0
-/// owner_name : "string"
-/// comments : [{"id":0,"owner":"string","text":"string","created_date":"2023-05-01T12:06:26.991Z","post":0}]
+/// owner : "string"
+/// comments : [{"id":0,"owner":"string","text":"string","image":"string","created_date":"2023-05-17T19:08:02.681Z","post":0}]
+/// is_liked : true
 /// title : "string"
 /// image : "string"
-/// created_at : "2023-05-01T12:06:26.991Z"
-/// updated_at : "2023-05-01T12:06:26.991Z"
-/// allergy : 0
-/// owner : 0
-/// likes : [0]
+/// created_at : "2023-05-17T19:08:02.681Z"
+/// updated_at : "2023-05-17T19:08:02.681Z"
+/// owner_profile_pic : "string"
+/// allergy_arabic_name : "string"
+/// allergy_english_name : "string"
 
-UserPostsModel userPostsModelFromJson(String str) => UserPostsModel.fromJson(json.decode(str));
-String userPostsModelToJson(UserPostsModel data) => json.encode(data.toJson());
-class UserPostsModel {
-  UserPostsModel({
+UserPostModel userPostModelFromJson(String str) => UserPostModel.fromJson(json.decode(str));
+String userPostModelToJson(UserPostModel data) => json.encode(data.toJson());
+class UserPostModel {
+  UserPostModel({
       num? id, 
-      String? ownerName, 
+      String? owner, 
       List<Comments>? comments, 
+      bool? isLiked, 
       String? title, 
       String? image, 
       String? createdAt, 
       String? updatedAt, 
-      num? allergy, 
-      num? owner, 
-      List<num>? likes,}){
+      String? ownerProfilePic, 
+      String? allergyArabicName, 
+      String? allergyEnglishName,}){
     _id = id;
-    _ownerName = ownerName;
+    _owner = owner;
     _comments = comments;
+    _isLiked = isLiked;
     _title = title;
     _image = image;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
-    _allergy = allergy;
-    _owner = owner;
-    _likes = likes;
+    _ownerProfilePic = ownerProfilePic;
+    _allergyArabicName = allergyArabicName;
+    _allergyEnglishName = allergyEnglishName;
 }
 
-  UserPostsModel.fromJson(dynamic json) {
+  UserPostModel.fromJson(dynamic json) {
     _id = json['id'];
-    _ownerName = json['owner_name'];
+    _owner = json['owner'];
     if (json['comments'] != null) {
       _comments = [];
       json['comments'].forEach((v) {
         _comments?.add(Comments.fromJson(v));
       });
     }
+    _isLiked = json['is_liked'];
     _title = json['title'];
     _image = json['image'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _allergy = json['allergy'];
-    _owner = json['owner'];
-    _likes = json['likes'] != null ? json['likes'].cast<num>() : [];
+    _ownerProfilePic = json['owner_profile_pic'];
+    _allergyArabicName = json['allergy_arabic_name'];
+    _allergyEnglishName = json['allergy_english_name'];
   }
   num? _id;
-  String? _ownerName;
+  String? _owner;
   List<Comments>? _comments;
+  bool? _isLiked;
   String? _title;
   String? _image;
   String? _createdAt;
   String? _updatedAt;
-  num? _allergy;
-  num? _owner;
-  List<num>? _likes;
-UserPostsModel copyWith({  num? id,
-  String? ownerName,
+  String? _ownerProfilePic;
+  String? _allergyArabicName;
+  String? _allergyEnglishName;
+UserPostModel copyWith({  num? id,
+  String? owner,
   List<Comments>? comments,
+  bool? isLiked,
   String? title,
   String? image,
   String? createdAt,
   String? updatedAt,
-  num? allergy,
-  num? owner,
-  List<num>? likes,
-}) => UserPostsModel(  id: id ?? _id,
-  ownerName: ownerName ?? _ownerName,
+  String? ownerProfilePic,
+  String? allergyArabicName,
+  String? allergyEnglishName,
+}) => UserPostModel(  id: id ?? _id,
+  owner: owner ?? _owner,
   comments: comments ?? _comments,
+  isLiked: isLiked ?? _isLiked,
   title: title ?? _title,
   image: image ?? _image,
   createdAt: createdAt ?? _createdAt,
   updatedAt: updatedAt ?? _updatedAt,
-  allergy: allergy ?? _allergy,
-  owner: owner ?? _owner,
-  likes: likes ?? _likes,
+  ownerProfilePic: ownerProfilePic ?? _ownerProfilePic,
+  allergyArabicName: allergyArabicName ?? _allergyArabicName,
+  allergyEnglishName: allergyEnglishName ?? _allergyEnglishName,
 );
   num get id => _id ?? 0;
-  String get ownerName => _ownerName ?? '';
+  String get owner => _owner ?? '';
   List<Comments> get comments => _comments ?? [];
+  bool get isLiked => _isLiked ?? false;
   String get title => _title ?? '';
   String get image => _image ?? '';
   String get createdAt => _createdAt ?? '';
   String get updatedAt => _updatedAt ?? '';
-  num get allergy => _allergy ?? 0;
-  num get owner => _owner ?? 0;
-  List<num> get likes => _likes ?? [];
+  String get ownerProfilePic => _ownerProfilePic ?? '';
+  String get allergyArabicName => _allergyArabicName ?? '';
+  String get allergyEnglishName => _allergyEnglishName ?? '';
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['owner_name'] = _ownerName;
+    map['owner'] = _owner;
     if (_comments != null) {
       map['comments'] = _comments?.map((v) => v.toJson()).toList();
     }
+    map['is_liked'] = _isLiked;
     map['title'] = _title;
     map['image'] = _image;
     map['created_at'] = _createdAt;
     map['updated_at'] = _updatedAt;
-    map['allergy'] = _allergy;
-    map['owner'] = _owner;
-    map['likes'] = _likes;
+    map['owner_profile_pic'] = _ownerProfilePic;
+    map['allergy_arabic_name'] = _allergyArabicName;
+    map['allergy_english_name'] = _allergyEnglishName;
     return map;
   }
 
@@ -117,7 +126,8 @@ UserPostsModel copyWith({  num? id,
 /// id : 0
 /// owner : "string"
 /// text : "string"
-/// created_date : "2023-05-01T12:06:26.991Z"
+/// image : "string"
+/// created_date : "2023-05-17T19:08:02.681Z"
 /// post : 0
 
 Comments commentsFromJson(String str) => Comments.fromJson(json.decode(str));
@@ -127,11 +137,13 @@ class Comments {
       num? id, 
       String? owner, 
       String? text, 
+      String? image, 
       String? createdDate, 
       num? post,}){
     _id = id;
     _owner = owner;
     _text = text;
+    _image = image;
     _createdDate = createdDate;
     _post = post;
 }
@@ -140,36 +152,42 @@ class Comments {
     _id = json['id'];
     _owner = json['owner'];
     _text = json['text'];
+    _image = json['image'];
     _createdDate = json['created_date'];
     _post = json['post'];
   }
   num? _id;
   String? _owner;
   String? _text;
+  String? _image;
   String? _createdDate;
   num? _post;
 Comments copyWith({  num? id,
   String? owner,
   String? text,
+  String? image,
   String? createdDate,
   num? post,
 }) => Comments(  id: id ?? _id,
   owner: owner ?? _owner,
   text: text ?? _text,
+  image: image ?? _image,
   createdDate: createdDate ?? _createdDate,
   post: post ?? _post,
 );
-  num get id => _id ?? 0;
-  String get owner => _owner ?? '';
-  String get text => _text ?? '';
-  String get createdDate => _createdDate ?? '';
-  num get post => _post ?? 0;
+  num? get id => _id;
+  String? get owner => _owner;
+  String? get text => _text;
+  String? get image => _image;
+  String? get createdDate => _createdDate;
+  num? get post => _post;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
     map['owner'] = _owner;
     map['text'] = _text;
+    map['image'] = _image;
     map['created_date'] = _createdDate;
     map['post'] = _post;
     return map;

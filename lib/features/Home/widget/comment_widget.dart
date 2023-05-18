@@ -4,10 +4,11 @@ import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CommentWidget extends StatefulWidget {
-  const CommentWidget({Key? key, required this.name, required this.time, required this.comment}) : super(key: key);
+  const CommentWidget({Key? key, required this.name, required this.time, required this.comment, required this.imageProfile}) : super(key: key);
 final String name;
 final String time;
 final String comment;
+final String imageProfile;
 
   @override
   State<CommentWidget> createState() => _CommentWidgetState();
@@ -22,7 +23,7 @@ class _CommentWidgetState extends State<CommentWidget> {
           padding:  EdgeInsets.symmetric(vertical: 10.sp),
           child: Row(
             children: [
-              AppImage(imageUrl: "https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=", width: 25.sp, height: 25.sp, borderRadius: BorderRadius.circular(30.sp)),
+              AppImage(imageUrl: widget.imageProfile, width: 25.sp, height: 25.sp, borderRadius: BorderRadius.circular(30.sp)),
               SizedBox(width: 2.w,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
