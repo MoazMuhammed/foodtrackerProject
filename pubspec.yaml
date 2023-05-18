@@ -76,7 +76,6 @@ dependencies:
   share_plus: ^4.5.3
   esys_flutter_share_plus: ^2.2.0
   app_popup_menu: ^1.0.0
-  calendar_time: ^2.2.0
   geocoding: ^2.1.0
 
 
