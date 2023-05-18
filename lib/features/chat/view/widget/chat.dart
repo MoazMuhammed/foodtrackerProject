@@ -146,6 +146,7 @@ class _ChatState extends State<Chat> {
               itemCount: _messages.length,
             )),
         Divider(height: 1.0),
+
         Container(
             decoration: BoxDecoration(color: Theme.of(context).cardColor),
             child: IconTheme(
