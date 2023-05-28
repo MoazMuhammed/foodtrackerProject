@@ -7,7 +7,10 @@ import 'package:foodtracker/features/AI/widget/ai_scanner_warning.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AIAnalysisContainerWidget extends StatelessWidget {
-  const AIAnalysisContainerWidget({Key? key}) : super(key: key);
+  const AIAnalysisContainerWidget({Key? key, required this.categoryName, required this.foodName, required this.allergies}) : super(key: key);
+final String categoryName;
+final String foodName;
+final String allergies;
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +38,21 @@ class AIAnalysisContainerWidget extends StatelessWidget {
             ),
             AIScannerDetails(
               title: 'Name :',
-              details: 'Oats With Milk',
+              details: categoryName,
             ),
             SizedBox(
               height: 2.h,
             ),
             AIScannerDetails(
               title: 'Results :',
-              details:
-              'This meal may cause an allergy to milk or an allergy to oats',
+              details: foodName,
             ),
             SizedBox(
               height: 2.h,
             ),
             AIScannerDetails(
               title: 'Ingredients :',
-              details: 'Oats - Milk - Grapes',
+              details: allergies,
             ),
             SizedBox(
               height: 2.h,

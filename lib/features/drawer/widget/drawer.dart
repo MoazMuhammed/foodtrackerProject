@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
+import 'package:foodtracker/core/cubits/userStatus/user_status_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
@@ -36,6 +37,7 @@ class DrawerWidget extends StatefulWidget {
 
 class _DrawerWidgetState extends State<DrawerWidget> {
   final cubitUserDetails = UserDataCubit();
+  final cubit = UserStatusCubit();
 
   @override
   void initState() {
@@ -46,6 +48,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+  create: (context) => cubit,
+  child: BlocProvider(
       create: (context) => cubitUserDetails,
       child: BlocConsumer<UserDataCubit, UserDataState>(
         listener: (context, state) {
@@ -77,14 +81,15 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Stack(children: [
+                        Stack(
+                            children: [
                           Container(
                               decoration: BoxDecoration(
                                 border: Border.all(width: 0.2.w),
                                 borderRadius: BorderRadius.circular(20.sp),
                               ),
                               child: AppImage(
-                                  imageUrl: "http://16.16.212.179" +
+                                  imageUrl: "http://moazmuhammed.pythonanywhere.com" +
                                       cubitUserDetails.userData.profilePic,
                                   width: 38.sp,
                                   height: 38.sp,
@@ -175,91 +180,93 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       SizedBox(
                         height: 1.h,
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 2.h),
-                        child: Column(
-                          children: [
-                            ListViewDrawer(
-                              title: "${S().settings}",
-                              onTap: () {
-                                push(context, SettingsScreen());
-                              },
-                              icon: 'setting',
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            ListViewDrawer(
-                              title: "${S().location}",
-                              onTap: () {
-                                push(context, GoogleMapScreen());
-                              },
-                              icon: 'location',
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            ListViewDrawer(
-                              title: "${S().contactUs}",
-                              onTap: () {
-                                push(context, const ContactUsScreen());
-                              },
-                              icon: 'contactUS',
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            Visibility(
-                              visible: true ,
-                              child:
-                              MyShared.getBoolean(key: MySharedKeys.userDoctorStatus) == false && MyShared.getBoolean(key: MySharedKeys.userPatientStatus) == false ?
+                      SingleChildScrollView(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 2.h),
+                          child: Column(
+                            children: [
                               ListViewDrawer(
-                                title: "Licenses",
+                                title: "${S().settings}",
                                 onTap: () {
-                                  push(context, LicenseScreen());
+                                  push(context, SettingsScreen());
+                                },
+                                icon: 'setting',
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
+                              ListViewDrawer(
+                                title: "${S().location}",
+                                onTap: () {
+                                  push(context, GoogleMapScreen());
+                                },
+                                icon: 'location',
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
+                              ListViewDrawer(
+                                title: "${S().contactUs}",
+                                onTap: () {
+                                  push(context, const ContactUsScreen());
+                                },
+                                icon: 'contactUS',
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
+                              Visibility(
+                                visible: true,
+                                child:
+                                cubit.userStatus.isDoctor == false && cubit.userStatus.isPatient == false ?
+                                ListViewDrawer(
+                                  title: "Licenses",
+                                  onTap: () {
+                                    push(context, LicenseScreen());
+                                  },
+                                  icon: 'license',
+                                ) : Container(),
+                              ),
+
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
+                              ListViewDrawer(
+                                title: "${S().chat}",
+                                onTap: () {
+                                  push(
+                                      context,
+                                      Chat(
+                                        key: UniqueKey(),
+                                      ));
+                                },
+                                icon: 'chat',
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
+                              ListViewDrawer(
+                                title: "${S().helpCenter}",
+                                onTap: () {
+                                  push(context, HelpCenter());
+                                },
+                                icon: 'help',
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
+                              ListViewDrawer(
+                                title: "${S().termsAndCondition}",
+                                onTap: () {
+                                  push(context, TermsScreen());
                                 },
                                 icon: 'terms',
-                              ) : Container(),
-                            ),
-
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            ListViewDrawer(
-                              title: "${S().chat}",
-                              onTap: () {
-                                push(
-                                    context,
-                                    Chat(
-                                      key: UniqueKey(),
-                                    ));
-                              },
-                              icon: 'chat',
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            ListViewDrawer(
-                              title: "${S().helpCenter}",
-                              onTap: () {
-                                push(context, HelpCenter());
-                              },
-                              icon: 'help',
-                            ),
-                            SizedBox(
-                              height: 0.5.h,
-                            ),
-                            ListViewDrawer(
-                              title: "${S().termsAndCondition}",
-                              onTap: () {
-                                push(context, TermsScreen());
-                              },
-                              icon: 'terms',
-                            ),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      SizedBox(height: 5.h,),
+
                       AppButton(
                         onPressed: () async {
                           SharedPreferences preferences =
@@ -284,6 +291,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           );
         },
       ),
-    );
+    ),
+);
   }
 }

@@ -21,7 +21,7 @@ class AppImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: borderRadius,
       child: CachedNetworkImage(
-        fit: BoxFit.cover,
+        fit: BoxFit.scaleDown,
         width: width,
         height: height,
         imageUrl: imageUrl,
@@ -30,7 +30,7 @@ class AppImage extends StatelessWidget {
 
             Image.asset(
             "assets/images/loading.gif",
-            fit: BoxFit. scaleDown,
+            fit: BoxFit. cover,
           );
 
 
@@ -39,12 +39,9 @@ class AppImage extends StatelessWidget {
           padding: EdgeInsets.all(15.sp),
           child: const Icon(
             Icons.error,
-            // color: Colors.red,
+
           ),
         ),
-        // const SizedBox(
-        //     width: double.infinity,
-        //     child: Icon(Icons.error)),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
+import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -51,7 +52,7 @@ class _ForgetPasswordCongratulationScreenState
           ),
           AppButton(
             onPressed: () {
-              push(context, const MainScreens());
+              push(context, const LoginScreen());
             },
             label: '${S().goToHome}',
             sizeFont: 16.sp,

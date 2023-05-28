@@ -156,17 +156,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   const ForgetPasswordScreen());
                             },
                           ),
+                          SizedBox(height: 3.h,),
                           AppButton(
                             onPressed: () {
                               cubit.userUserLogin(
                                   email: emailController.text,
                                   password: passwordController.text);
-
-                              // if (_formKey.currentState!.validate()) {
-                              //   cubit.userLogin(email: emailController.text, password: passwordController.text);
-                              // } else {
-                              //   return;
-                              // }
                             },
                             label: S().signIn,
                             sizeFont: 16.8.sp,
@@ -178,36 +173,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 1.5.h,
                           ),
-                          Text(
-                            "--------------------- OR ---------------------",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 17.sp),
-                            maxLines: 1,
-                          ),
                           SizedBox(
-                            height: 2.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SocialMediaWidget(
-                                image: 'fb',
-                                onPressed: () {},
-                                name: 'FaceBook',
-                              ),
-                              SizedBox(
-                                width: 4.w,
-                              ),
-                              SocialMediaWidget(
-                                image: 'google',
-                                onPressed: () {},
-                                name: 'Gmail',
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 4.h,
+                            height: 1.h,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

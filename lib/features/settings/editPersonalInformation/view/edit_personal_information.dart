@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/login_user/editUserData/push_editing_user_data_cubit.dart';
+import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
@@ -28,6 +29,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
   final cubit = PushEditingUserDataCubit();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  final cubitUserDetails = UserDataCubit();
 
 
   File? _image;
@@ -45,10 +47,16 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
       });
     }
   }
-
+  @override
+  void initState() {
+    cubitUserDetails.getUserDetails(id: MyShared.getInt(key: MySharedKeys.UID));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+  create: (context) => cubitUserDetails,
+  child: BlocProvider(
       create: (context) => cubit,
       child: BlocConsumer<PushEditingUserDataCubit, PushEditingUserDataState>(
         listener: (context, state) {
@@ -85,8 +93,10 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                               ),
                               child: AppImage(
                                   imageUrl:
-                                   "http://16.16.212.179/"+  MyShared.getString(
-                                          key: MySharedKeys.userImage),
+                                  'http://moazmuhammed.pythonanywhere.com' +
+                                      cubitUserDetails
+                                          .userData
+                                          .profilePic,
                                   width: 35.sp,
                                   height: 35.sp,
                                   borderRadius: BorderRadius.circular(20.sp)))
@@ -176,6 +186,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
           ));
         },
       ),
-    );
+    ),
+);
   }
 }

@@ -16,21 +16,23 @@ class PostsCubit extends Cubit<PostsState> {
   PostsCubit() : super(PostsInitial());
   PostsModel postsModel = PostsModel();
 
-  pushPosts({required String title, required String image}) async {
+  pushPosts({required String title, required String image , required int owner , required int allergy}) async {
     emit(PostsLoading());
     var response = await MyDio.postFile(endPoint: EndPoints.posts,
         fromData: FormData.fromMap({
       "title": title,
+      "owner": owner,
+      "allergy": allergy,
       "image": await MultipartFile.fromFile(image),
     }));
-    try{
+    // try{
 
         postsModel = PostsModel.fromJson(response!.data);
         emit(PostsSuccess("Published!"));
         safePrint(response.data);
-
-    }catch(e){
-      emit(PostsFailure("You have to enter text and image"));
-    }
+    //
+    // }catch(e){
+    //   emit(PostsFailure("You have to enter text and image"));
+    // }
   }
 }

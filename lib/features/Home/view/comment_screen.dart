@@ -105,7 +105,8 @@ class _CommentScreenState extends State<CommentScreen> {
                                           return CommentWidget(
                                             name: commentPostModel.owner,
                                             time: commentPostModel.createdDate,
-                                            comment: commentPostModel.text, imageProfile: "http://16.16.212.179" + commentPostModel.ownerProfilePic,
+                                            comment: commentPostModel.text,
+                                            imageProfile: commentPostModel.ownerProfilePic,
                                           );
                                         },
                                         itemCount: cubit.comment.length),
@@ -169,7 +170,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                   child: Row(
                                     children: [
                                       AppImage(
-                                          imageUrl: 'http://16.16.212.179' +
+                                          imageUrl: 'https://moazmuhammed.pythonanywhere.com' +
                                               cubitUserDetails.userData.profilePic,
                                           width: 28.sp,
                                           height: 28.sp,

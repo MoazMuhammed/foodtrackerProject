@@ -66,7 +66,7 @@ class _ProfileSettingWidgetState extends State<ProfileSettingWidget> {
                                   ? Colors.black
                                   : Colors.white),
                           child: AppImage(
-                              imageUrl: "http://16.16.212.179" +
+                              imageUrl: "http://moazmuhammed.pythonanywhere.com" +
                                   cubitUserDetails.userData.profilePic,
                               width: 35.sp,
                               height: 35.sp,

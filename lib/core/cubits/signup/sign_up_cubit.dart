@@ -28,12 +28,12 @@ class SignUpCubit extends Cubit<SignUpState> {
     });
     try{
       signUpModel = RegisterModel.fromJson(response!.data);
-      if(response.statusCode == 200) {
-        emit(SignUpSuccess("response.data.toString()"));
-        safePrint(signUpModel.email);
+      if( signUpModel.status == true) {
+        emit(SignUpSuccess(signUpModel.message.toString()));
+        safePrint(signUpModel.message);
       }
-     if(response.statusCode == 400) {
-        emit(SignUpFailure(response.data.toString()));
+     if(signUpModel.status == false) {
+        emit(SignUpFailure(signUpModel.message.toString()));
         safePrint(response.data.toString());
       }
     }catch(e){

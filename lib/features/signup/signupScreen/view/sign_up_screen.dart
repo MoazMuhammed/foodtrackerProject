@@ -147,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.visiblePassword,
                         controller: confirmPasswordController,
                         isPassword: true,
-                        textInputAction: TextInputAction.done,
+                        textInputAction: TextInputAction.done,obscureText: true,
                         textInputType: TextInputType.visiblePassword,
                         validators: (value) {
                           if (value == null) {

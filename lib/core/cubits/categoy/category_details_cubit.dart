@@ -4,7 +4,6 @@ import 'package:foodtracker/core/api/my_dio.dart';
 import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/features/category/data/categoryDetailsModel.dart';
 import 'package:meta/meta.dart';
-
 part 'category_details_state.dart';
 
 class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
@@ -13,7 +12,7 @@ class CategoryDetailsCubit extends Cubit<CategoryDetailsState> {
 
   getCategoryDetails({required int id}) async {
     var response =
-        await MyDio.get(endPoint: EndPoints.categoryDetails+"${id}/");
+        await MyDio.get(endPoint: EndPoints.categoryDetails+"${id}/allergy/");
 
      categoryDetailsModel = CategoryDetailsModel.fromJson(response!.data);
     safePrint(categoryDetailsModel.arabicProtection);

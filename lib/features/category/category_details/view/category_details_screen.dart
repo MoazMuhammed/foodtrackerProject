@@ -71,7 +71,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                                     Brightness.light
                                     ? Colors.black
                                     : Colors.white),
-                              child: AppImage(imageUrl: cubit.categoryDetailsModel.allergyPic, width: double.infinity, height: 20.h, borderRadius: BorderRadius.circular(16.sp)),
+                              child: AppImage(imageUrl: "https://moazmuhammed.pythonanywhere.com/"+cubit.categoryDetailsModel.allergyPic, width: double.infinity, height: 20.h, borderRadius: BorderRadius.circular(16.sp)),
                             ),
                           ),
                         )
@@ -82,7 +82,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                     ),
                     Center(
                         child: Text(
-                      cubit.categoryDetailsModel.englishDescription,
+                          MyShared.getCurrentLanguage() == "en"?  cubit.categoryDetailsModel.englishName : cubit.categoryDetailsModel.arabicName,
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
                     )),
@@ -95,7 +95,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.sp, vertical: 10.sp),
                       child: Text(
-                        cubit.categoryDetailsModel.englishName,
+                        MyShared.getCurrentLanguage() == "en"?  cubit.categoryDetailsModel.englishDescription : cubit.categoryDetailsModel.arabicDescription,
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),
@@ -108,7 +108,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.sp, vertical: 10.sp),
                       child: Text(
-                        cubit.categoryDetailsModel.englishSymptoms,
+                        MyShared.getCurrentLanguage() == "en"?  cubit.categoryDetailsModel.englishSymptoms : cubit.categoryDetailsModel.arabicSymptoms,
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),
@@ -121,7 +121,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 20.sp, vertical: 10.sp),
                       child: Text(
-                        cubit.categoryDetailsModel.englishProtection,
+                        MyShared.getCurrentLanguage() == "en"?  cubit.categoryDetailsModel.englishProtection : cubit.categoryDetailsModel.arabicProtection,
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),

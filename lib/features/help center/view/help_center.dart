@@ -35,12 +35,15 @@ class _HelpCenterState extends State<HelpCenter> {
             SizedBox(
               height: 1.5.h,
             ),
-            Text(
-              "${S().helpCenterDescription}",
-              style: TextStyle(
-                fontSize: 16.sp,
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 18.sp),
+              child: Text(
+                "${S().helpCenterDescription}",
+                style: TextStyle(
+                  fontSize: 16.sp,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 5.h,

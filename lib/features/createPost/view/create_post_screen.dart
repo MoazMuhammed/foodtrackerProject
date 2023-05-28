@@ -3,6 +3,7 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/posts/post/posts_cubit.dart';
+import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
@@ -29,6 +30,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   TextEditingController textController = TextEditingController();
   SingleValueDropDownController allergySelected = SingleValueDropDownController();
+  final cubitUserDetails = UserDataCubit();
 
   File? _image;
   final pickedFile = ImagePicker();
@@ -90,8 +92,16 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   @override
+  void initState() {
+    cubitUserDetails.getUserDetails(id: MyShared.getInt(key: MySharedKeys.UID));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
+  create: (context) => cubitUserDetails,
+  child: BlocProvider(
       create: (context) => cubit,
       child: BlocListener<PostsCubit, PostsState>(
         listener: (context, state) {
@@ -122,8 +132,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       cubit.pushPosts(
                           title: textController.text,
                           image: _image!.path,
-                          // allergy: allergySelected.dropDownValue!.value,
-                          // owner: MyShared.getInt(key: MySharedKeys.UID)
+                          allergy: allergySelected.dropDownValue!.value,
+                          owner: MyShared.getInt(key: MySharedKeys.UID)
                       );
 
                     }else{
@@ -141,7 +151,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     children: [
                       AppImage(
                           imageUrl:
-                          'http://10.0.2.2:8000//'+MyShared.getString(key: MySharedKeys.userImage),
+                          'http://moazmuhammed.pythonanywhere.com' +
+                              cubitUserDetails
+                                  .userData
+                                  .profilePic,
                           width: 30.sp,
                           height: 30.sp,
                           borderRadius: BorderRadius.circular(30.sp)),
@@ -153,7 +166,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Moaz Muhamed ",
+                              cubitUserDetails
+                                  .userData
+                                  .username,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 15.sp),
                             ),
@@ -173,17 +188,17 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 count: 6,
                                 dropDownList:  [
                                   DropDownValueModel(
-                                      name: "Egg Allergy", value: 1),
+                                      name: "Wheat Allergy", value: 3),
                                   DropDownValueModel(
-                                      name: "Wheat Allergy", value: 2),
+                                      name: "Milk Allergy", value: 4),
                                   DropDownValueModel(
-                                      name: "Milk Allergy", value: 3),
+                                      name: "Egg Allergy", value: 5),
                                   DropDownValueModel(
-                                      name: "Nuts Allergy", value: 4),
+                                      name: "Nuts Allergy", value: 6),
                                   DropDownValueModel(
-                                      name: "Fish Allergy", value: 5),
+                                      name: "Meat Allergy", value: 7),
                                   DropDownValueModel(
-                                      name: "Fish Allergy", value: 6),
+                                      name: "Fish Allergy", value: 8),
                                 ],
                               ),
                             ),
@@ -226,6 +241,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           ),
         ))),
       ),
-    );
+    ),
+);
   }
 }

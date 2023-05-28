@@ -6,8 +6,11 @@ import 'package:foodtracker/features/AI/widget/ai_analysis_container_widget.dart
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AiAnalysisScreen extends StatefulWidget {
-  const AiAnalysisScreen({Key? key, required this.file}) : super(key: key);
+  const AiAnalysisScreen({Key? key, required this.file, required this.categoryName, required this.allergies, required this.foodName}) : super(key: key);
   final File file;
+  final String categoryName;
+  final String allergies;
+  final String foodName;
 
   @override
   State<AiAnalysisScreen> createState() => _AiAnalysisScreenState();
@@ -31,7 +34,7 @@ class _AiAnalysisScreenState extends State<AiAnalysisScreen> {
               ),
             ],
           ),
-          Expanded(child: AIAnalysisContainerWidget())        ],
+          Expanded(child: AIAnalysisContainerWidget(categoryName:widget.categoryName, allergies: widget.allergies, foodName: widget.foodName,))        ],
       ),
     ));
   }

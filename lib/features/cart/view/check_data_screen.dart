@@ -103,10 +103,13 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 16.sp, vertical: 15.sp),
                                     child: Container(
+                                      width: double.infinity,
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: 12.sp, vertical: 12.sp),
+                                          horizontal: 15.sp, vertical: 13.sp),
                                       decoration: BoxDecoration(
-                                        color: Colors.grey.shade200,
+                                        color: Theme.of(context).brightness == Brightness.light
+                                            ? Colors.grey.shade200
+                                            : Colors.black87,
                                         border: Border.all(
                                             color: Colors.black, width: 3.sp),
                                         borderRadius:
@@ -115,120 +118,126 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                                       child: Row(
                                         children: [
                                           AppImage(
-                                              imageUrl: items.product.image,
-                                              width: 30.sp,
-                                              height: 30.sp,
+                                              imageUrl: "https://moazmuhammed.pythonanywhere.com/" +items.product.image,
+                                              width: 40.sp,
+                                              height:40.sp,
                                               borderRadius:
                                                   BorderRadius.circular(15.sp)),
                                           SizedBox(
-                                            width: 3.w,
+                                            width: 5.w,
                                           ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    items.product.englishName,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14.sp,
-                                                        overflow: TextOverflow
-                                                            .ellipsis),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 45.w,
-                                                  ),
-                                                  IconButton(
-                                                      onPressed: () {
-                                                        cubitDeleteItem
-                                                            .deleteItem(
-                                                                Id: items.id
-                                                                    .toInt());
-                                                      },
-                                                      icon: Icon(Icons.close)),
-                                                ],
-                                              ),
-                                              RatingBar.builder(
-                                                initialRating: 5,
-                                                minRating: 1,
-                                                direction: Axis.horizontal,
-                                                allowHalfRating: true,
-                                                itemCount: 5,
-                                                itemPadding:
-                                                    EdgeInsets.symmetric(
-                                                        vertical: 4.0.sp),
-                                                itemSize: 16.sp,
-                                                itemBuilder: (context, _) =>
-                                                    Icon(
-                                                  Icons.star,
-                                                  color: Colors.amber,
-                                                ),
-                                                onRatingUpdate: (value) {},
-                                              ),
-                                              SizedBox(
-                                                height: 1.h,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          width: 0.2.w,
-                                                          color: Colors.black),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.sp),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        MyShared.getCurrentLanguage() == "en"? items.product.englishName : items.product.arabicName,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 16.sp,
+                                                            overflow: TextOverflow
+                                                                .ellipsis),
+                                                      ),
                                                     ),
-                                                    child: InkWell(
-                                                        onTap: () {
-                                                          cubitUpdateQuantity.updateQuantity(Id: items.id.toInt(), quantity: items.quantity.toInt()+1);
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          cubitDeleteItem
+                                                              .deleteItem(
+                                                                  Id: items.id
+                                                                      .toInt());
+                                                          cubit.getCartDetails();
+
                                                         },
+                                                        icon: Icon(Icons.close)),
+                                                  ],
+                                                ),
+                                                RatingBarIndicator(
+                                                  rating:items.product.rating == null ? 0 : items.product.rating ,
+                                                  itemBuilder: (context, index) => const Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                  ),
+                                                  itemCount: 5,
+                                                  itemSize: 16.sp,
+                                                  direction: Axis.horizontal,
+                                                ),
+                                                SizedBox(
+                                                  height: 1.h,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 0.2.w,
+                                                            color: Theme.of(context).brightness == Brightness.light
+                                                                ? Colors.black
+                                                                : Colors.white,),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                10.sp),
+                                                      ),
+                                                      child: InkWell(
+                                                          onTap: () {
+                                                            cubitUpdateQuantity.updateQuantity(Id: items.id.toInt(), quantity: items.quantity.toInt()+1);
+                                                            cubit.getCartDetails();
+
+                                                          },
+                                                          child: Icon(
+                                                              CupertinoIcons
+                                                                  .plus)),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 2.w,
+                                                    ),
+                                                    Text(items.quantity.toString()),
+                                                    SizedBox(
+                                                      width: 2.w,
+                                                    ),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 0.2.w,
+                                                            color: Theme.of(context).brightness == Brightness.light
+                                                                ? Colors.black
+                                                                : Colors.white,),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                10.sp),
+                                                      ),
+                                                      child: InkWell(
                                                         child: Icon(
-                                                            CupertinoIcons
-                                                                .plus)),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 2.w,
-                                                  ),
-                                                  Text("1"),
-                                                  SizedBox(
-                                                    width: 2.w,
-                                                  ),
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          width: 0.2.w,
-                                                          color: Colors.black),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.sp),
+                                                            CupertinoIcons.minus),
+                                                        onTap: () {
+                                                          if(items.quantity != 0){
+                                                            cubitUpdateQuantity.updateQuantity(Id: items.id.toInt(), quantity: items.quantity.toInt()-1);
+                                                          }
+                                                          cubit.getCartDetails();
+
+                                                        },
+                                                      ),
                                                     ),
-                                                    child: InkWell(
-                                                      child: Icon(
-                                                          CupertinoIcons.minus),
-                                                      onTap: () {
-                                                        cubitUpdateQuantity.updateQuantity(Id: items.id.toInt(), quantity: items.quantity.toInt()-1);
-                                                      },
+                                                    SizedBox(
+                                                      width: 20.w,
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 33.w,
-                                                  ),
-                                                  Text(
-                                                    items.product.price
-                                                            .toString() +
-                                                        ' EGP',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 15.sp),
-                                                  )
-                                                ],
-                                              )
-                                            ],
+                                                    Text(
+                                                      items.product.price
+                                                              .toString() +
+                                                          ' EGP',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 15.sp),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
                                           )
                                         ],
                                       ),

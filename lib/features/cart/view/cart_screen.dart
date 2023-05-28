@@ -4,12 +4,17 @@ import 'package:foodtracker/core/cubits/categoy/get/allergy_type_cubit.dart';
 import 'package:foodtracker/core/cubits/product/getProductRecommended/product_recommended_cubit.dart';
 import 'package:foodtracker/core/cubits/product/goToCart/push_to_cart_cubit.dart';
 import 'package:foodtracker/core/cubits/product/pushRating/push_rating_cubit.dart';
+import 'package:foodtracker/core/cubits/rate/rate_products_cubit.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
+import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/widgets/app_bar.dart';
 import 'package:foodtracker/features/cart/data/getProductRecommended.dart';
 import 'package:foodtracker/features/cart/view/allergy_type_details.dart';
+import 'package:foodtracker/features/cart/widget/no_data_widget.dart';
+import 'package:foodtracker/features/cart/widget/rating_widget.dart';
 import 'package:foodtracker/features/cart/widget/recommended_product_widget.dart';
 import 'package:foodtracker/features/category/data/getAllergyModel.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -24,6 +29,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   final cubit = ProductRecommendedCubit();
   final cubitPushRating = PushRatingCubit();
+  final cubitPushRatingProducts = RateProductsCubit();
   final cubitAllergies = ProductRecommendedCubit();
   final cubitAllergyType = AllergyTypeCubit();
   final cubitAddToCart = PushToCartCubit();
@@ -36,9 +42,13 @@ class _CartScreenState extends State<CartScreen> {
     super.initState();
   }
 
+  late double value;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+  create: (context) => cubitPushRatingProducts,
+  child: BlocProvider(
       create: (context) => cubitAddToCart,
       child: BlocProvider(
         create: (context) => cubitAllergyType,
@@ -126,17 +136,18 @@ class _CartScreenState extends State<CartScreen> {
                                           .getAllergyModel.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
-                                        GetAllergyModel getAllergyModel =
-                                            cubitAllergyType
-                                                .getAllergyModel[index];
 
+                                        GetAllergyModel getAllergyModel =
+                                        cubitAllergyType
+                                            .getAllergyModel[index];
                                         return InkWell(
                                           onTap: () => push(
                                               context,
-                                              AllergyTypesDetailsScreen(
+                                              cubitAllergyType
+                                                  .getAllergyModel[index] == cubitAllergyType.getAllergyModel.isNotEmpty ? NoDataWidget() : AllergyTypesDetailsScreen(
                                                 idAllergyType:
-                                                    getAllergyModel.id.toInt(),
-                                              )),
+                                                getAllergyModel.id.toInt(),
+                                              ) ),
                                           child: Container(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 10.sp,
@@ -157,17 +168,22 @@ class _CartScreenState extends State<CartScreen> {
                                                   padding: EdgeInsets.symmetric(
                                                       vertical: 13.sp,
                                                       horizontal: 13.sp),
-                                                  child: Text(
-                                                    getAllergyModel.englishName,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 18.sp,
-                                                        color: Theme.of(context)
-                                                                    .brightness ==
-                                                                Brightness.light
-                                                            ? Colors.white
-                                                            : Colors.white),
+                                                  child: Container(
+                                                    padding: EdgeInsets.symmetric(vertical: 5.sp,horizontal: 10.sp),
+                                                    decoration: BoxDecoration(color: Colors.black54,borderRadius: BorderRadius.circular(12.sp)
+                                                    ),
+                                                    child: Text(
+                                                     MyShared.getCurrentLanguage() == "en" ? getAllergyModel.englishName : getAllergyModel.arabicName ,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 16.sp,
+                                                          color: Theme.of(context)
+                                                                      .brightness ==
+                                                                  Brightness.light
+                                                              ? Colors.white
+                                                              : Colors.white),
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -190,13 +206,6 @@ class _CartScreenState extends State<CartScreen> {
                                                       Brightness.light
                                                   ? Colors.black
                                                   : Colors.white)),
-                                      Spacer(),
-                                      Text(
-                                        "See All",
-                                        style: TextStyle(
-                                            color: Colors.blue,
-                                            fontSize: 15.sp),
-                                      )
                                     ],
                                   ),
                                   SizedBox(
@@ -209,11 +218,11 @@ class _CartScreenState extends State<CartScreen> {
                                               const AlwaysScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           gridDelegate:
-                                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                               SliverGridDelegateWithFixedCrossAxisCount(
                                                   crossAxisCount: 2,
-                                                  crossAxisSpacing: 10,
+                                                  crossAxisSpacing: 20,
                                                   mainAxisSpacing: 15,
-                                                  mainAxisExtent: 282),
+                                                  mainAxisExtent: 33.h),
                                           itemCount:
                                               cubit.productRecommended.length,
                                           itemBuilder: (
@@ -227,11 +236,12 @@ class _CartScreenState extends State<CartScreen> {
                                                 PushRatingCubit();
                                             return RecommendedProductWidget(
                                               productImage:
-                                                  'http://http://16.16.212.179/' +
+                                                  'https://moazmuhammed.pythonanywhere.com/' +
                                                       getProductRecommended
                                                           .image,
-                                              productName: getProductRecommended
-                                                  .englishName,
+                                              productName:MyShared.getCurrentLanguage() == "en"? getProductRecommended
+                                                  .englishName: getProductRecommended
+                                                  .arabicName,
                                               productPrice:
                                                   getProductRecommended.price
                                                       .toString(),
@@ -246,7 +256,15 @@ class _CartScreenState extends State<CartScreen> {
                                               },
                                               addToCart: () {
                                                 cubitAddToCart.addItemToCart(product_id: getProductRecommended.id.toInt() );
-                                              },
+                                              }, ratePressed: () {
+                                                addReview(context, () {
+                                                  cubitPushRatingProducts.userRateProducts(rating: value.toInt(), id: getProductRecommended.id.toInt());
+                                                }, (rate) {
+                                                  value = rate;
+                                                  safePrint(value);
+
+                                                });
+                                            }, rating: getProductRecommended.rating == null ? 0 :getProductRecommended.rating,
                                             );
                                           })),
                                 ],
@@ -263,6 +281,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
       ),
-    );
+    ),
+);
   }
 }

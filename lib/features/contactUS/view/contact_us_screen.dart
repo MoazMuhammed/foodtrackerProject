@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtracker/core/cubits/contact_us_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
+import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
@@ -18,8 +21,31 @@ class ContactUsScreen extends StatefulWidget {
 }
 
 class _ContactUsScreenState extends State<ContactUsScreen> {
+  final cubit = ContactUsCubit();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+  create: (context) => cubit,
+  child: BlocConsumer<ContactUsCubit, ContactUsState>(
+  listener: (context, state) {
+    if (state is ContactUsLoading) {
+      showLoading();
+    }
+    if (state is ContactUsSuccess) {
+      hideLoading();
+      showSuccess(cubit.contactUsModel.message);
+    }
+    if (state is ContactUsFailure) {
+      hideLoading();
+      showError(cubit.contactUsModel.message);
+    }
+  },
+  builder: (context, state) {
     return SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(
@@ -64,36 +90,27 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                 child: Column(
                   children: [
                     AppTextField(
-                      hint: MyShared.getString(key: MySharedKeys.email),
+                      hint: MyShared.getString(key: MySharedKeys.name),
                       keyboardType: TextInputType.name,
-                      controller: TextEditingController(),
+                      controller: nameController,
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
-                      title: "${S().firstName}",
+                      title: "User Name",
                     ),
                     AppTextField(
                       hint: MyShared.getString(key: MySharedKeys.email),
                       keyboardType: TextInputType.name,
-                      controller: TextEditingController(),
-                      isPassword: false,
-                      textInputAction: TextInputAction.next,
-                      textInputType: TextInputType.name,
-                      title: "${S().lastName}",
-                    ),
-                    AppTextField(
-                      hint: MyShared.getString(key: MySharedKeys.email),
-                      keyboardType: TextInputType.name,
-                      controller: TextEditingController(),
+                      controller: emailController,
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
                       title: "${S().email}",
                     ),
                     AppTextField(
-                      hint: MyShared.getString(key: MySharedKeys.email),
+                      hint: MyShared.getString(key: MySharedKeys.phone),
                       keyboardType: TextInputType.name,
-                      controller: TextEditingController(),
+                      controller: phoneController,
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
@@ -102,7 +119,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                     MessageWidget(
                       hint: "${S().yourMessageNote}",
                       keyboardType: TextInputType.text,
-                      controller: TextEditingController(),
+                      controller: messageController,
                       isPassword: false,
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.text,
@@ -117,7 +134,11 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               height: 2.h,
             ),
             AppButton(
-              onPressed: () {},
+              onPressed: () {
+                cubit.userContactUs(
+                    email: emailController.text,
+                     name: nameController.text, phone: phoneController.text, message: messageController.text);
+              },
               label: "${S().send}",
               sizeFont: 16.sp,
               borderRadius: BorderRadius.circular(12.sp),
@@ -130,5 +151,8 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
         ),
       ),
     ));
+  },
+),
+);
   }
 }

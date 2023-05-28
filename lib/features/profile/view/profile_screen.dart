@@ -201,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                   : Colors
                                                                       .white),
                                                           child: AppImage(
-                                                              imageUrl: 'http://16.16.212.179' +
+                                                              imageUrl: 'http://moazmuhammed.pythonanywhere.com' +
                                                                   cubitUserDetails
                                                                       .userData
                                                                       .profilePic,
@@ -218,98 +218,102 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                             BoxDecoration(
                                                           color: Colors.white,
                                                           border: Border.all(
-                                                              color:
-                                                              Theme.of(context)
-                                                                  .brightness ==
-                                                                  Brightness.light
-                                                                  ? Colors.black54
-                                                                  : Colors.white,),
+                                                            color: Theme.of(context)
+                                                                        .brightness ==
+                                                                    Brightness
+                                                                        .light
+                                                                ? Colors.black54
+                                                                : Colors.white,
+                                                          ),
                                                         ),
                                                       ),
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Center(
-                                                            child: Padding(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                horizontal:
-                                                                    14.sp,
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Center(
+                                                              child: Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                  horizontal:
+                                                                      14.sp,
+                                                                ),
+                                                                child: Column(
+                                                                  children: [
+
+                                                                    Text(
+                                                                        cubitUserDetails
+                                                                            .userData
+                                                                            .username,
+                                                                        style: TextStyle(
+                                                                            fontSize: 18
+                                                                                .sp,
+                                                                            color: Theme.of(context).brightness == Brightness.light
+                                                                                ? Colors
+                                                                                    .black
+                                                                                : Colors
+                                                                                    .white,
+                                                                            overflow: TextOverflow
+                                                                                .ellipsis,
+                                                                            fontWeight: FontWeight
+                                                                                .bold),
+                                                                        maxLines:
+                                                                            1),
+                                                                    SizedBox(
+                                                                      height:
+                                                                          0.4.h,
+                                                                    ),
+                                                                    Text(
+                                                                        cubitUserDetails
+                                                                            .userData
+                                                                            .email,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              16.sp,
+                                                                          color: Theme.of(context).brightness ==
+                                                                                  Brightness.light
+                                                                              ? Colors.grey
+                                                                              : Colors.white,
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
+                                                                        ),
+                                                                        maxLines:
+                                                                            1),
+                                                                    SizedBox(
+                                                                      height:
+                                                                          2.5.h,
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(
+                                                                                "Posts: ",
+                                                                                style: TextStyle(fontSize: 16.sp, color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white, overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold),
+                                                                                maxLines: 1),
+                                                                            Text(
+                                                                                "${cubit.userPosts.length}",
+                                                                                style: TextStyle(fontSize: 16.sp, color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white, overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold),
+                                                                                maxLines: 1),
+                                                                          ],
+                                                                        ),
+                                                                      ],
+                                                                    )
+                                                                  ],
+                                                                ),
                                                               ),
-                                                              child: Column(
-                                                                children: [
-                                                                  Text(
-                                                                      cubitUserDetails
-                                                                          .userData
-                                                                          .username,
-                                                                      style: TextStyle(
-                                                                          fontSize: 18
-                                                                              .sp,
-                                                                          color: Theme.of(context).brightness == Brightness.light
-                                                                              ? Colors
-                                                                                  .black
-                                                                              : Colors
-                                                                                  .white,
-                                                                          overflow: TextOverflow
-                                                                              .ellipsis,
-                                                                          fontWeight: FontWeight
-                                                                              .bold),
-                                                                      maxLines:
-                                                                          1),
-                                                                  SizedBox(
-                                                                    height:
-                                                                        0.4.h,
-                                                                  ),
-                                                                  Text(
-                                                                      cubitUserDetails
-                                                                          .userData
-                                                                          .email,
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            16.sp,
-                                                                        color: Theme.of(context).brightness ==
-                                                                                Brightness.light
-                                                                            ? Colors.grey
-                                                                            : Colors.white,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                      ),
-                                                                      maxLines:
-                                                                          1),
-                                                                  SizedBox(
-                                                                    height:
-                                                                        2.5.h,
-                                                                  ),
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Row(
-                                                                        children: [
-                                                                          Text(
-                                                                              "Posts: ",
-                                                                              style: TextStyle(fontSize: 16.sp, color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white, overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold),
-                                                                              maxLines: 1),
-                                                                          Text(
-                                                                              "${cubit.userPosts.length}",
-                                                                              style: TextStyle(fontSize: 16.sp, color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white, overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold),
-                                                                              maxLines: 1),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          )
-                                                        ],
+                                                            )
+                                                          ],
+                                                        ),
                                                       ),
                                                     ],
                                                   )),
@@ -358,9 +362,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                               imageUser:
                                                                   userPostModel
                                                                       .ownerProfilePic,
-                                                              name:
-                                                                  userPostModel
-                                                                      .owner,
+                                                              name: userPostModel
+                                                                  .ownerName,
                                                               time: userPostModel
                                                                   .createdAt,
                                                               title:
@@ -468,8 +471,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                 safePrint(
                                                                     'message');
                                                                 setState(() {
-                                                                  isPressed =
-                                                                      true;
+                                                                  userPostModel.isLiked =! userPostModel.isLiked;
                                                                   cubitLike.likes(
                                                                       id: userPostModel
                                                                           .id
@@ -485,8 +487,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                     text: _addCommentController
                                                                         .text);
                                                               },
-                                                              color:
-                                                                  Colors.black54,
+                                                              color: userPostModel.isLiked == true ? Colors.red : Colors.black,
                                                               deletePost: () {
                                                                 showDialog(
                                                                     context:
@@ -496,14 +497,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                             AlertDialog(
                                                                               actions: <Widget>[
                                                                                 Column(
-
                                                                                   children: [
                                                                                     Center(
                                                                                       child: TextButton(
                                                                                         style: TextButton.styleFrom(
                                                                                           textStyle: Theme.of(context).textTheme.labelLarge,
                                                                                         ),
-                                                                                        child: Text('Edit Post',style: TextStyle(fontSize: 16.sp,color: AppColors.primary,fontWeight: FontWeight.bold)),
+                                                                                        child: Text('Edit Post', style: TextStyle(fontSize: 16.sp, color: AppColors.primary, fontWeight: FontWeight.bold)),
                                                                                         onPressed: () {
                                                                                           push(context, EditPostScreen(userPostModel.id.toInt(), userPostModel.title, userPostModel.image));
                                                                                         },
@@ -513,7 +513,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                                       style: TextButton.styleFrom(
                                                                                         textStyle: Theme.of(context).textTheme.labelLarge,
                                                                                       ),
-                                                                                      child:  Text('Delete Post',style: TextStyle(fontSize: 16.sp,color: AppColors.primary,fontWeight: FontWeight.bold)),
+                                                                                      child: Text('Delete Post', style: TextStyle(fontSize: 16.sp, color: AppColors.primary, fontWeight: FontWeight.bold)),
                                                                                       onPressed: () {
                                                                                         this.cubitDeletePost.deletePosts(Id: userPostModel.id.toInt());
                                                                                         pop(context);

@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       PostWidget(
                                         imageUser:postModel.ownerProfilePic ,
-                                        name: postModel.owner,
+                                        name: postModel.ownerName,
                                         time: postModel.createdAt,
                                         title: postModel.title,
                                         image: postModel.image,

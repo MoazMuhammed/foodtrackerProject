@@ -33,13 +33,9 @@ class _AIScreenState extends State<AIScreen> {
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
-        cubit.imagePrediction(image: _image!.path);
       });
-      push(
-          context,
-          AiAnalysisScreen(
-            file: _image!,
-          ));
+      pop(context);
+      await cubit.imagePrediction(image: _image!.path);
     }
   }
 
@@ -48,9 +44,10 @@ class _AIScreenState extends State<AIScreen> {
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
-        cubit.imagePrediction(image: _image!.path);
       });
-      push(context, AiAnalysisScreen(file: _image!));
+      pop(context);
+      await cubit.imagePrediction(image: _image!.path);
+
     }
   }
 
@@ -84,10 +81,20 @@ class _AIScreenState extends State<AIScreen> {
           }
           if (state is PredictionSuccess) {
             hideLoading();
+            push(
+                context,
+                AiAnalysisScreen(
+                  file: _image!,
+                  categoryName: cubit.predictModel.categoryName,
+                  allergies: cubit.predictModel.allergies,
+                  foodName: cubit.predictModel.foodName,
+                ));
           }
-          if (state is  PredictionFailure) {
+
+          if (state is PredictionFailure) {
             hideLoading();
             showError("Error");
+
           }
         },
         builder: (context, state) {

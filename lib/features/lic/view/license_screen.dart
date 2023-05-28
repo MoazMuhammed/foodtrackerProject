@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/lic/license_cubit.dart';
+import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
@@ -138,8 +139,8 @@ class _LicenseScreenState extends State<LicenseScreen> {
                           license_pic: license_pic!.path.toString(),
                           face_pic: face_pic!.path.toString());
                     },
-                    label: "Confirm",
-                    sizeFont: 14.sp)
+                    label: "Confirm",bgColor:  AppColors.primary,
+                    sizeFont: 16.sp)
               ],
             ),
           ));

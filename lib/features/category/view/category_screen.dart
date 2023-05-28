@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/categoy/get/allergy_type_cubit.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/safe_print.dart';
@@ -74,7 +75,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           Padding(
                             padding:  EdgeInsets.symmetric(horizontal: 16.sp,vertical: 12.sp),
                             child: Text(
-                              getAllergyModel.englishName,
+                              MyShared.getCurrentLanguage() == "en"? getAllergyModel.englishName : getAllergyModel.arabicName,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,fontSize: 16.sp),

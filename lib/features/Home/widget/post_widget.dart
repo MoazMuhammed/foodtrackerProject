@@ -99,7 +99,7 @@ class _PostWidgetState extends State<PostWidget> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: AppColors.primary,
-                        fontSize: 15.sp),
+                        fontSize: 14.sp),
                   ),
                   SizedBox(
                     width: 2.w,

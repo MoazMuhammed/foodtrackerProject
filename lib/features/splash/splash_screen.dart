@@ -4,6 +4,7 @@ import 'package:foodtracker/core/cubits/userStatus/user_status_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
+import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/features/onBoard/view/on_boarding_screen.dart';
@@ -25,6 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     cubit.getUserStatus();
+    safePrint(cubit.userStatus.isPatient);
+    safePrint(cubit.userStatus.isDoctor);
     super.initState();
 
     Future.delayed(const Duration(milliseconds: 2000)).then((value) {
@@ -87,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           "Food Tracker",
                           style: TextStyle(
                             fontSize: 20.sp,
-                            color: AppColors.primary,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -81,7 +81,7 @@ CategoryDetailsModel copyWith({  num? id,
 );
   num get id => _id ?? 0;
   String get allergyPic => _allergyPic ?? '';
-  String get arabicDescription => _arabicDescription ?? 'a7a';
+  String get arabicDescription => _arabicDescription ?? '';
   String get englishDescription => _englishDescription ?? '';
   String get arabicName => _arabicName ?? '';
   String get englishName => _englishName ?? '';

@@ -10,6 +10,7 @@ import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/core/widgets/text_form_field.dart';
+import 'package:foodtracker/features/cart/widget/congratolation_cart_screen.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -197,6 +198,7 @@ class _PaymentCartScreenState extends State<PaymentCartScreen> {
                                 onPressed: () {
                                   cubit.postUser(nameEditingController.text, addressEditingController.text,
                                       phoneEditingController.text);
+                                  push(context, CongratulationCartScreen());
                                 },
                                 label: "Checkout",
                                 sizeFont: 16.sp,
