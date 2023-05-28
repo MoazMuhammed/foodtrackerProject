@@ -12,6 +12,7 @@ class RegisterModel {
     _message = message;
 }
 
+
   RegisterModel.fromJson(dynamic json) {
     _status = json['status'];
     _message = json['message'];
