@@ -10,8 +10,6 @@ import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/features/AI/ai/check%20data/view/check_data_enter.dart';
 import 'package:foodtracker/features/AI/view/ai_analysis_screen.dart';
 import 'package:foodtracker/features/AI/widget/choose_process_widget.dart';
-import 'package:foodtracker/features/Home/view/home_screen.dart';
-import 'package:foodtracker/features/drawer/widget/terms.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -29,7 +27,7 @@ class _AIScreenState extends State<AIScreen> {
   final pickedFile = ImagePicker();
 
   uploadImageWithCamera() async {
-    var pickedImage = await pickedFile.getImage(source: ImageSource.camera);
+    var pickedImage = await pickedFile.pickImage(source: ImageSource.camera);
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
@@ -40,7 +38,7 @@ class _AIScreenState extends State<AIScreen> {
   }
 
   uploadImageWithGallery() async {
-    var pickedImage = await pickedFile.getImage(source: ImageSource.gallery);
+    var pickedImage = await pickedFile.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);

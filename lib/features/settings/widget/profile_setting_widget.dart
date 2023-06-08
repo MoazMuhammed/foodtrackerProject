@@ -40,7 +40,6 @@ class _ProfileSettingWidgetState extends State<ProfileSettingWidget> {
           }
           if (state is UserDataFailure) {
             hideLoading();
-            showError("Error");
           }
         },
         builder: (context, state) {

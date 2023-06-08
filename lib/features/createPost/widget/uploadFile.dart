@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/generated/l10n.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class UploadFile extends StatefulWidget {
@@ -103,7 +99,7 @@ class _UploadFileState extends State<UploadFile> {
                 SizedBox(
                   width: 1.w,
                 ),
-                Text("Photos")
+                Text("${S().photo}")
               ],
             ),
           ),
@@ -177,7 +173,7 @@ class _UploadFileState extends State<UploadFile> {
                 SizedBox(
                   width: 1.w,
                 ),
-                Text("Videos")
+                Text("${S().video}")
               ],
             ),
           )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodtracker/core/cubits/product/getDataToCart/get_cart_details_cubit.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/cart/view/check_data_screen.dart';
@@ -12,9 +13,16 @@ class AppBarWidget extends StatefulWidget {
   @override
   State<AppBarWidget> createState() => _AppBarWidgetState();
 }
+final cubit = GetCartDetailsCubit();
+
 
 class _AppBarWidgetState extends State<AppBarWidget> {
   @override
+  void initState() {
+    cubit.getCartDetails();
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -49,7 +57,17 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           ),
         ),
         const Spacer(),
-        InkWell(onTap: () => push(context, CheckDataScreen()),child: AppSVG(assetName: 'cart', height: 2.9.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
+        InkWell(onTap: () => push(context, CheckDataScreen()),child: Stack(
+          alignment: Alignment.topLeft,
+            children: [
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AppSVG(assetName: 'cart', height: 2.9.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,),
+              ),
+              Text(cubit.cartDetails.length.toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red)),
+
+            ])),
         SizedBox(
           width: 3.w,
         ),

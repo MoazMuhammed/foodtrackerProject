@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/userStatus/user_status_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
-import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
-import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/features/onBoard/view/on_boarding_screen.dart';
@@ -26,8 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     cubit.getUserStatus();
-    safePrint(cubit.userStatus.isPatient);
-    safePrint(cubit.userStatus.isDoctor);
     super.initState();
 
     Future.delayed(const Duration(milliseconds: 2000)).then((value) {
@@ -57,51 +53,55 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => cubit,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(
-          alignment: AlignmentDirectional.bottomStart,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+      child: BlocBuilder<UserStatusCubit, UserStatusState>(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Stack(
+              alignment: AlignmentDirectional.bottomStart,
               children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AnimatedContainer(
-                        height: 40.sp,
-                        width: 40.sp,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.bounceOut,
-                        child: AppSVG(
-                          height: 30.h,
-                          width: 20.w,
-                          assetName: 'logo',
-                        ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      AnimatedOpacity(
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.bounceInOut,
-                        opacity: buttonOpacity,
-                        child: Text(
-                          "Food Tracker",
-                          style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AnimatedContainer(
+                            height: 40.sp,
+                            width: 40.sp,
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.bounceOut,
+                            child: AppSVG(
+                              height: 30.h,
+                              width: 20.w,
+                              assetName: 'logo',
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
+                          SizedBox(height: 1.h,),
+                          AnimatedOpacity(
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.bounceInOut,
+                            opacity: buttonOpacity,
+                            child: Text(
+                              "Food Tracker",
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

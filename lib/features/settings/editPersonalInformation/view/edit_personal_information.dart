@@ -14,6 +14,7 @@ import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/core/widgets/pick_image_dialog.dart';
 import 'package:foodtracker/core/widgets/text_form_field.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -68,7 +69,6 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
           }
           if (state is PushEditingUserDataFailure) {
             hideLoading();
-            showError("Error");
           }
         },
         builder: (context, state) {
@@ -79,7 +79,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                 children: [
                   ForgetPasswordBarWidget(
                       onPressed: () => pop(context),
-                      title: "Edit Personal Information"),
+                      title: "${S().editPersonalInformation}"),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: 30.sp, vertical: 20.sp),
@@ -107,7 +107,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Update Your Picture",
+                                "${S().updateourPicture}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16.sp),
@@ -123,7 +123,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                                     uploadImage(ImageSource.gallery);
                                   });
                                 },
-                                label: "Update",
+                                label: "${S().update}",
                                 sizeFont: 16.sp,
                                 borderRadius: BorderRadius.circular(12.sp),
                                 margin: EdgeInsets.symmetric(
@@ -148,7 +148,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                       isPassword: false,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.name,
-                      title: "Name *"),
+                      title: "${S().name} *"),
                   AppTextField(
                     hint: MyShared.getString(key: MySharedKeys.email),
                     keyboardType: TextInputType.emailAddress,
@@ -156,7 +156,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                     isPassword: false,
                     textInputAction: TextInputAction.next,
                     textInputType: TextInputType.emailAddress,
-                    title: "Email *",
+                    title: "${S().email} *",
                     enable: false,
                   ),
                   AppTextField(
@@ -166,7 +166,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                     isPassword: false,
                     textInputAction: TextInputAction.next,
                     textInputType: TextInputType.phone,
-                    title: "Phone Number *",
+                    title: "${S().phoneNumber} *",
                   ),
                   SizedBox(
                     height: 3.h,
@@ -175,7 +175,7 @@ class _EditPersonalInformationState extends State<EditPersonalInformation> {
                     onPressed: () {
                       cubit.pushUserData(Id: MyShared.getInt(key: MySharedKeys.UID),username: nameController.text,phone: phoneController.text);
                     },
-                    label: "Update",
+                    label: "${S().update}",
                     sizeFont: 16.sp,
                     borderRadius: BorderRadius.circular(11.sp),
                     bgColor: AppColors.primary,

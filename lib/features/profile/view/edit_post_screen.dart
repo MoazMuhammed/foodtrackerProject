@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/comments/posts/add_comment_cubit.dart';
 import 'package:foodtracker/core/cubits/posts/edit/edit_post_cubit.dart';
-import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
@@ -99,15 +96,16 @@ class _EditPostScreenState extends State<EditPostScreen> {
       create: (context) => cubitEditPost,
       child: BlocConsumer<EditPostCubit, EditPostState>(
         listener: (context, state) {
-          if (state is AddCommentLoading) {
+          if (state is EditPostLoading) {
             showLoading();
           }
-          if (state is AddCommentSuccess) {
-            hideLoading();
+          if (state is EditPostSuccess) {
+showSuccess(EditPostSuccess("successMessage").toString());
+hideLoading();
           }
-          if (state is AddCommentFailure) {
+          if (state is EditPostFailure) {
             hideLoading();
-            showError("Error");
+
           }
         },
         builder: (context, state) {
@@ -198,12 +196,15 @@ class _EditPostScreenState extends State<EditPostScreen> {
                       AppButton(
                           bgColor: AppColors.primary,
                           borderRadius: BorderRadius.circular(14.sp),
-                          onPressed: () {
-                            cubitEditPost.editPosts(
+                          onPressed: () async{
+                           await cubitEditPost.editPosts(
                                 Id: widget.id,
                                 title: editPostController.text,
                                 allergy: allergySelected.dropDownValue!.value,
                                 image:  _image!.path.toString() );
+                           setState(() {
+
+                           });
                             pop(context);
                           },
                           label: "Save",

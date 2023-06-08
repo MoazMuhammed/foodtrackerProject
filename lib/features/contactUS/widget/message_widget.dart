@@ -50,16 +50,13 @@ class _MessageWidgetState extends State<MessageWidget> {
       margin: EdgeInsets.symmetric(horizontal: 18.sp),
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.sp,vertical: 6.sp),
-            child: Row(
-              children: [
-                Text(
-                  widget.title,
-                  style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
+          Row(
+            children: [
+              Text(
+                widget.title,
+                style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
           TextFormField(
             validator: widget.validators,

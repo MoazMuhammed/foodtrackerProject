@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodtracker/core/cubits/categoy/get/allergy_type_cubit.dart';
+import 'package:foodtracker/core/cubits/product/getDataToCart/get_cart_details_cubit.dart';
 import 'package:foodtracker/core/cubits/product/getProductRecommended/product_recommended_cubit.dart';
 import 'package:foodtracker/core/cubits/product/goToCart/push_to_cart_cubit.dart';
 import 'package:foodtracker/core/cubits/product/pushRating/push_rating_cubit.dart';
 import 'package:foodtracker/core/cubits/rate/rate_products_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
@@ -17,6 +20,7 @@ import 'package:foodtracker/features/cart/widget/no_data_widget.dart';
 import 'package:foodtracker/features/cart/widget/rating_widget.dart';
 import 'package:foodtracker/features/cart/widget/recommended_product_widget.dart';
 import 'package:foodtracker/features/category/data/getAllergyModel.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CartScreen extends StatefulWidget {
@@ -34,6 +38,7 @@ class _CartScreenState extends State<CartScreen> {
   final cubitAllergyType = AllergyTypeCubit();
   final cubitAddToCart = PushToCartCubit();
   GetAllergyModel getAllergyModel = GetAllergyModel();
+  final cubitCartDetails = GetCartDetailsCubit();
 
   @override
   void initState() {
@@ -124,7 +129,7 @@ class _CartScreenState extends State<CartScreen> {
                                   SizedBox(
                                     height: 2.h,
                                   ),
-                                  Text("Allergy Types",
+                                  Text("${S().allergyClasses}",
                                       style: TextStyle(fontSize: 17.sp)),
                                   SizedBox(
                                     height: 1.h,
@@ -198,7 +203,7 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                   Row(
                                     children: [
-                                      Text("Recommended Products",
+                                      Text("${S().recommendedProducts}",
                                           style: TextStyle(
                                               fontSize: 18.sp,
                                               color: Theme.of(context)
@@ -232,7 +237,6 @@ class _CartScreenState extends State<CartScreen> {
                                             GetProductRecommended
                                                 getProductRecommended =
                                                 cubit.productRecommended[index];
-                                            PushRatingCubit pushRating =
                                                 PushRatingCubit();
                                             return RecommendedProductWidget(
                                               productImage:
@@ -254,8 +258,24 @@ class _CartScreenState extends State<CartScreen> {
                                                         .toInt(),
                                                     rating: value);
                                               },
-                                              addToCart: () {
-                                                cubitAddToCart.addItemToCart(product_id: getProductRecommended.id.toInt() );
+                                              addToCart: () async{
+                                                await cubitCartDetails.getCartDetails();
+
+                                             await cubitAddToCart.addItemToCart(product_id: getProductRecommended.id.toInt() );
+                                                setState(() {
+
+                                                });
+
+                                                Fluttertoast.showToast(
+                                                    msg: "${S().addToCartSuccessfully}",
+                                                    toastLength: Toast.LENGTH_SHORT,
+                                                    gravity: ToastGravity.BOTTOM,
+                                                    timeInSecForIosWeb: 1,
+                                                    backgroundColor: Colors.white,
+                                                    textColor: AppColors.primary,
+                                                    fontSize: 14.sp
+                                                );
+
                                               }, ratePressed: () {
                                                 addReview(context, () {
                                                   cubitPushRatingProducts.userRateProducts(rating: value.toInt(), id: getProductRecommended.id.toInt());

@@ -77,5 +77,6 @@ class LoginUserCubit extends Cubit<LoginUserState> {
     MyShared.putString(key: MySharedKeys.phone, value: loginUserModel.data.phone);
     MyShared.putBoolean(key: MySharedKeys.is_doctor, value: loginUserModel.data.isDoctor);
     MyShared.putInt(key: MySharedKeys.UID, value: loginUserModel.data.id.toInt());
+    MyShared.putString(key: MySharedKeys.pic, value: loginUserModel.data.profilePic);
   }
 }

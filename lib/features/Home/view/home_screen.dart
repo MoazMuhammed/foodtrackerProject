@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/comments/posts/add_comment_cubit.dart';
 import 'package:foodtracker/core/cubits/posts/get/get_posts_cubit.dart';
 import 'package:foodtracker/core/cubits/posts/likes/likes_cubit.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/safe_print.dart';
@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 postModel.title, 'text/plain');
                                           }
                                         },
-                                        allergyType: postModel.allergyEnglishName.toString() ,
+                                        allergyType: MyShared.getString(key: MySharedKeys.currentLanguage) == "en" ? postModel.allergyEnglishName.toString() :  postModel.allergyArabicName.toString(),
                                         share: () async {
                                           safePrint(postModel.title);
                                           try {

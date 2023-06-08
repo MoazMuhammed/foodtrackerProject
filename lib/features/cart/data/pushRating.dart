@@ -22,6 +22,7 @@ class PushRating {
       String? englishDescription, 
       num? price, 
       String? image,}){
+
     _id = id;
     _rating = rating;
     _allergies = allergies;

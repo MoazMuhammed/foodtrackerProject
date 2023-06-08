@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
-import 'package:foodtracker/core/cubits/userStatus/user_status_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
@@ -37,7 +36,6 @@ class DrawerWidget extends StatefulWidget {
 
 class _DrawerWidgetState extends State<DrawerWidget> {
   final cubitUserDetails = UserDataCubit();
-  final cubit = UserStatusCubit();
 
   @override
   void initState() {
@@ -48,250 +46,245 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-  create: (context) => cubit,
-  child: BlocProvider(
-      create: (context) => cubitUserDetails,
-      child: BlocConsumer<UserDataCubit, UserDataState>(
-        listener: (context, state) {
-          if (state is UserDataLoading) {
-            showLoading();
-          }
-          if (state is UserDataSuccess) {
-            hideLoading();
-          }
-          if (state is UserDataFailure) {
-            hideLoading();
-            showError("Error");
-          }
-        },
-        builder: (context, state) {
-          return SafeArea(
-            child: Drawer(
-              backgroundColor: Theme.of(context).brightness == Brightness.light
-                  ? Colors.white
-                  : Colors.black87,
-              child: Column(children: [
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 25.sp, horizontal: 14.sp),
-                  child: GestureDetector(
-                    onTap: () => push(context, ProfileScreen()),
-                    child: Center(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Stack(
-                            children: [
-                          Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(width: 0.2.w),
-                                borderRadius: BorderRadius.circular(20.sp),
-                              ),
-                              child: AppImage(
-                                  imageUrl: "http://moazmuhammed.pythonanywhere.com" +
-                                      cubitUserDetails.userData.profilePic,
-                                  width: 38.sp,
-                                  height: 38.sp,
-                                  borderRadius: BorderRadius.circular(20.sp)))
-                        ]),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        Center(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 14.sp),
-                            child: Text(
-                                cubitUserDetails.userData.username,
-                                style: TextStyle(
-                                    fontSize: 18.sp,
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.light
-                                        ? Colors.black
-                                        : Colors.white,
-                                    overflow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.bold),
-                                maxLines: 1),
-                          ),
-                        )
-                      ],
-                    )),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 22.sp),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                            color:
-                                Theme.of(context).brightness == Brightness.light
-                                    ? Colors.grey.withOpacity(0.5)
-                                    : Colors.white.withOpacity(0.7.sp),
-                            spreadRadius: 1,
-                            blurRadius: 10,
-                            offset: Offset(13, 5), // changes position of shadow
-                          ),
-                        ]),
-                        child: Consumer<ThemeProvider>(
-                          builder: (context, provider, child) {
-                            return Center(
-                              child: ToggleSwitch(
-                                initialLabelIndex: provider.currentTheme,
-                                totalSwitches: 2,
-                                activeBgColor: const [AppColors.primary],
-                                inactiveBgColor: Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? Colors.white
-                                    : Colors.white,
-                                customWidths: [25.w, 25.w],
-                                labels: ['${S().light}', '${S().dark}'],
-                                borderColor: [
-                                  Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? Colors.white
-                                      : Colors.white
-                                ],
-                                inactiveFgColor: Theme.of(context).brightness ==
-                                        Brightness.light
-                                    ? Colors.black
-                                    : Colors.black,
-                                customIcons: const [
-                                  Icon(
-                                    Icons.light_mode,
-                                    color: Colors.yellow,
+        create: (context) => cubitUserDetails,
+        child: BlocConsumer<UserDataCubit, UserDataState>(
+          listener: (context, state) {
+            if (state is UserDataLoading) {
+              showLoading();
+            }
+            if (state is UserDataSuccess) {
+              hideLoading();
+            }
+            if (state is UserDataFailure) {
+              hideLoading();
+            }
+          },
+          builder: (context, state) {
+            return SafeArea(
+                      child: Drawer(
+                        backgroundColor: Theme.of(context).brightness == Brightness.light
+                            ? Colors.white
+                            : Colors.black87,
+                        child: Column(children: [
+                          Padding(
+                            padding:
+                                EdgeInsets.symmetric(vertical: 25.sp, horizontal: 14.sp),
+                            child: GestureDetector(
+                              onTap: () => push(context, ProfileScreen()),
+                              child: Center(
+                                  child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Stack(
+                                      children: [
+                                    Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(width: 0.2.w),
+                                          borderRadius: BorderRadius.circular(20.sp),
+                                        ),
+                                        child: AppImage(
+                                            imageUrl: "http://moazmuhammed.pythonanywhere.com" +
+                                                cubitUserDetails.userData.profilePic,
+                                            width: 38.sp,
+                                            height: 38.sp,
+                                            borderRadius: BorderRadius.circular(20.sp)))
+                                  ]),
+                                  SizedBox(
+                                    height: 1.h,
                                   ),
-                                  Icon(
-                                    Icons.dark_mode,
-                                    color: Colors.black54,
+                                  Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 14.sp),
+                                      child: Text(
+                                          cubitUserDetails.userData.username,
+                                          style: TextStyle(
+                                              fontSize: 18.sp,
+                                              color: Theme.of(context).brightness ==
+                                                      Brightness.light
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                              overflow: TextOverflow.ellipsis,
+                                              fontWeight: FontWeight.bold),
+                                          maxLines: 1),
+                                    ),
                                   )
                                 ],
-                                onToggle: (int? index) {
-                                  setState(() {
-                                    provider.changeTheme(index ?? 0);
-                                  });
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      SingleChildScrollView(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 2.h),
-                          child: Column(
-                            children: [
-                              ListViewDrawer(
-                                title: "${S().settings}",
-                                onTap: () {
-                                  push(context, SettingsScreen());
-                                },
-                                icon: 'setting',
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              ListViewDrawer(
-                                title: "${S().location}",
-                                onTap: () {
-                                  push(context, GoogleMapScreen());
-                                },
-                                icon: 'location',
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              ListViewDrawer(
-                                title: "${S().contactUs}",
-                                onTap: () {
-                                  push(context, const ContactUsScreen());
-                                },
-                                icon: 'contactUS',
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              Visibility(
-                                visible: true,
-                                child:
-                                cubit.userStatus.isDoctor == false && cubit.userStatus.isPatient == false ?
-                                ListViewDrawer(
-                                  title: "Licenses",
-                                  onTap: () {
-                                    push(context, LicenseScreen());
-                                  },
-                                  icon: 'license',
-                                ) : Container(),
-                              ),
-
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              ListViewDrawer(
-                                title: "${S().chat}",
-                                onTap: () {
-                                  push(
-                                      context,
-                                      Chat(
-                                        key: UniqueKey(),
-                                      ));
-                                },
-                                icon: 'chat',
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              ListViewDrawer(
-                                title: "${S().helpCenter}",
-                                onTap: () {
-                                  push(context, HelpCenter());
-                                },
-                                icon: 'help',
-                              ),
-                              SizedBox(
-                                height: 0.5.h,
-                              ),
-                              ListViewDrawer(
-                                title: "${S().termsAndCondition}",
-                                onTap: () {
-                                  push(context, TermsScreen());
-                                },
-                                icon: 'terms',
-                              ),
-                            ],
+                              )),
+                            ),
                           ),
-                        ),
-                      ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 22.sp),
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          Theme.of(context).brightness == Brightness.light
+                                              ? Colors.grey.withOpacity(0.5)
+                                              : Colors.white.withOpacity(0.7.sp),
+                                      spreadRadius: 1,
+                                      blurRadius: 10,
+                                      offset: Offset(13, 5), // changes position of shadow
+                                    ),
+                                  ]),
+                                  child: Consumer<ThemeProvider>(
+                                    builder: (context, provider, child) {
+                                      return Center(
+                                        child: ToggleSwitch(
+                                          initialLabelIndex: provider.currentTheme,
+                                          totalSwitches: 2,
+                                          activeBgColor: const [AppColors.primary],
+                                          inactiveBgColor: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Colors.white
+                                              : Colors.white,
+                                          customWidths: [25.w, 25.w],
+                                          labels: ['${S().light}', '${S().dark}'],
+                                          borderColor: [
+                                            Theme.of(context).brightness ==
+                                                    Brightness.light
+                                                ? Colors.white
+                                                : Colors.white
+                                          ],
+                                          inactiveFgColor: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Colors.black
+                                              : Colors.black,
+                                          customIcons: const [
+                                            Icon(
+                                              Icons.light_mode,
+                                              color: Colors.yellow,
+                                            ),
+                                            Icon(
+                                              Icons.dark_mode,
+                                              color: Colors.black54,
+                                            )
+                                          ],
+                                          onToggle: (int? index) {
+                                            setState(() {
+                                              provider.changeTheme(index ?? 0);
+                                            });
+                                          },
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 1.h,
+                                ),
+                                SingleChildScrollView(
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(vertical: 2.h),
+                                    child: Column(
+                                      children: [
+                                        ListViewDrawer(
+                                          title: "${S().settings}",
+                                          onTap: () {
+                                            push(context, SettingsScreen());
+                                          },
+                                          icon: 'setting',
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        ListViewDrawer(
+                                          title: "${S().location}",
+                                          onTap: () {
+                                            push(context, GoogleMapScreen());
+                                          },
+                                          icon: 'location',
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        ListViewDrawer(
+                                          title: "${S().contactUs}",
+                                          onTap: () {
+                                            push(context, const ContactUsScreen());
+                                          },
+                                          icon: 'contactUS',
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        Visibility(
+                                          visible: true,
+                                          child:MyShared.getBoolean(key: MySharedKeys.userDoctorStatus) == false ?
+                                          ListViewDrawer(
+                                            title: "${S().licenses}",
+                                            onTap: () {
+                                              push(context, LicenseScreen());
+                                            },
+                                            icon: 'license',
+                                          ) : Container(),
+                                        ),
 
-                      AppButton(
-                        onPressed: () async {
-                          SharedPreferences preferences =
-                              await SharedPreferences.getInstance();
-                          await preferences.clear();
-                          pushAndRemoveUntil(context, LoginScreen());
-                        },
-                        label: '${S().logOut}',
-                        sizeFont: 16.sp,
-                        bgColor: AppColors.primary,
-                        borderRadius: BorderRadius.circular(12.sp),
-                        padding: EdgeInsets.all(10.sp),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        ListViewDrawer(
+                                          title: "${S().chat}",
+                                          onTap: () {
+                                            push(
+                                                context,
+                                                Chat(
+                                                  key: UniqueKey(),
+                                                ));
+                                          },
+                                          icon: 'chat',
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        ListViewDrawer(
+                                          title: "${S().helpCenter}",
+                                          onTap: () {
+                                            push(context, HelpCenter());
+                                          },
+                                          icon: 'help',
+                                        ),
+                                        SizedBox(
+                                          height: 0.5.h,
+                                        ),
+                                        ListViewDrawer(
+                                          title: "${S().termsAndCondition}",
+                                          onTap: () {
+                                            push(context, TermsScreen());
+                                          },
+                                          icon: 'terms',
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                                AppButton(
+                                  onPressed: () async {
+                                    SharedPreferences preferences =
+                                        await SharedPreferences.getInstance();
+                                    await preferences.clear();
+                                    pushAndRemoveUntil(context, LoginScreen());
+                                  },
+                                  label: '${S().logOut}',
+                                  sizeFont: 16.sp,
+                                  bgColor: AppColors.primary,
+                                  borderRadius: BorderRadius.circular(12.sp),
+                                  padding: EdgeInsets.all(10.sp),
+                                ),
+                                SizedBox(
+                                  height: 2.h,
+                                )
+                              ],
+                            ),
+                          ),
+                        ]),
                       ),
-                      SizedBox(
-                        height: 2.h,
-                      )
-                    ],
-                  ),
-                ),
-              ]),
-            ),
-          );
-        },
-      ),
-    ),
-);
+                    );
+          },
+        ),
+      );
   }
 }

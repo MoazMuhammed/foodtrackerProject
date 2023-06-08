@@ -18,11 +18,13 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MyShared.init();
-  MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
+  // MyShared.putBoolean(key: MySharedKeys.isDoctor, value: false);
   await MyDio.init();
   safePrint(MyShared.getString(key: MySharedKeys.apiToken));
-  safePrint(MyShared.getInt(key: MySharedKeys.UID));
-  safePrint(MyShared.getString(key: MySharedKeys.userImage));
+  // safePrint(MyShared.getInt(key: MySharedKeys.UID));
+  // safePrint(MyShared.getString(key: MySharedKeys.userImage));
+  // safePrint(MyShared.getString(key: MySharedKeys.userPatientStatus));
+  safePrint( " doc ${MyShared.getBoolean(key: MySharedKeys.userDoctorStatus)}" );
   runApp(ChangeNotifierProvider<ThemeProvider>(
       create: (_) =>
       ThemeProvider()

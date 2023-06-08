@@ -4,11 +4,9 @@ import 'package:foodtracker/core/cubits/categoy/get/allergy_type_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
-import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/widgets/app_bar.dart';
 import 'package:foodtracker/features/category/category_details/view/category_details_screen.dart';
 import 'package:foodtracker/features/category/data/getAllergyModel.dart';
-import 'package:foodtracker/features/category/widget/card_allergy_type_widget.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 

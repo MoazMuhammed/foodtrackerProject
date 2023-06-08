@@ -71,7 +71,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   }
                   if (state is UserDataFailure) {
                     hideLoading();
-                    showError("Error");
                   }
                 },
                 builder: (context, state) {

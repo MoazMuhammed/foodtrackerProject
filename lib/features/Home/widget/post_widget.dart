@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
-import 'package:foodtracker/core/utills/navigators.dart';
-import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/utills/svg.dart';
-import 'package:foodtracker/features/Home/data/postsModel.dart';
-import 'package:foodtracker/features/Home/view/comment_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:readmore/readmore.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'reacts_widget.dart';
-import 'text_form_field_comment.dart';
 
 class PostWidget extends StatefulWidget {
   const PostWidget(
@@ -154,7 +147,7 @@ class _PostWidgetState extends State<PostWidget> {
                         Expanded(
                           child: ReactWidget(
                             image: 'like',
-                            number: "like",
+                            number: "${S().like}",
                             onPressed:widget.like,
                             color: widget.color,
                           ),
@@ -164,9 +157,8 @@ class _PostWidgetState extends State<PostWidget> {
                             onTap: widget.commentScreen,
                             child: ReactWidget(
                               image: 'comment',
-                              number: "Comment",
+                              number: "${S().comment}",
                               onPressed:widget.commentScreen,
-                              color: widget.color,
                             ),
                           ),
                         ),
@@ -175,9 +167,8 @@ class _PostWidgetState extends State<PostWidget> {
                             onTap: widget.share,
                             child: ReactWidget(
                               image: 'share',
-                              number: "Share",
+                              number: "${S().share}",
                               onPressed:widget.share,
-                              color: widget.color,
                             ),
                           ),
                         ),

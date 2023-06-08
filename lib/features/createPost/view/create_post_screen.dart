@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodtracker/core/cubits/posts/get/get_posts_cubit.dart';
 import 'package:foodtracker/core/cubits/posts/post/posts_cubit.dart';
 import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
@@ -13,8 +14,9 @@ import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/features/contactUS/widget/message_widget.dart';
 import 'package:foodtracker/features/createPost/widget/allergySelected.dart';
 import 'package:foodtracker/features/createPost/widget/create_post_bar_widget.dart';
-import 'package:foodtracker/features/createPost/widget/spinner_widget.dart';
 import 'package:foodtracker/features/createPost/widget/uploadFile.dart';
+import 'package:foodtracker/generated/l10n.dart';
+import 'package:foodtracker/main_screens.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -31,9 +33,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   TextEditingController textController = TextEditingController();
   SingleValueDropDownController allergySelected = SingleValueDropDownController();
   final cubitUserDetails = UserDataCubit();
-
-  File? _image;
   final pickedFile = ImagePicker();
+  final cubitPosts = GetPostsCubit();
+
+  File? _image ;
   final cubit = PostsCubit();
 
 
@@ -43,6 +46,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
+        pop(context);
+
       });
     }
   }
@@ -52,6 +57,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
+        pop(context);
+
       });
     }
   }
@@ -61,6 +68,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
+        pop(context);
       });
     }
   }
@@ -70,6 +78,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
+        showSuccess("image Uploaded");
+        pop(context);
       });
     }
   }
@@ -94,7 +104,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   void initState() {
     cubitUserDetails.getUserDetails(id: MyShared.getInt(key: MySharedKeys.UID));
+
     super.initState();
+
   }
 
   @override
@@ -111,7 +123,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           if (state is PostsSuccess) {
             hideLoading();
             showSuccess("Published!");
-            pop(context);
+            pushAndRemoveUntil(context, MainScreens());
           }
           if (state is PostsFailure) {
             hideLoading();
@@ -129,6 +141,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   onPressed: () {
                     if(_image != null  ){
                       safePrint("message");
+
                       cubit.pushPosts(
                           title: textController.text,
                           image: _image!.path,
@@ -140,88 +153,82 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       showError("You have to enter text and image");
                     }
                   },
-                  title: " Post"),
+                  title: " ${S().createPost}"),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18.sp),
+                child: Row(
+                  children: [
+                    AppImage(
+                        imageUrl:
+                            MyShared.getString(key: MySharedKeys.pic),
+
+                        width: 30.sp,
+                        height: 30.sp,
+                        borderRadius: BorderRadius.circular(30.sp)),
+                    SizedBox(
+                      width: 1.5.w,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            MyShared.getString(key: MySharedKeys.name),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16.sp),
+                          ),
+                      SizedBox(height: 1.h,),
+                          Container(
+                            height: 6.h,
+                            child: DropDownTextFormField(
+                              validators: (value) {
+                                if (value.toString().isEmpty) {
+                                  return "enter Allergy Type";
+                                }
+                                return null;
+                              },
+                              hint: "${S().allergyType}",
+                              controller: allergySelected,
+                              enabled: false,
+                              count: 6,
+                              dropDownList:  [
+                                DropDownValueModel(
+                                    name: "${S().wheatAllergy}", value: 3),
+                                DropDownValueModel(
+                                    name: "${S().milkAllergy}", value: 4),
+                                DropDownValueModel(
+                                    name: "${S().eggAllergy}", value: 5),
+                                DropDownValueModel(
+                                    name: "${S().nutsAllergy}", value: 6),
+                                DropDownValueModel(
+                                    name: "${S().meatAllergy}", value: 7),
+                                DropDownValueModel(
+                                    name: "${S().fishAllergy}", value: 8),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
               SizedBox(
                 height: 4.h,
               ),
-              SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 18.sp),
-                  child: Row(
-                    children: [
-                      AppImage(
-                          imageUrl:
-                          'http://moazmuhammed.pythonanywhere.com' +
-                              cubitUserDetails
-                                  .userData
-                                  .profilePic,
-                          width: 30.sp,
-                          height: 30.sp,
-                          borderRadius: BorderRadius.circular(30.sp)),
-                      SizedBox(
-                        width: 1.5.w,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              cubitUserDetails
-                                  .userData
-                                  .username,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15.sp),
-                            ),
-                        SizedBox(height: 1.h,),
-                            Container(
-                              height: 6.h,
-                              child: DropDownTextFormField(
-                                validators: (value) {
-                                  if (value.toString().isEmpty) {
-                                    return "enter Allergy Type";
-                                  }
-                                  return null;
-                                },
-                                hint: "Allergy Types",
-                                controller: allergySelected,
-                                enabled: false,
-                                count: 6,
-                                dropDownList:  [
-                                  DropDownValueModel(
-                                      name: "Wheat Allergy", value: 3),
-                                  DropDownValueModel(
-                                      name: "Milk Allergy", value: 4),
-                                  DropDownValueModel(
-                                      name: "Egg Allergy", value: 5),
-                                  DropDownValueModel(
-                                      name: "Nuts Allergy", value: 6),
-                                  DropDownValueModel(
-                                      name: "Meat Allergy", value: 7),
-                                  DropDownValueModel(
-                                      name: "Fish Allergy", value: 8),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+              MessageWidget(
+                hint: "${S().post}",
+                keyboardType: TextInputType.text,
+                controller: textController,
+                isPassword: false,
+                textInputAction: TextInputAction.done,
+                textInputType: TextInputType.text,
+                borderRadius: BorderRadius.circular(20.sp),
+                minLine: 6,
+                maxLine: 9,
               ),
-              Expanded(
-                child: MessageWidget(
-                  hint: "Show What's in your Mind ….",
-                  keyboardType: TextInputType.text,
-                  controller: textController,
-                  isPassword: false,
-                  textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.text,
-                  borderRadius: BorderRadius.circular(20.sp),
-                  minLine: 9,
-                  maxLine: 11,
-                ),
-              ),
+
+
               Spacer(),
               UploadFile(
                 onPressed: () {

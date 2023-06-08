@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
-import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class RecommendedProductWidget extends StatefulWidget {
@@ -77,13 +77,12 @@ class _RecommendedProductWidgetState extends State<RecommendedProductWidget> {
                           flex: 2,
                         ),
                         Expanded(
-                          child: TextButton(onPressed: widget.ratePressed, child: Text("rate",style: TextStyle(fontSize: 15.sp),)),
+                          child: TextButton(onPressed: widget.ratePressed, child: Text("${S().rate}",style: TextStyle(fontSize: 14.sp),)),
                           flex: 1,
                         )
-                        // AppSVG(assetName: 'cart',color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white)
                       ],
                     ),
-                    Expanded(child: AppButton(onPressed: widget.addToCart, label: "Add to cart", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(12.sp),margin: EdgeInsets.symmetric(horizontal: 8.sp),))
+                    Expanded(child: AppButton(onPressed: widget.addToCart, label: "${S().addToCart}", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(12.sp),margin: EdgeInsets.symmetric(horizontal: 8.sp),))
                   ],
                 ),
               ),
@@ -92,6 +91,5 @@ class _RecommendedProductWidgetState extends State<RecommendedProductWidget> {
         ),
       ),
     );
-    ;
   }
 }

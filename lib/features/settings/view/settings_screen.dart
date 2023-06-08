@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtracker/core/cubits/userData/user_data_cubit.dart';
 import 'package:foodtracker/core/styles/colors.dart';
-import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
@@ -12,6 +9,7 @@ import 'package:foodtracker/features/settings/editPersonalInformation/view/edit_
 import 'package:foodtracker/features/settings/widget/language_dialog.dart';
 import 'package:foodtracker/features/settings/widget/profile_setting_widget.dart';
 import 'package:foodtracker/features/settings/widget/setting_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ForgetPasswordBarWidget(
-                  onPressed: () => pop(context), title: "Settings"),
+                  onPressed: () => pop(context), title: "${S().settings}"),
               ProfileSettingWidget(
                 onPressed: () => push(context, ProfileScreen()),
               ),
@@ -43,18 +41,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Padding(
                 padding:
                     EdgeInsets.symmetric(vertical: 8.sp, horizontal: 22.sp),
-                child: Text("Account",
+                child: Text("${S().account}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 16.sp)),
               ),
               SettingWidget(
                 image: 'editProfile',
-                title: 'Edit Personal Information',
+                title: '${S().editPersonalInformation}',
                 onPressed: () => push(context, EditPersonalInformation()),
               ),
               SettingWidget(
                 image: 'lang',
-                title: 'Language',
+                title: '${S().lang}',
                 onPressed: () {
                   showDialog(
                       context: context,
@@ -72,7 +70,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       await preferences.clear();
                       pushAndRemoveUntil(context, LoginScreen());
                     },
-                    label: "LogOut",
+                    label: "${S().logOut}",
                     sizeFont: 16.sp,
                     bgColor: AppColors.primary,
                     borderRadius: BorderRadius.circular(14.sp),

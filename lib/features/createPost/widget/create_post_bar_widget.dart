@@ -3,7 +3,7 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
-import 'package:foodtracker/features/Home/view/home_screen.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CreatePostBarWidget extends StatelessWidget {
@@ -35,7 +35,7 @@ class CreatePostBarWidget extends StatelessWidget {
         ),
         const Spacer(),
         Expanded(
-          child: AppButton(onPressed: onPressed, label: "Create", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(14.sp)),
+          child: AppButton(onPressed: onPressed, label: "${S().create}", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(14.sp)),
         )
       ],
     );

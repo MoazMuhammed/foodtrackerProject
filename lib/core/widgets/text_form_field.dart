@@ -20,7 +20,7 @@ class AppTextField extends StatefulWidget {
     required this.textInputAction,
     required this.textInputType,
      this.title = "",  this.obscureText = false, this.enable,
-    this.isImage = false,  this.uploadMedicalId,
+    this.isImage = false,  this.uploadMedicalId, this.prefixIcon,
   }) : super(key: key);
   final Color textColor;
   final String hint;
@@ -38,6 +38,7 @@ class AppTextField extends StatefulWidget {
   BorderRadius? borderRadius;
   EdgeInsetsGeometry? margin;
   EdgeInsetsGeometry? padding;
+  final Widget? prefixIcon;
 
  late bool obscureText;
 
@@ -76,7 +77,7 @@ class _AppTextFieldState extends State<AppTextField> {
             decoration: InputDecoration(
               focusColor: AppColors.black,
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.container,width: 0.2.w)),
+                  borderSide: BorderSide(color: AppColors.container,width: 0.2.w)),prefixIcon:widget.prefixIcon,
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.sp))),
               suffixIcon: Stack(

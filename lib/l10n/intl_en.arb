@@ -1,10 +1,15 @@
 {
   "email" : "Email",
+  "username" : "UserName",
   "password" : "Password",
+  "licenses" : "Licenses",
   "signIn" : "Sign In",
   "welcome" : "Welcome",
   "enjoy" : "Enjoy Your Journey",
   "enterEmail": "Enter Your Email",
+  "enterUserName": "Enter Your UserName",
+  "enterPhone": "Enter Your Phone",
+  "enterConfirmPassword": "Enter Your Confirm Password",
   "enterPassword" : "Enter Your password",
   "forgetPasswordLogin" : "Forget password?",
   "haveAcc" : "Do not have an Account?",
@@ -70,7 +75,7 @@
   "contactUs" : "Contact Us",
   "chat" : "Chat",
   "contactUsTitle" : "Talk To Our Team",
-  "contactUsDescription" : "It Has Survived Not Only Five Centuries, But Also The Leap Into Electronic Typesetting, Remaining Essentially Unchanged. It Was Popularised In The 1960S With The Release",
+  "contactUsDescription" : "The \"Contact Us\" functionality is commonly used in applications or websites to provide a means for users to get in touch with the organization or support team. It allows users to send inquiries, provide feedback, report issues, or seek assistance.",
   "firstName" : "First Name",
   "lastName" : "Last Name",
   "emailAddress" : "Email Address",
@@ -98,5 +103,83 @@
   "agreementToTermsDescription": "By accessing or using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use the Services.",
   "updateToTermsDescription" : "We reserve the right to update or modify these Terms at any time without prior notice. Your use of the Services following any such modification constitutes your agreement to be bound by the modified Terms.",
   "updateToTerms" : "Update To Terms",
-  "logOut" : "Log Out"
+  "logOut" : "Log Out",
+  "like" : "Like",
+  "comment" : "Comments",
+  "share" : "Share",
+  "noComment" : "Sorry their is no comments for Now",
+  "onlyAdmin" : "only The Admins And Doctors can set a comment",
+  "details" : "Details :",
+  "symptomsAndSigns" : "Symptoms and signs :",
+  "protection" : "Protection :",
+  "allergyType" : "Allergy Type",
+  "checkData" : "Check Data",
+  "medicalAnalysis" : "Medical Analysis",
+  "medicalAnalysisDescription" : "Medical Analyzes Are A Feature Provided By The Program So That The User Or Any Person Can View And Interpret The Results Of The Analyzes Without The Need For A Doctor",
+  "warning" : "Warning",
+  "warningDescription" : "This result is not 100% correct. In the event that the symptoms were very serious, you should go to the nearest doctor or hospital.",
+  "startNow" : "Start Now",
+  "iGENumber" : "Enter IGE Total Number",
+  "processCompleted" : "Process completed",
+  "iGEResult" : "IGE Total Results :",
+  "status" : "You Are In :",
+  "normalLevel" : "Normal Level :",
+  "warmingLevel" : "Warming level :",
+  "dangerLevel" : "Danger Level :",
+  "iGETotalLevels" : "IGE Total Levels :",
+  "warmingLevelDescription" : "It may be: allergic disorders - some types of infections - autoimmune diseases.",
+  "normalLevelDescription" : "It is not evidence of a specific disease.",
+  "allergyClasses" : "Allergy Classes",
+  "recommendedProducts" : "Recommended Products",
+  "addToCart" : "Add to cart",
+  "rate" : "Rate",
+  "allergyProductDetails" : "Allergy Product Details",
+  "settings" : "Settings",
+  "account" : "Account",
+  "editPersonalInformation" : "Edit Personal Information",
+  "lang" : "Language",
+  "logOut" : "LogOut",
+  "updateourPicture" : "Update Your Picture",
+  "update" : "Update",
+  "name" : "Name",
+  "checkCart" : "Check Cart",
+  "orderSummary" : "Order Summary",
+  "subtotal" : "Subtotal",
+  "total" : "Total",
+  "grandTotal" : "Grand Total",
+  "checkout" : "Checkout",
+  "ownerName" : "Owner Name",
+  "ownerTelephone" : "Owner Telephone",
+  "addressOfShipment" : "Address of shipment",
+  "dateOfDelivery" : "Date of Delivery",
+  "dateOfShipment" : "Date of shipment",
+  "paymentMethod" : "Payment Method",
+  "congDes" : "Your order has been done correctly",
+  "posts" : "Posts",
+  "postHint" : "Show What's in your Mind ….",
+  "pic" : "Picture",
+  "wheatAllergy" : "Wheat Allergy",
+  "milkAllergy" : "Milk Allergy",
+  "eggAllergy" : "Egg Allergy",
+  "nutsAllergy" : "Nuts Allergy",
+  "meatAllergy" : "Meat Allergy",
+  "fishAllergy" : "Fish Allergy",
+  "howToAnalysisFood" : "To See How To Analysis Food",
+  "quickAccess" : "Quick Access",
+  "addToCartSuccessfully" : "Item added to cart successfully"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -10,6 +10,5 @@ class DeleteItemFromCartCubit extends Cubit<DeleteItemFromCartState> {
   
   deleteItem({required int Id})async{
     MyDio.delete(endPoint: EndPoints.deleteItem+Id.toString()+'/');
-
   }
 }

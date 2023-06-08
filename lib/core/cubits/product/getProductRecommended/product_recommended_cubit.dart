@@ -10,7 +10,6 @@ part 'product_recommended_state.dart';
 class ProductRecommendedCubit extends Cubit<ProductRecommendedState> {
   ProductRecommendedCubit() : super(ProductRecommendedInitial());
   List<GetProductRecommended> productRecommended = [];
-  List<Allergies> allergies = [];
 
 
   getProductRecommended()async{
@@ -24,7 +23,6 @@ class ProductRecommendedCubit extends Cubit<ProductRecommendedState> {
         .reversed
         .toList();
 
-    allergies = productRecommended.map((e) => e.allergies).expand((element) => element).toList();
 
 
     safePrint(response);

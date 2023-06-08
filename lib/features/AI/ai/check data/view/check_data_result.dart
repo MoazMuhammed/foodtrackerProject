@@ -4,6 +4,7 @@ import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/features/AI/ai/check%20data/widget/app_bar_data_widget.dart';
 import 'package:foodtracker/features/drawer/widget/drawer.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CheckDataResult extends StatefulWidget {
@@ -27,7 +28,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
             children: [
               Column(
                 children: [
-                  AppBarDataCheckWidget(title: 'Check Data',),
+                  AppBarDataCheckWidget(title: '${S().checkData}',),
                   SizedBox(
                     height: 4.h,
                   ),
@@ -36,7 +37,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
                     height: 2.5.h,
                   ),
                   Text(
-                    "Process completed",
+                    "${S().processCompleted}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 15.5.sp),
                   ),
@@ -46,7 +47,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
                 height: 5.h,
               ),
               Text(
-                "IGE Total Results :",
+                "${S().iGEResult}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.sp),
               ),
               Padding(
@@ -55,7 +56,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
                 child: Row(
                   children: [
                     Text(
-                      "IGE Total Results :",
+                      "${S().iGEResult}",
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 15.sp),
                     ),
@@ -72,7 +73,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
               ),
               Center(
                   child: Text(
-                "You Are In :",
+                "${S().status}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
               )),
               Column(
@@ -103,12 +104,12 @@ class _CheckDataResultState extends State<CheckDataResult> {
                         Text(
                           300 >= MyShared.getInt(key: MySharedKeys.iGE) &&
                                   MyShared.getInt(key: MySharedKeys.iGE) >= 150
-                              ? 'Normal Level:'
+                              ? '${S().normalLevel}'
                               : 150 >= MyShared.getInt(key: MySharedKeys.iGE) &&
                                       MyShared.getInt(key: MySharedKeys.iGE) >=
                                           0
-                                  ? 'Warming level:'
-                                  : 'Danger Level:',
+                                  ? '${S().warmingLevel}'
+                                  : '${S().dangerLevel}',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
@@ -134,8 +135,8 @@ class _CheckDataResultState extends State<CheckDataResult> {
                         ? ''
                         : 150 >= MyShared.getInt(key: MySharedKeys.iGE) &&
                                 MyShared.getInt(key: MySharedKeys.iGE) >= 0
-                            ? 'It is not evidence of a specific disease.'
-                            : 'It may be: allergic disorders - some types of infections - autoimmune diseases.',
+                            ? '${S().normalLevelDescription}'
+                            : '${S().warmingLevelDescription}',
                     style:
                         TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
@@ -143,7 +144,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
                 ],
               ),
               SizedBox(height: 3.h,),
-              Text("IGE Total Levels :",
+              Text("${S().iGETotalLevels}",
                 style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: 17.sp),),
               SizedBox(height: 2.h,),
@@ -155,7 +156,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
                   SizedBox(
                     width: 3.w,
                   ),
-                  Text('Normal Level:',
+                  Text('${S().normalLevel}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -176,7 +177,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
                   SizedBox(
                     width: 3.w,
                   ),
-                  Text('Warming Level:',
+                  Text('${S().warmingLevel}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -197,7 +198,7 @@ class _CheckDataResultState extends State<CheckDataResult> {
                   SizedBox(
                     width: 3.w,
                   ),
-                  Text('Danger Level:',
+                  Text('${S().dangerLevel}',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(

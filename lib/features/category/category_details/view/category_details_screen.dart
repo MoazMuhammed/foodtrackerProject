@@ -7,12 +7,11 @@ import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
-import 'package:foodtracker/core/utills/safe_print.dart';
-import 'package:foodtracker/core/widgets/app_bar.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/features/AI/ai/check%20data/view/check_data_enter.dart';
 import 'package:foodtracker/features/AI/ai/check%20data/widget/app_bar_data_widget.dart';
 import 'package:foodtracker/features/drawer/widget/drawer.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CategoryDetailsScreen extends StatefulWidget {
@@ -48,7 +47,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const AppBarDataCheckWidget(title: 'Allergy Type',),
+                     AppBarDataCheckWidget(title: '${S().allergyType}',),
                     SizedBox(
                       height: 5.h,
                     ),
@@ -87,7 +86,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
                     )),
                     Text(
-                      "Details :",
+                      "${S().details}",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17.sp),
                     ),
@@ -100,7 +99,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       ),
                     ),
                     Text(
-                      "Symptoms and signs :",
+                      "${S().symptomsAndSigns}",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17.sp),
                     ),
@@ -113,7 +112,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       ),
                     ),
                     Text(
-                      "protection :",
+                      "${S().protection}",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17.sp),
                     ),
@@ -128,18 +127,13 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                     SizedBox(
                       height: 3.h,
                     ),
-                    Text(
-                      "Read food labels carefully",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
-                    ),
-                    SizedBox(height: 1.h,),
                     Padding(
                       padding:  EdgeInsets.symmetric(horizontal: 14.sp),
                       child: Row(
                         children: [
                           Text(
-                            "To See How To Analysis Food",
+                            "${S().howToAnalysisFood}",
+
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16.sp),
                           ),
@@ -147,7 +141,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                             child: AppButton(
                                 onPressed: () {
                                   push(context,CheckDataEnter() );
-                                }, label: "Quick Access", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(14.sp),margin: EdgeInsets.symmetric(horizontal: 14.sp)),
+                                }, label: "${S().quickAccess}", sizeFont: 14.sp,bgColor: AppColors.primary,borderRadius: BorderRadius.circular(14.sp),margin: EdgeInsets.symmetric(horizontal: 14.sp)),
                          flex: 2,
                           )
                         ],

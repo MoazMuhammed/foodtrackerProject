@@ -60,11 +60,31 @@ class S {
     );
   }
 
+  /// `UserName`
+  String get username {
+    return Intl.message(
+      'UserName',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Password`
   String get password {
     return Intl.message(
       'Password',
       name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Licenses`
+  String get licenses {
+    return Intl.message(
+      'Licenses',
+      name: 'licenses',
       desc: '',
       args: [],
     );
@@ -105,6 +125,36 @@ class S {
     return Intl.message(
       'Enter Your Email',
       name: 'enterEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Your UserName`
+  String get enterUserName {
+    return Intl.message(
+      'Enter Your UserName',
+      name: 'enterUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Your Phone`
+  String get enterPhone {
+    return Intl.message(
+      'Enter Your Phone',
+      name: 'enterPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Your Confirm Password`
+  String get enterConfirmPassword {
+    return Intl.message(
+      'Enter Your Confirm Password',
+      name: 'enterConfirmPassword',
       desc: '',
       args: [],
     );
@@ -390,10 +440,10 @@ class S {
     );
   }
 
-  /// `Allergy type`
+  /// `Allergy Type`
   String get allergyType {
     return Intl.message(
-      'Allergy type',
+      'Allergy Type',
       name: 'allergyType',
       desc: '',
       args: [],
@@ -610,20 +660,20 @@ class S {
     );
   }
 
-  /// `Normal Level`
+  /// `Normal Level :`
   String get normalLevel {
     return Intl.message(
-      'Normal Level',
+      'Normal Level :',
       name: 'normalLevel',
       desc: '',
       args: [],
     );
   }
 
-  /// `Danger Level`
+  /// `Danger Level :`
   String get dangerLevel {
     return Intl.message(
-      'Danger Level',
+      'Danger Level :',
       name: 'dangerLevel',
       desc: '',
       args: [],
@@ -760,10 +810,10 @@ class S {
     );
   }
 
-  /// `It Has Survived Not Only Five Centuries, But Also The Leap Into Electronic Typesetting, Remaining Essentially Unchanged. It Was Popularised In The 1960S With The Release`
+  /// `The "Contact Us" functionality is commonly used in applications or websites to provide a means for users to get in touch with the organization or support team. It allows users to send inquiries, provide feedback, report issues, or seek assistance.`
   String get contactUsDescription {
     return Intl.message(
-      'It Has Survived Not Only Five Centuries, But Also The Leap Into Electronic Typesetting, Remaining Essentially Unchanged. It Was Popularised In The 1960S With The Release',
+      'The "Contact Us" functionality is commonly used in applications or websites to provide a means for users to get in touch with the organization or support team. It allows users to send inquiries, provide feedback, report issues, or seek assistance.',
       name: 'contactUsDescription',
       desc: '',
       args: [],
@@ -1040,11 +1090,521 @@ class S {
     );
   }
 
-  /// `Log Out`
+  /// `LogOut`
   String get logOut {
     return Intl.message(
-      'Log Out',
+      'LogOut',
       name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Like`
+  String get like {
+    return Intl.message(
+      'Like',
+      name: 'like',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share`
+  String get share {
+    return Intl.message(
+      'Share',
+      name: 'share',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry their is no comments for Now`
+  String get noComment {
+    return Intl.message(
+      'Sorry their is no comments for Now',
+      name: 'noComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `only The Admins And Doctors can set a comment`
+  String get onlyAdmin {
+    return Intl.message(
+      'only The Admins And Doctors can set a comment',
+      name: 'onlyAdmin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details :`
+  String get details {
+    return Intl.message(
+      'Details :',
+      name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Symptoms and signs :`
+  String get symptomsAndSigns {
+    return Intl.message(
+      'Symptoms and signs :',
+      name: 'symptomsAndSigns',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Protection :`
+  String get protection {
+    return Intl.message(
+      'Protection :',
+      name: 'protection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter IGE Total Number`
+  String get iGENumber {
+    return Intl.message(
+      'Enter IGE Total Number',
+      name: 'iGENumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Process completed`
+  String get processCompleted {
+    return Intl.message(
+      'Process completed',
+      name: 'processCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IGE Total Results :`
+  String get iGEResult {
+    return Intl.message(
+      'IGE Total Results :',
+      name: 'iGEResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You Are In :`
+  String get status {
+    return Intl.message(
+      'You Are In :',
+      name: 'status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warming level :`
+  String get warmingLevel {
+    return Intl.message(
+      'Warming level :',
+      name: 'warmingLevel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IGE Total Levels :`
+  String get iGETotalLevels {
+    return Intl.message(
+      'IGE Total Levels :',
+      name: 'iGETotalLevels',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It may be: allergic disorders - some types of infections - autoimmune diseases.`
+  String get warmingLevelDescription {
+    return Intl.message(
+      'It may be: allergic disorders - some types of infections - autoimmune diseases.',
+      name: 'warmingLevelDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It is not evidence of a specific disease.`
+  String get normalLevelDescription {
+    return Intl.message(
+      'It is not evidence of a specific disease.',
+      name: 'normalLevelDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allergy Classes`
+  String get allergyClasses {
+    return Intl.message(
+      'Allergy Classes',
+      name: 'allergyClasses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommended Products`
+  String get recommendedProducts {
+    return Intl.message(
+      'Recommended Products',
+      name: 'recommendedProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message(
+      'Add to cart',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate`
+  String get rate {
+    return Intl.message(
+      'Rate',
+      name: 'rate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allergy Product Details`
+  String get allergyProductDetails {
+    return Intl.message(
+      'Allergy Product Details',
+      name: 'allergyProductDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account`
+  String get account {
+    return Intl.message(
+      'Account',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Personal Information`
+  String get editPersonalInformation {
+    return Intl.message(
+      'Edit Personal Information',
+      name: 'editPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get lang {
+    return Intl.message(
+      'Language',
+      name: 'lang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Your Picture`
+  String get updateourPicture {
+    return Intl.message(
+      'Update Your Picture',
+      name: 'updateourPicture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message(
+      'Update',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check Cart`
+  String get checkCart {
+    return Intl.message(
+      'Check Cart',
+      name: 'checkCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Summary`
+  String get orderSummary {
+    return Intl.message(
+      'Order Summary',
+      name: 'orderSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subtotal`
+  String get subtotal {
+    return Intl.message(
+      'Subtotal',
+      name: 'subtotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message(
+      'Total',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grand Total`
+  String get grandTotal {
+    return Intl.message(
+      'Grand Total',
+      name: 'grandTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get checkout {
+    return Intl.message(
+      'Checkout',
+      name: 'checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owner Name`
+  String get ownerName {
+    return Intl.message(
+      'Owner Name',
+      name: 'ownerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owner Telephone`
+  String get ownerTelephone {
+    return Intl.message(
+      'Owner Telephone',
+      name: 'ownerTelephone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address of shipment`
+  String get addressOfShipment {
+    return Intl.message(
+      'Address of shipment',
+      name: 'addressOfShipment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of Delivery`
+  String get dateOfDelivery {
+    return Intl.message(
+      'Date of Delivery',
+      name: 'dateOfDelivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of shipment`
+  String get dateOfShipment {
+    return Intl.message(
+      'Date of shipment',
+      name: 'dateOfShipment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Method`
+  String get paymentMethod {
+    return Intl.message(
+      'Payment Method',
+      name: 'paymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been done correctly`
+  String get congDes {
+    return Intl.message(
+      'Your order has been done correctly',
+      name: 'congDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Posts`
+  String get posts {
+    return Intl.message(
+      'Posts',
+      name: 'posts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show What's in your Mind ….`
+  String get postHint {
+    return Intl.message(
+      'Show What\'s in your Mind ….',
+      name: 'postHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Picture`
+  String get pic {
+    return Intl.message(
+      'Picture',
+      name: 'pic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wheat Allergy`
+  String get wheatAllergy {
+    return Intl.message(
+      'Wheat Allergy',
+      name: 'wheatAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Milk Allergy`
+  String get milkAllergy {
+    return Intl.message(
+      'Milk Allergy',
+      name: 'milkAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Egg Allergy`
+  String get eggAllergy {
+    return Intl.message(
+      'Egg Allergy',
+      name: 'eggAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nuts Allergy`
+  String get nutsAllergy {
+    return Intl.message(
+      'Nuts Allergy',
+      name: 'nutsAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meat Allergy`
+  String get meatAllergy {
+    return Intl.message(
+      'Meat Allergy',
+      name: 'meatAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fish Allergy`
+  String get fishAllergy {
+    return Intl.message(
+      'Fish Allergy',
+      name: 'fishAllergy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To See How To Analysis Food`
+  String get howToAnalysisFood {
+    return Intl.message(
+      'To See How To Analysis Food',
+      name: 'howToAnalysisFood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick Access`
+  String get quickAccess {
+    return Intl.message(
+      'Quick Access',
+      name: 'quickAccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item added to cart successfully`
+  String get addToCartSuccessfully {
+    return Intl.message(
+      'Item added to cart successfully',
+      name: 'addToCartSuccessfully',
       desc: '',
       args: [],
     );

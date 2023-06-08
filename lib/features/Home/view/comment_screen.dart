@@ -44,6 +44,7 @@ class _CommentScreenState extends State<CommentScreen> {
   void initState() {
     cubit.getPost(id: widget.id);
     cubitUserDetails.getUserDetails(id: MyShared.getInt(key: MySharedKeys.UID));
+
     super.initState();
   }
 
@@ -65,7 +66,7 @@ class _CommentScreenState extends State<CommentScreen> {
               }
               if (state is AddCommentFailure) {
                 hideLoading();
-                showError("Error");
+                showError("Empty Comment");
               }
             },
             builder: (context, state) {
@@ -126,7 +127,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                           height: 1.h,
                                         ),
                                         Text(
-                                            "Sorry their is no comments for Now ",
+                                            "${S().noComment} ",
                                             style: TextStyle(
                                                 fontSize: 15.sp)),
                                       ],
@@ -163,7 +164,7 @@ class _CommentScreenState extends State<CommentScreen> {
                             Visibility(
                                 visible: true,
                                 child: MyShared.getBoolean(
-                                    key: MySharedKeys.is_doctor)
+                                    key: MySharedKeys.userDoctorStatus) == true
                                     ? Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 12.sp, vertical: 12.sp),
@@ -186,22 +187,26 @@ class _CommentScreenState extends State<CommentScreen> {
                                           icon: Icons.send,
                                           sufColor: MyShared.getBoolean(
                                               key: MySharedKeys
-                                                  .is_doctor) ==
+                                                  .userDoctorStatus) ==
                                               true
                                               ? AppColors.primary
                                               : Colors.grey,
                                           enable: MyShared.getBoolean(
                                               key: MySharedKeys
-                                                  .is_doctor) ==
+                                                  .userDoctorStatus) ==
                                               true
                                               ? true
                                               : false,
                                           onPressed: () {
                                             safePrint("message");
+                                            cubit.getPost(id: widget.id);
+
                                             cubitComment.postComment(
                                                 postID: widget.id,
                                                 text:
                                                 addCommentController.text);
+                                            cubit.getPost(id: widget.id);
+
                                           },
                                         ),
                                       )
@@ -218,7 +223,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                   ),
                                   child: Center(
                                       child: Text(
-                                          "only The Admins And Doctors can set a comment")),
+                                          "${S().onlyAdmin}")),
                                 )),
                           ],
                         ),

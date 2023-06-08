@@ -21,7 +21,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
       userData = UserDataModel.fromJson(response!.data);
       safePrint(userData.username);
-      emit(UserDataSuccess(userData!.profilePic));
+      emit(UserDataSuccess(response.data));
 
     } catch (e) {
       emit(UserDataFailure(e.toString()));

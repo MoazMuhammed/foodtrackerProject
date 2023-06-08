@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodtracker/core/styles/colors.dart';
-import 'package:foodtracker/core/utills/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 // ignore: must_be_immutable

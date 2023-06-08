@@ -27,7 +27,7 @@ class _LicenseScreenState extends State<LicenseScreen> {
   final pickedFile = ImagePicker();
 
   uploadImageWithCameraForLicenses() async {
-    var pickedImage = await pickedFile.getImage(source: ImageSource.camera);
+    var pickedImage = await pickedFile.pickImage(source: ImageSource.camera);
     if (pickedImage != null) {
       setState(() {
         license_pic = File(pickedImage.path);
@@ -36,7 +36,7 @@ class _LicenseScreenState extends State<LicenseScreen> {
   }
 
   uploadImageWithCameraForImage() async {
-    var pickedImage = await pickedFile.getImage(source: ImageSource.camera);
+    var pickedImage = await pickedFile.pickImage(source: ImageSource.camera);
     if (pickedImage != null) {
       setState(() {
         face_pic = File(pickedImage.path);
@@ -58,7 +58,6 @@ class _LicenseScreenState extends State<LicenseScreen> {
           }
           if (state is LicenseFailure) {
             hideLoading();
-            showError("Error");
           }
         },
         builder: (context, state) {
@@ -81,6 +80,27 @@ class _LicenseScreenState extends State<LicenseScreen> {
                     isPassword: false,
                     enable: false,
                     isImage: true,
+                    prefixIcon: Container(
+                      child: license_pic != null
+                          ? Container(
+                              margin: EdgeInsets.symmetric(horizontal: 18.sp),
+                              width: 5.h,
+                              height: 5.h,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 6.sp, color: Colors.grey.shade400),
+                                borderRadius: BorderRadius.circular(12.sp),
+                              ),
+                              child: Image.file(
+                                license_pic!,
+                                fit: BoxFit.fill,
+                                filterQuality: FilterQuality.high,
+                                width: 5.h,
+                                height: 5.h,
+                              ),
+                            )
+                          : Container(),
+                    ),
                     uploadMedicalId: () {},
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.visiblePassword,
@@ -117,7 +137,27 @@ class _LicenseScreenState extends State<LicenseScreen> {
                           borderRadius: BorderRadius.circular(14.sp)),
                       child: Column(
                         children: [
-                          AppSVG(assetName: "imageUpload"),
+                          Container(
+                            child: face_pic != null
+                                ? Container(
+                              margin: EdgeInsets.symmetric(horizontal: 18.sp),
+                              width: 5.h,
+                              height: 5.h,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 6.sp, color: Colors.grey.shade400),
+                                borderRadius: BorderRadius.circular(12.sp),
+                              ),
+                              child: Image.file(
+                                face_pic!,
+                                fit: BoxFit.fill,
+                                filterQuality: FilterQuality.high,
+                                width: 5.h,
+                                height: 5.h,
+                              ),
+                            )
+                                : AppSVG(assetName: "imageUpload"),
+                          ),
                           SizedBox(
                             height: 1.2.h,
                           ),
@@ -139,7 +179,8 @@ class _LicenseScreenState extends State<LicenseScreen> {
                           license_pic: license_pic!.path.toString(),
                           face_pic: face_pic!.path.toString());
                     },
-                    label: "Confirm",bgColor:  AppColors.primary,
+                    label: "Confirm",
+                    bgColor: AppColors.primary,
                     sizeFont: 16.sp)
               ],
             ),

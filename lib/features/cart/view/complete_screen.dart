@@ -3,6 +3,7 @@ import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -20,14 +21,14 @@ class CongratulateScreen extends StatelessWidget {
                   height: 14.h,
                 ),
                 Text(
-                  "Congratulations",
+                  "${S().congratulation}",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21.sp),
                 ),
                 SizedBox(
                   height: 2.h,
                 ),
                 Text(
-                  "Your order has been done correctly ",
+                  "${S().congDes} ",
                   style: TextStyle(fontWeight: FontWeight.w200, fontSize: 17.sp),
                   textAlign: TextAlign.center,
                 ),
@@ -45,7 +46,7 @@ class CongratulateScreen extends StatelessWidget {
                   onPressed: () {
                     push(context, MainScreens());
                   },
-                  label: 'Go to Home',
+                  label: '${S().goToHome}',
                   sizeFont: 16.sp,
                   borderRadius: BorderRadius.circular(12.sp),
                   bgColor: AppColors.primary,

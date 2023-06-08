@@ -22,7 +22,6 @@ class _ChatState extends State<Chat> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
 
-  bool _isRecording = false;
 
   StreamSubscription? _recorderStatus;
   StreamSubscription<List<int>>? _audioStreamSubscription;
@@ -261,7 +260,7 @@ class ChatMessage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 4.0, top: 6),
             child:
-            Text(this.name, style: Theme.of(context).textTheme.subtitle1),
+            Text(this.name, style: Theme.of(context).textTheme.titleMedium),
           )
         ],
       )

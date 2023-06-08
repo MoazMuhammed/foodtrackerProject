@@ -62,8 +62,8 @@ class _HelpCenterState extends State<HelpCenter> {
                     width: 10.w,
                   ),
                   ContactWidget(
-                    image: 'emailContact',
-                    pressed: () {launchUrlString("https://mail.google.com/mail/foodallergytracker");},
+                    image: 'instagram',
+                    pressed: () {launchUrlString("https://www.instagram.com/foodallergytracker/");},
                   ),
                 ]
               ),

@@ -37,7 +37,15 @@ final String allergies;
               height: 3.h,
             ),
             AIScannerDetails(
-              title: 'Name :',
+              title: 'Food Name :',
+              details: foodName,
+            ),
+
+            SizedBox(
+              height: 2.h,
+            ),
+            AIScannerDetails(
+              title: 'Food Category :',
               details: categoryName,
             ),
             SizedBox(
@@ -45,13 +53,6 @@ final String allergies;
             ),
             AIScannerDetails(
               title: 'Results :',
-              details: foodName,
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
-            AIScannerDetails(
-              title: 'Ingredients :',
               details: allergies,
             ),
             SizedBox(

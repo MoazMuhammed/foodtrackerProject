@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

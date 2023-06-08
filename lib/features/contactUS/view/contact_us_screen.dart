@@ -42,7 +42,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
     }
     if (state is ContactUsFailure) {
       hideLoading();
-      showError(cubit.contactUsModel.message);
+      showError("You must fill in all fields");
     }
   },
   builder: (context, state) {

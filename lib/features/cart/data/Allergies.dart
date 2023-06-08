@@ -12,6 +12,7 @@
 //   int id;
 //   String arabicName;
 //   String englishName;
+
 //
 //   Map<String, dynamic> toJson() {
 //     final map = <String, dynamic>{};

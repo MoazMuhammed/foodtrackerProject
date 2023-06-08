@@ -8,7 +8,6 @@ import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/text_form_field.dart';
 import 'package:foodtracker/features/forget%20password/view/forget_password_congratulation_screen.dart';
-import 'package:foodtracker/features/forget%20password/view/forget_password_otp_screen.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/generated/intl/messages_ar.dart';

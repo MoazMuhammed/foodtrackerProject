@@ -6,7 +6,6 @@ import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
-import 'package:foodtracker/main_screens.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ForgetPasswordCongratulationScreen extends StatefulWidget {

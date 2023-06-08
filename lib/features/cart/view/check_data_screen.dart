@@ -6,7 +6,6 @@ import 'package:foodtracker/core/cubits/product/deleteItem/delete_item_from_cart
 import 'package:foodtracker/core/cubits/product/getDataToCart/get_cart_details_cubit.dart';
 import 'package:foodtracker/core/cubits/product/updateQuantitiy/update_quantity_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/app_image.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
@@ -15,6 +14,7 @@ import 'package:foodtracker/core/widgets/app_button.dart';
 import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/features/cart/data/getCartDetailsModel.dart';
 import 'package:foodtracker/features/cart/view/cart_payment_screen.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CheckDataScreen extends StatefulWidget {
@@ -93,7 +93,7 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                           children: [
                             ForgetPasswordBarWidget(
                                 onPressed: () => pop(context),
-                                title: "Check Cart"),
+                                title: "${S().checkData}"),
                             Expanded(
                               child: ListView.builder(
                                 itemCount: cubit.cartDetails.length,
@@ -253,7 +253,7 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Order Summary",
+                                    "${S().orderSummary}",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17.sp),
@@ -264,7 +264,7 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                                   Row(
                                     children: [
                                       Text(
-                                        "Subtotal",
+                                        "${S().subtotal}",
                                         style: TextStyle(fontSize: 16.sp),
                                       ),
                                       Spacer(),
@@ -279,7 +279,7 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                                   Row(
                                     children: [
                                       Text(
-                                        "Total",
+                                        "${S().total}",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16.sp),
@@ -303,7 +303,7 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                                         child: Column(
                                           children: [
                                             Text(
-                                              "Grand Total",
+                                              "${S().grandTotal}",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16.sp),
@@ -330,7 +330,7 @@ class _CheckDataScreenState extends State<CheckDataScreen> {
                                                         .toString(),
                                                   ));
                                             },
-                                            label: "Checkout",
+                                            label: "${S().checkout}",
                                             sizeFont: 16.sp,
                                             bgColor: AppColors.primary,
                                             borderRadius:

@@ -3,11 +3,11 @@ import 'package:foodtracker/core/utills/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ReactWidget extends StatefulWidget {
-  const ReactWidget({Key? key, required this.image, required this.number, required this.onPressed, required this.color}) : super(key: key);
+  const ReactWidget({Key? key, required this.image, required this.number, required this.onPressed,  this.color}) : super(key: key);
 
   final String image;
   final String number;
-  final Color color;
+  final Color? color;
   final GestureTapCallback onPressed;
 
   @override

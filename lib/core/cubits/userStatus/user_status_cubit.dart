@@ -20,9 +20,11 @@ class UserStatusCubit extends Cubit<UserStatusState> {
       var response = await MyDio.get(endPoint: EndPoints.userStatus);
 
       userStatus = UserStatus.fromJson(response!.data);
-      safePrint(userStatus.isDoctor);
-      emit(UserStatusSuccess(response.data));
+      safePrint("Doc => ${userStatus.isDoctor}");
+      safePrint("patient => ${userStatus.isPatient}");
       SaveUserStatus();
+
+      emit(UserStatusSuccess(response.data));
       safePrint(response.toString());
 
     } catch (e) {

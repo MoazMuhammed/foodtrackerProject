@@ -20,13 +20,12 @@ final String title;
             ),
             Text(title, style: TextStyle(fontSize: 17.sp)),
             Spacer(),
-            AppSVG(assetName: 'notify', height: 2.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white),
             SizedBox(
               width: 3.w,
             ),
             GestureDetector(onTap: () {
               Scaffold.of(context).openEndDrawer();
-            },child: AppSVG(assetName: 'drawer', height: 2.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
+            },child: AppSVG(assetName: 'drawer', height: 3.5.h,color: Theme.of(context).brightness == Brightness.light ?Colors.black:Colors.white,)),
             SizedBox(
               height: 6.h,
             ),

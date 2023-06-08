@@ -12,7 +12,6 @@ import 'package:foodtracker/core/widgets/internet_disconnected_widget.dart';
 import 'package:foodtracker/core/widgets/text_form_field.dart';
 import 'package:foodtracker/features/forget%20password/widget/forget_pasword_widget.dart';
 import 'package:foodtracker/features/forget%20password/view/forget_password_screen.dart';
-import 'package:foodtracker/features/login/widget/social_media_widget.dart';
 import 'package:foodtracker/features/signup/signup_choose_service/view/signup_choose_service_screen.dart';
 import 'package:foodtracker/generated/l10n.dart';
 import 'package:foodtracker/main_screens.dart';

@@ -1,24 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:foodtracker/core/cubits/internet/internet_cubit.dart';
 import 'package:foodtracker/core/cubits/signup/sign_up_cubit.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared.dart';
-import 'package:foodtracker/core/shared_preferences/my_shared_keys.dart';
 import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
-import 'package:foodtracker/core/utills/safe_print.dart';
 import 'package:foodtracker/core/utills/svg.dart';
 import 'package:foodtracker/core/widgets/app_button.dart';
-import 'package:foodtracker/core/widgets/internet_disconnected_widget.dart';
 import 'package:foodtracker/core/widgets/text_form_field.dart';
 import 'package:foodtracker/features/login/view/login_screen.dart';
-import 'package:foodtracker/features/login/widget/social_media_widget.dart';
 import 'package:foodtracker/features/signup/congratulate/view/congratulate.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -56,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             showLoading();
           }
           if (state is SignUpFailure) {
-            showError(state.failureMassege);
+            showError("Enter a valid email address or password");
           }
         },
         child: SafeArea(
@@ -73,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Sign Up",
+                      '${S().signUp}' ,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 21.sp,
@@ -102,34 +93,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppTextField(
-                        hint: 'Enter Your UserName',
+                        hint: '${S().enterUserName}',
                         keyboardType: TextInputType.name,
                         controller: userNameController,
                         isPassword: false,
                         textInputAction: TextInputAction.next,
                         textInputType: TextInputType.name,
-                        title: 'UserName'),
+                        title: '${S().username}'),
                     AppTextField(
-                        hint: 'Enter Your Email',
+                        hint: '${S().enterEmail}',
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
                         isPassword: false,
                         textInputAction: TextInputAction.next,
                         textInputType: TextInputType.name,
-                        title: 'Email'),
+                        title: '${S().email}'),
                     AppTextField(
-                        hint: 'Enter Your Phone',
+                        hint: '${S().enterPhone}',
                         keyboardType: TextInputType.phone,
                         controller: phoneController,
                         isPassword: false,
                         textInputAction: TextInputAction.next,
                         textInputType: TextInputType.phone,
-                        title: 'Phone'),
+                        title: '${S().phoneNumber}'),
                     AppTextField(
-                        hint: 'Enter Your Password',
+                        hint: '${S().enterPassword}',
                         keyboardType: TextInputType.visiblePassword,
                         controller: passwordController,
-                        isPassword: true,
+                        isPassword: true,obscureText: true,
                         textInputAction: TextInputAction.next,
                         textInputType: TextInputType.visiblePassword,
                         validators: (value) {
@@ -141,9 +132,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           return null;
                         },
-                        title: 'Password'),
+                        title: '${S().password}'),
                     AppTextField(
-                        hint: 'ReEnter Your Password',
+                        hint: '${S().enterConfirmPassword}',
                         keyboardType: TextInputType.visiblePassword,
                         controller: confirmPasswordController,
                         isPassword: true,
@@ -159,7 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                           return null;
                         },
-                        title: 'Confirm Password'),
+                        title: '${S().confirmNewPassword}'),
 
                     SizedBox(
                       height: 3.h,
@@ -179,42 +170,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       bgColor: AppColors.primary,
                       borderRadius: BorderRadius.circular(12.sp),
                     ),
-                    SizedBox(
-                      height: 1.5.h,
-                    ),
-                    Center(
-                      child: Text(
-                        "--------------------- OR ---------------------",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 17.sp),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SocialMediaWidget(
-                          image: 'fb',
-                          onPressed: () {},
-                          name: 'FaceBook',
-                        ),
-                        SizedBox(
-                          width: 4.w,
-                        ),
-                        SocialMediaWidget(
-                          image: 'google',
-                          onPressed: () {},
-                          name: 'Gmail',
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
                   ],
                 ),
+                SizedBox(height: 1.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

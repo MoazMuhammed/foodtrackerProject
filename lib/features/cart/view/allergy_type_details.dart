@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodtracker/core/cubits/product/goToCart/push_to_cart_cubit.dart';
 import 'package:foodtracker/core/cubits/rate/rate_products_cubit.dart';
 import 'package:foodtracker/core/shared_preferences/my_shared.dart';
+import 'package:foodtracker/core/styles/colors.dart';
 import 'package:foodtracker/core/utills/easy_loading.dart';
 import 'package:foodtracker/core/utills/navigators.dart';
 import 'package:foodtracker/core/utills/safe_print.dart';
@@ -10,6 +12,7 @@ import 'package:foodtracker/core/widgets/custom_bar_widget.dart';
 import 'package:foodtracker/features/cart/data/getProductAllergy.dart';
 import 'package:foodtracker/features/cart/widget/rating_widget.dart';
 import 'package:foodtracker/features/cart/widget/recommended_product_widget.dart';
+import 'package:foodtracker/generated/l10n.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/cubits/product/getProductDetails/get_product_details_cubit.dart';
 
@@ -58,7 +61,7 @@ class _AllergyTypesDetailsScreenState extends State<AllergyTypesDetailsScreen> {
                 children: [
                   ForgetPasswordBarWidget(
                       onPressed: () => pop(context),
-                      title: "Allergy Product Details"),
+                      title: "${S().allergyProductDetails}"),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.symmetric(
@@ -70,7 +73,8 @@ class _AllergyTypesDetailsScreenState extends State<AllergyTypesDetailsScreen> {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 25,
                                   mainAxisSpacing: 19,
-                                  mainAxisExtent: 275),
+
+                                  mainAxisExtent: 298),
                           itemCount: cubit.productDetails.length,
                           itemBuilder: (
                             context,
@@ -85,12 +89,23 @@ class _AllergyTypesDetailsScreenState extends State<AllergyTypesDetailsScreen> {
                               productdetaiils: '',
                               onRatingUpdate: (double value) {}, addToCart: () {
                               cubitAddToCart.addItemToCart(product_id: products.id.toInt() );
+                              Fluttertoast.showToast(
+                                  msg: "${S().addToCartSuccessfully} ",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.white,
+                                  textColor: AppColors.primary,
+                                  fontSize: 14.sp
+                              );
+
                             }, ratePressed: () { addReview(context, () {
                               cubitPushRatingProducts.userRateProducts(rating: value.toInt(), id: products.id.toInt());
                             }, (rate) {
                                 value = rate;
                                 safePrint(value);
                             });
+                            // ignore: unnecessary_null_comparison
                             }, rating: products.rating.toDouble() == null ? 0 : products.rating.toDouble(),
                             );
                           }),
